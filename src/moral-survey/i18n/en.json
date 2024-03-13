@@ -97,5 +97,16 @@
   "litw-more-study1-slogan": "How well can AI understand your speech?",
   "litw-more-study1-description": "Find out how well AI can understand your speech by reading out loud a few words and sentences! The test takes around 7 minutes.",
   "litw-more-study2-slogan": "Learn to be a better writer!",
-  "litw-more-study2-description": "Can you identify the writing strategies of experts? Improve your reading and writing while comparing yourself to experts in this 10 minute study!"
+  "litw-more-study2-description": "Can you identify the writing strategies of experts? Improve your reading and writing while comparing yourself to experts in this 10 minute study!",
+
+
+  "irb-header-1": "Participant Information Sheet",
+  "irb-header-content": "Please read our Participant Information Sheet for more details about this study. You can access it here:",
+  "irb-link": "Participant information sheet",
+  "irb-consent-1": "Participant Consent Form",
+  "irb-consent-2": "I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction. I agree to participate in the project.",
+  "irb-consent-3": "By clicking this checkbox, I agree to articipate in the project",
+  "irb-warning": "You must check the box to continue."
+
+
 }

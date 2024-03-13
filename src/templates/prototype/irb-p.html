@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../../css/litw-styles.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+</head>
+
+<body>
+    <img class="mb-5" src="../../img/anu.png" height="80" width="200" />
+    <p class="my-1 font-bold text-lg">Participant Information Sheet</p>
+    <div>Please read our Participant Information Sheet for more details about this study. You can access it here:
+        <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC">Participant information sheet</a>
+    </div>
+
+    <p class="mt-5 font-bold">Participant Consent Form</p>
+    <div class="mt-1">I have read and understood the Participant Information Sheet you have given me about the research
+        project, and I have had any questions and concerns about the project addressed to my satisfaction. I agree to
+        participate in the project.</div>
+
+    <div class="flex justify-center">
+        <form class="mt-5" id="consent-form">
+            <input type="checkbox" id="agree-to-participate" onclick="checkBoxVerification()" />
+            <label class="text-sm font-bold" for="agree-to-participate">By clicking this checkbox, I agree to
+                participate in the project</label>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    var checkBoxVerification = function () {
+        if ($('#agree-to-participate').is(':checked')) {
+            $('#approve-irb').hide();
+            $('#btn-next-page').attr('style', 'display:block;');
+            $('#btn-next-page')[0].scrollIntoView();
+        } else {
+            $('#btn-next-page').hide();
+            $('#approve-irb').attr('style', 'display:block;');
+        }
+    }
+</script>
+
+</html>

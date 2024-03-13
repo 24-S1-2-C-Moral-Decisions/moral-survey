@@ -1,25 +1,24 @@
-<h2 class="bolded-blue" data-i18n='litw-irb-header'></h2>
-<p data-i18n='litw-irb-subheader-1'></p>
-<p><em data-i18n='litw-irb-subheader-2'></em></p>
+<img class="mb-5" src="../img/anu.png" height="80" width="200" />
+<p class="my-1 font-bold text-lg" data-i18n="irb-header-1"></p>
+<div data-i18n="irb-header-content">
+    <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC" data-i18n="irb-link"></a>
+</div>
 
-{{#times 6}}
-	<div class="irb-paragraph">
-		<strong class="irb-paragraph-header" data-i18n='litw-irb-body-{{this}}-p1'></strong>
-		<p class="irb-paragraph-body" data-i18n='litw-irb-body-{{this}}-p2'></p>
-	</div>
-{{/times}}
+<p class="mt-5 font-bold" data-i18n="irb-consent-1"></p>
+<div class="mt-1" data-i18n="irb-consent-2"></div>
 
+<div class="flex justify-center">
+    <form class="mt-5" id="consent-form">
+        <input type="checkbox" id="agree-to-participate" onclick="checkBoxVerification()" />
+        <label class="text-sm font-bold" for="agree-to-participate" data-i18n="irb-consent-3"></label>
+    </form>
+</div>
 
-<p data-i18n='litw-irb-body-final'></p>
-<form id="consent-form">
-	<input type="checkbox" id="agree-to-study" onclick="checkBoxVerification()"/>
-	<label for="agree-to-study" data-i18n='litw-irb-consent'></label>
-</form>
-<span class="bolded-blue" id="approve-irb" data-i18n='litw-irb-warning'></span>
+<span class="bolded-blue" id="approve-irb" data-i18n='irb-warning'></span>
 
 <script type="text/javascript">
-    var checkBoxVerification = function (){
-        if($('#agree-to-study').is(':checked')){
+    var checkBoxVerification = function () {
+        if ($('#agree-to-participate').is(':checked')) {
             $('#approve-irb').hide();
             $('#btn-next-page').attr('style', 'display:block;');
             $('#btn-next-page')[0].scrollIntoView();

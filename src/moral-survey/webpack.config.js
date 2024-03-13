@@ -1,4 +1,5 @@
 var path = require("path");
+const webpack = require('webpack');
 
 var config = {
   entry: path.join(__dirname, "study-model.js"),

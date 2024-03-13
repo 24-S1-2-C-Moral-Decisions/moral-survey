@@ -16,6 +16,7 @@ require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
 var irbTemplate = require("../templates/irb.html");
+var training1Template = require("../templates/training-1.html");
 var demographicsTemplate = require("../templates/demographics.html");
 var instructionsTemplate = require("../templates/instructions.html");
 var loadingTemplate = require("../templates/loading.html");
@@ -44,6 +45,13 @@ module.exports = (function(exports) {
 				type: "display-slide",
 				template: irbTemplate,
 				display_element: $("#irb"),
+				display_next_button: false,
+			},
+			TRAINING_1: {
+				name: "training_1",
+				type: "display-slide",
+				template: training1Template,
+				display_element: $("#training-1"),
 				display_next_button: false,
 			},
 			DEMOGRAPHICS: {
@@ -82,6 +90,7 @@ module.exports = (function(exports) {
 	function configureStudy() {
 		timeline.push(params.slides.INTRODUCTION);
 		timeline.push(params.slides.INFORMED_CONSENT);
+		timeline.push(params.slides.TRAINING_1);
 		timeline.push(params.slides.DEMOGRAPHICS);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);

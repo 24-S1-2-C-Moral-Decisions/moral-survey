@@ -1,0 +1,188 @@
+<h1 class="font-bold text-3xl my-3">Training Part 1 of 2 - Understand Controversy and Uncertainty</h1>
+<h2 class="text-2xl font-bold my-3">Background Knowledge:</h2>
+<div class="pl-6 mb-5">
+    <h3 class="font-semibold"> What is Reddit and its communities?</h3>
+    <p class="pl-6">
+        Reddit is an American social news aggregation, content rating, and discussion website. Registered users
+        submit content to the site such as links, text posts, images, and videos, which are then voted up or down by
+        other members. Posts are organized by subject into user-created boards called "communities", each focusing
+        on a specific topic or theme.
+    </p>
+
+    <h3 class="font-semibold mt-3">What is the r/AmItheAsshole community?</h3>
+    <div class="pl-6">
+        <p>
+            r/AmItheAsshole, abbreviated as AITA, is a Reddit community where users post about their real-world
+            interpersonal conflicts and receive judgment from other Reddit users.
+        </p>
+        <p>
+            This community allows users to solicit and express opinions about whether the actions of people in
+            specific scenarios are appropriate, especially the actions of Original Poster, the person reporting the
+            situation.
+        </p>
+    </div>
+
+    <h3 class="font-semibold mt-3">We categorize 2 Primary Judgments in the r/AmItheAsshole Community:</h3>
+    <div class="pl-6">
+        <h4 class="font-semibold mt-2">1. YA: Yes, the Individual reporting the situation is an Asshole.</h4>
+        <div class="pl-6">
+            <p>It combines two types of judgments from the AITA community:</p>
+            <div class="pl-6">
+                <p>You are The Asshole (YTA): the Individual reporting the situation is at fault.</p>
+                <p>Everyone Sucks Here (ESH): all parties involved in the situation are at fault.</p>
+            </div>
+        </div>
+
+        <h4 class="font-semibold mt-2">2. NA: No, the Individual reporting the situation is Not an Asshole.</h4>
+        <div class="pl-6">
+            <p>It combines two types of judgments from the AITA community:</p>
+            <div class="pl-6">
+                <p>You are Not The Asshole (NTA): the Individual reporting the situation is not at fault in the
+                    situation.</p>
+                <p>No Asshole Here (NAH): none of the parties involved are at fault.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<h2 class="text-2xl font-bold">Your task in part 1:</h2>
+<p>Below are 2 examples to test your understanding of controversy and uncertainty in a moral situation with chart
+    and text information provided. It is important to correctly understand concepts of controversy and uncertainty.
+</p>
+
+<div class="my-5">
+    <h3 class="font-semibold text-lg">1.1 What is Controversy? </h3>
+    <p>Controversy reflects how split people's judgements are in a situation:</p>
+
+    <div class="my-3 pl-6">
+        <p>High controversy means people's opinions are split almost evenly among 2 judgments (YA, NA).</p>
+        <p>Low controversy means a clear consensus among the whole population, or say people's opinions leaning to
+            one of the judgments.</p>
+    </div>
+
+    <div>
+        <h4 class="text-lg font-semibold mb-3">Practice question - Controversy</h4>
+        <div class="flex justify-center">
+            <img src="../img/training-1-1.png" width="700" height="400" />
+        </div>
+        <h5 class="text-lg font-semibold">Based on the community's judgements and confidence on Reddit:</h5>
+        <div>
+            <p>For every 100 Reddit users who made judgements:</p>
+            <div class="my-3 pl-6">
+                <p>98 users believe NA - the individual reporting the situation is Not the Asshole; Of the 98 users,
+                    66% are very certain and 34% are not very certain.</p>
+                <p>2 users believe YA - the individual reporting the situation is The Asshole; Of the 2 users, 100%
+                    are very certain and 0% are not very certain.</p>
+            </div>
+        </div>
+        <p>This moral dilemma situation has</p>
+        <div class="mt-4 flex justify-center space-x-10">
+            <button class="bg-green-100 rounded-md p-3 w-[30%]" onclick="showWrongAnswer1()">hign
+                controversy</button>
+            <button class="bg-green-100 rounded-md p-3 w-[30%]" onclick="showRightAnswer1()">low controversy</button>
+        </div>
+        <div id="controversy-wrong" class="hidden text-gray-600">
+            <p>Sorry, it's a wrong answer. </p>
+            <p>Explanation: The situation a low controversy because 98% of the whole population choose NA judgement,
+                which means their consensus over NA, instead of their being split into 2 judgements.</p>
+            <p>Note: To proceed, you need to choose the correct answer in both practice questions, including 1.1 and
+                1.2.</p>
+        </div>
+
+        <div id="controversy-right" class="hidden text-gray-600">
+            <p>Well done, it's a correct answer!</p>
+            <p>Explanation: The situation a low controversy because 98% of the whole population choose NA judgement,
+                which means their consensus over NA.</p>
+        </div>
+
+    </div>
+
+    <div class="my-5">
+        <h3 class="font-semibold text-lg">1.2 What is Uncertainty？</h3>
+        <p>Uncertainty within each judgement group reflects how many percent of people are not very certain in this
+            group:</p>
+        <div class="pl-6 my-3">
+            <p>High uncertainty means over half of people in a judgement group are not very certain in their judgment;
+            </p>
+            <p>Low uncertainty means over half of people within a judgement group are very certain in their judgment.
+            </p>
+        </div>
+        <div>
+            <h4 class="text-lg font-semibold mb-3">1.2 Practice Question - Uncertainty</h4>
+            <div class="flex justify-center">
+                <img src="../img/training-1-2.png" width="700" height="400">
+            </div>
+            <h5 class="text-lg font-semibold">BBased on the community's judgements and confidence on Reddit:</h5>
+            <div>
+                <p>For every 100 Reddit users who made judgements, </p>
+                <div class="my-3 pl-6">
+                    <p>65 users believe NA: No, the individual reporting the situation is Not the Asshole and; Of these
+                        65 users, 44% are very certain and 56% are not very certain.</p>
+                    <p>35 users believe YA: Yes, the individual reporting the situation is The Asshole and; Of these 35
+                        users, 66% are very certain and 34% are not very certain.</p>
+                </div>
+            </div>
+            <p>In this situation, the group who judged the individual as Not an Asshole has</p>
+            <div class="mt-4 flex justify-center space-x-10">
+                <button class="bg-green-100 rounded-md p-3 w-[30%]" onclick="showRightAnswer2()">hign
+                    uncertainty</button>
+                <button class="bg-green-100 rounded-md p-3 w-[30%]" onclick="showWrongAnswer2()">low
+                    uncertainty</button>
+            </div>
+
+            <div id="uncertainty-wrong" class="hidden text-gray-600">
+                <p>Sorry, it's a wrong answer. </p>
+                <p>Explanation: The group who judged the individual as Not an Asshole has high uncertainty because over
+                    half of the population are not very certain.</p>
+                <p>Note: To proceed, you need to choose the correct answer in both practice questions, including 1.1 and
+                    1.2.</p>
+            </div>
+
+            <div id="uncertainty-right" class="hidden text-gray-600">
+                <p>Well done, it's a correct answer!</p>
+                <p>Explanation: The group who judged the individual as Not an Asshole has high uncertainty because over
+                    half of the population are not very certain.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var check1 = false;
+    var check2 = false;
+
+    var showWrongAnswer1 = function () {
+        $('#btn-next-page').attr('style', 'display:block;');
+        check1 = false;
+        $('#controversy-right').hide();
+        $('#controversy-wrong').attr('style', 'display:block;');
+        $('#btn-next-page').hide();
+    }
+
+    var showRightAnswer1 = function () {
+        check1 = true;
+        $('#controversy-wrong').hide();
+        $('#controversy-right').attr('style', 'display:block');
+        if (check1 && check2) {
+            $('#btn-next-page').attr('style', 'display:block;');
+        }
+    }
+
+    var showWrongAnswer2 = function () {
+        check2 = false;
+        $('#uncertainty-right').hide();
+        $('#uncertainty-wrong').attr('style', 'display:block');
+        $('#btn-next-page').hide();
+    }
+
+    var showRightAnswer2 = function () {
+        check2 = true;
+        $('#uncertainty-wrong').hide();
+        $('#uncertainty-right').attr('style', 'display:block');
+        if (check1 && check2) {
+            $('#btn-next-page').attr('style', 'display:block;');
+        }
+    }
+
+</script>
