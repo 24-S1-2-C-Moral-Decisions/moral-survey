@@ -9,8 +9,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Running Build Check for Survey
+  build_survey2:
+    name: Running Build Check for Survey 2
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -26,6 +26,8 @@ jobs:
         cache-dependency-path: src/moral-survey/package-lock.json
         cache: 'npm'
     - run: npm install
-      working-directory: src/moral-survey
+      working-directory: src/moral-survey-2
     - run: npm run build
-      working-directory: src/moral-survey
+      working-directory: src/moral-survey-2
+
+  
