@@ -70,16 +70,12 @@
     </div>
 
     <div class="survey1-paragraph">
-        <form id="myForm" class="needs-validation">
+        <form id="myForm" class="needs-validation" novalidate>
             <div style="overflow:auto">
-                <div style="overflow:auto">
-                    <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"  name="options" id="highUncertenty" autocomplete="off" required>
-                    <label class="btn btn-light jud form-check-label" for="highUncertenty">High uncertainty</label>
-                </div>
-                <div style="overflow:auto">
-                    <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2" name="options" id="lowUncertenty" autocomplete="off" required>
-                    <label class="btn btn-light jud form-check-label" for="lowUncertenty" >Low uncertainty</label>
-                </div>
+                <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample1" name="options" id="highUncertenty" autocomplete="off" required>
+                <label class="btn btn-light jud form-check-label" for="highUncertenty">High uncertainty</label>
+                <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample2" name="options" id="lowUncertenty" autocomplete="off" required>
+                <label class="btn btn-light jud form-check-label" for="lowUncertenty" >Low uncertainty</label>
                 <div class="invalid-feedback">Please answer the question</div>
     
                 <div class="room">
@@ -108,14 +104,19 @@
 <div class="foot"></div>
 <script type="text/javascript">
     let tryNextPage = function() {
-        console.log("tryNextPage");
+        $(".needs-validation").addClass("was-validated");
         var highUncertenty = $('#highUncertenty').is(':checked');
         var lowUncertenty = $('#lowUncertenty').is(':checked');
-        if (highUncertenty || lowUncertenty) {
+        if (highUncertenty) {
             nextPage();
+        }
+        else if (lowUncertenty) {
+            failedValidation();
+            $('.invalid-feedback').text("Your answer is wrong. Please choose the right answer to proceed.");
         }
         else {
             failedValidation();
+            $('.invalid-feedback').text("Please answer the question");
         }
     } 
 

@@ -791,16 +791,9 @@ a:active {
 	padding-top: 3vh;
 	margin-left: 5px;
 	text-align: center;
-	width: 19%;
+	width: 10em;
 	height:10vh;
-}
-.cho2{
-	font-size: 1.5vh;
-	padding-top: 3vh;
-	margin-left: 5px;
-	text-align: center;
-	width: 19%;
-	height:10vh;
+	margin-top: 1em;
 }
 .form{
 	width: 100%;
@@ -818,3 +811,14 @@ a:active {
 	margin-top: 5%;
 	display: none;
 }
+
+.lar-middle{
+    display: block;
+    width: 70%;
+    height: auto;
+    margin-left: 15%;
+}
+
+:root {
+	--bs-form-valid-color: black;
+  }

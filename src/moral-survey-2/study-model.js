@@ -26,6 +26,7 @@ require("../js/litw/jspsych-display-slide");
 
 // load survey templates
 var motivationSurvey = require("./content/motivationSurvey.html");
+var mock_survey = require("./content/mocksurvey.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -64,6 +65,13 @@ module.exports = (function(exports) {
 				display_element: $("#motivationsurvey"),
 				display_next_button: false,
 			},
+			MOCK_SURVEY: {
+				name: "mock-survey",
+				type: "display-slide",
+				template: mock_survey,
+				display_element: $("#mock-survey"),
+				display_next_button: false,
+			},
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
@@ -92,6 +100,7 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INFORMED_CONSENT);
 		// timeline.push(params.slides.DEMOGRAPHICS);
 		timeline.push(params.slides.SURVEY1);
+		timeline.push(params.slides.MOCK_SURVEY);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);
 	}
