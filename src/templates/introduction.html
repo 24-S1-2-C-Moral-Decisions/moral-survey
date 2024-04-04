@@ -45,25 +45,23 @@
 
 <script type="text/javascript">
     $("#btn-intro-submit").click( function() {
-        console.log("clicked");
+        // console.log("clicked");
         var participantY = $("#ParticipantY").prop('checked');
         var participantN = $("#ParticipantN").prop('checked');
         if (participantY) {
-            $("#btn-next-page").click();
+            // should be defined in server index.js
+            nextPage();
         } else if (participantN) {
             // TODO: GOTO Leave Page
             window.location.href = 'moral-survey/leave.html';
         }
         else {
-            $(".needs-validation").addClass("was-validated");
+            // should be defined in server index.js
+            failedValidation();
         }
     });
 
-    let removeValidation = function() {
-        $(".needs-validation").removeClass("was-validated");
-    }
-
-    $("#ParticipantY").click(removeValidation);
-    $("#ParticipantN").click(removeValidation);
+    $("#ParticipantY").click(passedValidation);
+    $("#ParticipantN").click(passedValidation);
 </script>
 

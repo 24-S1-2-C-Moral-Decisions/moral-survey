@@ -23,9 +23,13 @@
         if($('#agree').is(':checked')){
             $('#btn-agree-announcement').removeAttr('disabled');
         }
+        else {
+            $('#btn-agree-announcement').attr('disabled', 'disabled');
+        }
     }
 
-    var nextPage = function(){
-        $("#btn-next-page").click();
-    }
+    // should be defined in server index.js
+    // var nextPage = function(){
+    //     $("#btn-next-page").click();
+    // }
 </script>

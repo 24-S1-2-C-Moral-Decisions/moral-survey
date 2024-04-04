@@ -17,7 +17,6 @@ var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
 var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
 var demographicsTemplate = require("../templates/demographics.html");
-var instructionsTemplate = require("../templates/instructions.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
@@ -25,6 +24,8 @@ var commentsTemplate = require("../templates/comments.html");
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
+// load survey templates
+var motivationSurvey = require("./content/motivationSurvey.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -56,6 +57,13 @@ module.exports = (function(exports) {
 					LITW.data.submitDemographics(dem_data);
 				}
 			},
+			SURVEY1:{
+				name: "motivationsurvey",
+				type: "display-slide",
+				template: motivationSurvey,
+				display_element: $("#motivationsurvey"),
+				display_next_button: false,
+			},
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
@@ -82,7 +90,8 @@ module.exports = (function(exports) {
 	function configureStudy() {
 		timeline.push(params.slides.INTRODUCTION);
 		timeline.push(params.slides.INFORMED_CONSENT);
-		timeline.push(params.slides.DEMOGRAPHICS);
+		// timeline.push(params.slides.DEMOGRAPHICS);
+		timeline.push(params.slides.SURVEY1);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);
 	}
@@ -197,7 +206,6 @@ module.exports = (function(exports) {
 	});
 	exports.study = {};
 	exports.study.params = params
-
 })( window.LITW = window.LITW || {} );
 
 
