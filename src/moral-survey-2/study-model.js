@@ -15,7 +15,7 @@ require("bootstrap");
 require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
-var irbTemplate = require("../templates/irb.html");
+var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
 var demographicsTemplate = require("../templates/demographics.html");
 var instructionsTemplate = require("../templates/instructions.html");
 var loadingTemplate = require("../templates/loading.html");
@@ -42,8 +42,8 @@ module.exports = (function(exports) {
 			INFORMED_CONSENT: {
 				name: "informed_consent",
 				type: "display-slide",
-				template: irbTemplate,
-				display_element: $("#irb"),
+				template: moralAnnouncementTemplate,
+				display_element: $("#moral-announcement"),
 				display_next_button: false,
 			},
 			DEMOGRAPHICS: {
