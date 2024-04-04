@@ -27,6 +27,13 @@ require("../js/litw/jspsych-display-slide");
 // load survey templates
 var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
+var real_survey1 = require("./content/realsurvey1.html");
+// var situation1 = require("./content/situation1.html");
+// var situation2_ind = require("./content/situation2_ind.html");
+// var situation2_group = require("./content/situation2_group.html");
+// var situation3_ind = require("./content/situation3_ind.html");
+// var situation3_group = require("./content/situation3_group.html");
+// var comment = require("./content/comment.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -72,6 +79,55 @@ module.exports = (function(exports) {
 				display_element: $("#mock-survey"),
 				display_next_button: false,
 			},
+			REAL_SURVEY1: {
+				name: "real-survey1",
+				type: "display-slide",
+				template: real_survey1,
+				display_element: $("#real-survey1"),
+				display_next_button: false,
+			},
+			// SITUATION1: {
+			// 	name: "situation1",
+			// 	type: "display-slide",
+			// 	template: situation1,
+			// 	display_element: $("#situation1"),
+			// 	display_next_button: false,
+			// },
+			// SITUATION2_IND: {
+			// 	name: "situation2_ind",
+			// 	type: "display-slide",
+			// 	template: situation2_ind,
+			// 	display_element: $("#situation2_ind"),
+			// 	display_next_button: false,
+			// },
+			// SITUATION2_GROUP: {
+			// 	name: "situation2_group",
+			// 	type: "display-slide",
+			// 	template: situation2_group,
+			// 	display_element: $("#situation2_group"),
+			// 	display_next_button: false,
+			// },
+			// SITUATION3_IND: {
+			// 	name: "situation3_ind",
+			// 	type: "display-slide",
+			// 	template: situation3_ind,
+			// 	display_element: $("#situation3_ind"),
+			// 	display_next_button: false,
+			// },
+			// COMMENT: {
+			// 	name: "comment",
+			// 	type: "display-slide",
+			// 	template: comment,
+			// 	display_element: $("#comment"),
+			// 	display_next_button: false,
+			// },
+			// SITUATION3_GROUP: {
+			// 	name: "situation3_group",
+			// 	type: "display-slide",
+			// 	template: situation3_group,
+			// 	display_element: $("#situation3_group"),
+			// 	display_next_button: false,
+			// },
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
@@ -96,11 +152,12 @@ module.exports = (function(exports) {
 	};
 
 	function configureStudy() {
-		timeline.push(params.slides.INTRODUCTION);
-		timeline.push(params.slides.INFORMED_CONSENT);
-		// timeline.push(params.slides.DEMOGRAPHICS);
-		timeline.push(params.slides.SURVEY1);
-		timeline.push(params.slides.MOCK_SURVEY);
+		// timeline.push(params.slides.INTRODUCTION);
+		// timeline.push(params.slides.INFORMED_CONSENT);
+		// // timeline.push(params.slides.DEMOGRAPHICS);
+		// timeline.push(params.slides.SURVEY1);
+		// timeline.push(params.slides.MOCK_SURVEY);
+		timeline.push(params.slides.REAL_SURVEY1);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);
 	}
