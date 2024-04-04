@@ -28,9 +28,9 @@ require("../js/litw/jspsych-display-slide");
 var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
 var real_survey1 = require("./content/realsurvey1.html");
-var situation1 = require("./content/situation1.html");
 var situation2_ind = require("./content/situation2_ind.html");
 var situation3_ind = require("./content/situation3_ind.html");
+var surveyTemplate = require("./content/survey-template.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -77,32 +77,22 @@ module.exports = (function(exports) {
 				display_next_button: false,
 			},
 			REAL_SURVEY1: {
-				name: "real-survey1",
-				type: "display-slide",
-				template: real_survey1,
-				display_element: $("#real-survey1"),
-				display_next_button: false,
-			},
-			SITUATION1: {
-				name: "situation1",
-				type: "display-slide",
-				template: situation1,
-				display_element: $("#situation1"),
-				display_next_button: false,
+				type: "call-function",
+				func: function(){
+					genSurvey(0, "real-survey1");
+				}
 			},
 			SITUATION2_IND: {
-				name: "situation2_ind",
-				type: "display-slide",
-				template: situation2_ind,
-				display_element: $("#situation2_ind"),
-				display_next_button: false,
+				type: "call-function",
+				func: function(){
+					genSurvey(1, "situation2_ind");
+				}
 			},
 			SITUATION3_IND: {
-				name: "situation3_ind",
-				type: "display-slide",
-				template: situation3_ind,
-				display_element: $("#situation3_ind"),
-				display_next_button: false,
+				type: "call-function",
+				func: function(){
+					genSurvey(2, "situation3_ind");
+				}
 			},
 			COMMENTS: {
 				type: "display-slide",
@@ -134,17 +124,80 @@ module.exports = (function(exports) {
 		// // timeline.push(params.slides.DEMOGRAPHICS);
 		// timeline.push(params.slides.SURVEY1);
 		// timeline.push(params.slides.MOCK_SURVEY);
-		// timeline.push(params.slides.REAL_SURVEY1);
-		// timeline.push(params.slides.SITUATION2_IND);
-		// timeline.push(params.slides.SITUATION3_IND);
-		timeline.push(params.slides.COMMENTS);
-		timeline.push(params.slides.RESULTS);
+		timeline.push(params.slides.REAL_SURVEY1);
+		timeline.push(params.slides.SITUATION2_IND);
+		timeline.push(params.slides.SITUATION3_IND);
+		// timeline.push(params.slides.COMMENTS);
+		// timeline.push(params.slides.RESULTS);
 	}
 
 	function calculateResults() {
 		//TODO: Nothing to calculate
 		let results_data = {}
 		showResults(results_data, true)
+	}
+
+	situations = [
+		{
+			title: "AITA for not wanting my husband to go back to school",
+			subtitle: "Throwaway, husband uses reddit.",
+			description: [
+				"Backstory first. I (27f) work full time as does my husband (26m). I do make more than my husband and the dicotomy is only going to increase as time goes due to my line of work. We have two kids, a 2 and a half year old and a 10 month old. We both love our kids endlessly and share equally in all parental duties.",
+				"All that said, I do work earlier than my husband and pick both of our children up from their respective daycares and am home with them for a couple hours before my husband gets home. When he gets home, he is more often than not in a, for lack of a better word, shitty mood. He does not like his job, and that stress follows him home.",
+				"We are not financially well off at the moment but in the future due to my job, we have spoken of the possibility of him being a stay at home dad. This is the future that I thought we were working towards.",
+				"About a month ago, my husband informed me that he was in the process of applying for college. I was a little taken aback due to us both talking about our future with him at home. I am trying to be supportive of the idea, but, did mention that i had thought that he was looking forward to being a stay at home dad.",
+				"That is where I left the conversation. I did not tell him of my other concerns which are more responsible for my disagreement with him going back to school. I mentioned that he is in a shitty mood sometimes when he gets back home, and that attitude can sometimes be taken out on our kids.",
+				"Now, I do want to stress that he is a great and loving father, but, on some days, seeing the way he interacts with our children can be heartbreaking. He can be short with them and often will shout at our oldest. Every interruption the kids can cause is likely to upset him and cause him to be angry. Most nights I will take over caring for the kids to give him a break as I can see that he is in a bad mood.",
+				"The financial aspect of college is also an issue I have. As I mentioned, we are not too financially well off and I do not know how well we could manage the prospect of student loans."
+			],
+			YA: 50,
+			NA: 50,
+			conclution: 'About half of people chose "YA - Yes, the Individual is the Asshole" and about half chose "NA - No, the Individual is Not the Asshole"',
+			NAPreHundred: 47,
+			YAPreHundred: 33,
+			NAImg: "./img/WechatIMG1019.jpg",
+			YAImg: "./img/WechatIMG1022.jpg",
+		},
+		{
+			title: "AITA for complaining that I was not allowed in the pool as it was a ‘Women only’ session.",
+			subtitle: "",
+			description: [
+				"Took my kids swimming. Toddler was happy in the baby pool, but the eldest wanted to go in the big pool. I went with her, but was told to get out as I am male. I think it was discrimination, the pool say they’re meeting a demand from the public and are being inclusive."
+			],
+			YA: 51,
+			NA: 49,
+			NAPreHundred: 47,
+			YAPreHundred: 33,
+			NAImg: "./img/WechatIMG1019.jpg",
+			YAImg: "./img/WechatIMG1022.jpg",
+		},
+		{
+			title: "AITA for calling my fat friend fat after she called me a twig?",
+			subtitle: "",
+			description: [
+				'I am very self conscious about my weight. I am very skinny because of my fast metabolism and im very bony. It tears me apart when i hear people calling me a twig. I was eating lunch with some of my friends and the biggest one in the group said "Eat" when i was throwing out half of my sandwich. I said "Im not hungry" and she said "You have to eat, your a twig" they already know i have a fast metabolism because i told them before about it when they asked why i was so bony. I snapped back and said "I\'d rather be a twig then a whole tree" and suddenly im the asshole. Everyone in my group of friends hate me and i want to know if its my fault.'
+			],
+			YA: 50,
+			NA: 50,
+			NAPreHundred: 47,
+			YAPreHundred: 33,
+			NAImg: "./img/WechatIMG1019.jpg",
+			YAImg: "./img/WechatIMG1022.jpg",
+		}
+	]
+
+	function genSurvey(num = 0, id) {
+		$("#"+id).html(
+			surveyTemplate({
+				startNow: true,
+				situationNumber: num + 1,
+				totalSituations: 3,
+				situationTitle: "Individual Decision Making",
+				situation: situations[num],
+			}));
+
+		$("#"+id).i18n();
+		LITW.utils.showSlide(id);
 	}
 
 	function showResults(results = {}, showFooter = false) {

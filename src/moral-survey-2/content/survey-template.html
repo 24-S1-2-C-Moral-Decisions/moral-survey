@@ -1,0 +1,283 @@
+<div class="lar-middle">
+  {{#if startNow}}
+    <h2 class="bolded-blue" data-i18n="moral-survey-start"> </h2>
+    <div class="survey1-paragraph">
+      <span class="survey1-paragraph-body" style="font-weight: bolder;" data-i18n='moral-survey-note'></span>
+      <span class="survey1-paragraph-body" data-i18n='moral-survey-note-p1'></span>
+    </div>
+  {{/if}}
+  <div class="survey1-paragraph">
+    <p class="survey1-paragraph-body lar-font2" style="margin-top: 20px;font-weight: bolder">
+      <span data-i18n='moral-survey-situation'></span>
+      {{situationNumber}}/{{totalSituations}}
+      -
+      <span data-i18n='moral-survey-situation-p1'></span>
+    </p>
+    <span class="survey1-paragraph-body" style="font-weight: bolder"> {{situation.title}} </span>
+    <p class="survey1-paragraph-body">  {{situation.subtitle}}  </p>
+    {{#each situation.description}}
+    <p class="survey1-paragraph-body"> {{this}} </p>
+    {{/each}}
+  </div>
+  <div class="survey1-paragraph">
+    <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-judgement' style="font-weight: bolder"></p>
+    <form id="decisionForm" class="form needs-validation" novalidate>
+      <input type="radio" class="btn-check form-check-input" value="YA" name="options" id="option1" autocomplete="off" required>
+      <label class="btn btn-light jud form-check-label YA-NA " data-target="#YA" for="option1" data-i18n='moral-survey-judgement-YA'></label><br>
+      <input type="radio" class="btn-check form-check-input" value="NA" name="options" id="option2" autocomplete="off" required>
+      <label class="btn btn-light jud form-check-label YA-NA " data-target="#NA" for="option2" data-i18n='moral-survey-judgement-NA'></label>
+      <div class="survey1-paragraph">
+        <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-confidence' style="font-weight: bolder;margin-top: 130px"></p>
+        <input type="radio" class="btn-check form-check-input" name="decision" id="confidence-1" autocomplete="off" required>
+        <label class="btn  btn-light cho form-check-label" for="confidence-1" data-i18n='moral-survey-confidence-1'></label>
+        <input type="radio" class="btn-check form-check-input" name="decision" id="confidence-2" autocomplete="off" required>
+        <label class="btn  btn-light cho form-check-label" for="confidence-2" data-i18n='moral-survey-confidence-2'></label>
+        <input type="radio" class="btn-check form-check-input" name="decision" id="confidence-3" autocomplete="off" required>
+        <label class="btn btn-light cho form-check-label" for="confidence-3" data-i18n='moral-survey-confidence-3'></label>
+        <input type="radio" class="btn-check form-check-input" name="decision" id="confidence-4" autocomplete="off" required>
+        <label class="btn btn-light cho form-check-label" for="confidence-4" data-i18n='moral-survey-confidence-4'></label>
+        <input type="radio" class="btn-check form-check-input" name="decision" id="confidence-5" autocomplete="off" required>
+        <label class="btn btn-light cho form-check-label" for="confidence-5" data-i18n='moral-survey-confidence-5'></label>
+        <div class="invalid-feedback">
+          Please answer the question.
+        </div>
+      </div>
+      <button type="button" class="btn btn-secondary custom-btn-left" id="sub1" onclick="sub1OnClick()">Next</button>
+    </form>
+  </div>
+</div>
+<div class="lar-middle" id="YA-group" style="display: none">
+  <div class="survey1-paragraph">
+    <p class="survey1-paragraph-body lar-font2" style="margin-top: 20px;font-weight: bolder">
+      <span data-i18n='moral-survey-situation'></span>
+      {{situationNumber}}/{{totalSituations}}
+      -
+      <span data-i18n='moral-survey-situation-p2'></span>
+    </p>
+    <span class="survey1-paragraph-body" style="font-weight: bolder"> {{situation.title}} </span>
+    <p class="survey1-paragraph-body">  {{situation.subtitle}}  </p>
+    {{#each situation.description}}
+    <p class="survey1-paragraph-body"> {{this}} </p>
+    {{/each}}
+  </div>
+  <div class="survey1-paragraph" id="YA">
+    <p class="survey1-paragraph-body" data-i18n='moral-survey-community' style="font-weight: bolder"></p>
+    <ul>
+      <li class="content">
+        <span class="survey1-paragraph-body" style="font-weight: bolder">
+        <span data-i18n="moral-survey-community-judgement-1"></span>
+        {{situation.YA}} : {{situation.NA}}
+        <span class="survey1-paragraph-body" data-i18n='moral-survey-community-judgement-2'></span>
+        </span>
+        <li>
+          {{situation.conclusion}}
+        </li>
+      </li>
+      <li class="content">
+        <p class="survey1-paragraph-body" style="font-weight: bolder">
+          <span data-i18n="moral-survey-community-judgement-NA-1"></span>
+          {{situation.NAPreHundred}}
+          <span data-i18n="moral-survey-community-judgement-NA-2"></span>
+        </p>
+      </li>
+    </ul>
+    <img class="survey1-img" src="{{situation.NAImg}}">
+
+    <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-judgement' style="font-weight: bolder"></p>
+    <form id="myForm2" class="form needs-validation" novalidate>
+      <input type="radio" class="btn-check form-check-input" name="YA-options" id="YA-option1" autocomplete="off" required>
+      <label class="btn btn-light jud form-check-label" for="YA-option1" data-i18n='moral-survey-judgement-YA'></label><br>
+      <input type="radio" class="btn-check form-check-input" name="YA-options" id="YA-option2" autocomplete="off" required>
+      <label class="btn btn-light jud form-check-label" for="YA-option2" data-i18n='moral-survey-judgement-NA'></label>
+      <div class="YA-room">
+        <div class=" card-body answer" id="collapseExample1">
+          <span class="survey1-paragraph-body mid-font" id="YA-Msg"></span>
+        </div>
+      </div>
+      <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-confidence' style="font-weight: bolder;"></p>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-confidence-1" autocomplete="off" required>
+      <label class="btn  btn-light cho form-check-label" for="YA-confidence-1" data-target="#ans-1" data-i18n='moral-survey-confidence-1'></label>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-confidence-2" autocomplete="off" required>
+      <label class="btn  btn-light cho form-check-label" for="YA-confidence-2" data-target="#ans-2" data-i18n='moral-survey-confidence-2'></label>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-confidence-3" autocomplete="off" required>
+      <label class="btn btn-light cho form-check-label" for="YA-confidence-3" data-target="#ans-3" data-i18n='moral-survey-confidence-3'></label>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-confidence-4" autocomplete="off" required>
+      <label class="btn btn-light cho form-check-label" for="YA-confidence-4" data-target="#ans-4" data-i18n='moral-survey-confidence-4'></label>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-confidence-5" autocomplete="off" required>
+      <label class="btn btn-light cho form-check-label" for="YA-confidence-5" data-target="#ans-5" data-i18n='moral-survey-confidence-5'></label>
+      <div class="survey1-paragraph-body mid-font" id="YA-ans" style="display: none;">
+        TODO
+      </div>
+      
+      <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-reason' style="font-weight: bolder;margin-top: 50px"></p>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+      </div>
+      <div class="invalid-feedback">
+        Please answer the above questions.
+      </div>
+      <button type="button" class="btn btn-secondary custom-btn-left" id="sub2" onclick="if(this.form.checkValidity()) { nextPage(); passedValidation();} else {  $('#myForm2').addClass('was-validated'); failedValidation();}">Next</button>
+    </form>
+  </div>
+</div>
+<div class="lar-middle" id="NA-group" style="display: none">
+  <div class="survey1-paragraph">
+    <p class="survey1-paragraph-body lar-font2" style="margin-top: 20px;font-weight: bolder">
+      <span data-i18n='moral-survey-situation'></span>
+      {{situationNumber}}/{{totalSituations}}
+      -
+      <span data-i18n='moral-survey-situation-p2'></span>
+    </p>
+    <span class="survey1-paragraph-body" style="font-weight: bolder"> {{situation.title}} </span>
+    <p class="survey1-paragraph-body">  {{situation.subtitle}}  </p>
+    {{#each situation.description}}
+    <p class="survey1-paragraph-body"> {{this}} </p>
+    {{/each}}
+  </div>
+  <div class="survey1-paragraph" id="NA">
+    <p class="survey1-paragraph-body" data-i18n='moral-survey-community' style="font-weight: bolder"></p>
+    <ul>
+      <li class="content">
+        <span class="survey1-paragraph-body"style="font-weight: bolder">
+          <span data-i18n="moral-survey-community-judgement-1"></span>
+          {{situation.YA}} : {{situation.NA}}
+          <span class="survey1-paragraph-body" data-i18n='moral-survey-community-judgement-2'></span>
+        </span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p1'></span>
+        <li>
+          {{situation.conclusion}}
+        </li>
+      </li>
+      <li class="content">
+        <p class="survey1-paragraph-body" style="font-weight: bolder">
+          <span data-i18n="moral-survey-community-judgement-YA-1"></span>
+          {{situation.YAPreHundred}}
+          <span data-i18n="moral-survey-community-judgement-YA-2"></span>
+        </p>
+      </li>
+    </ul>
+  <img class="survey1-img" src="{{situation.YAImg}}">
+    <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-judgement' style="font-weight: bolder"></p>
+  <form id="myForm3" class="form needs-validation" novalidate>
+    <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" name="NA-options" id="NA-option1" autocomplete="off" required>
+    <label class="btn btn-light jud form-check-label" for="NA-option1" data-i18n='moral-sur2-body-ans-la1'></label><br>
+    <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" name="NA-options" id="NA-option2" autocomplete="off" required>
+    <label class="btn btn-light jud form-check-label" for="NA-option2" data-i18n='moral-sur2-body-ans-la2'></label>
+    <div class="YA-room">
+      <div class=" card-body answer" id="NA-collapseExample1">
+        <span class="survey1-paragraph-body mid-font" id="NA-Msg" ></span>
+      </div>
+    </div>
+    <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-confidence' style="font-weight: bolder;"></p>
+    <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-confidence-1" autocomplete="off" required>
+    <label class="btn  btn-light cho form-check-label" for="NA-confidence-1" data-target="#NA-ans-1" data-i18n='moral-survey-confidence-1'></label>
+    <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-confidence-2" autocomplete="off" required>
+    <label class="btn  btn-light cho form-check-label" for="NA-confidence-2" data-target="#NA-ans-2" data-i18n='moral-survey-confidence-2'></label>
+    <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-confidence-3" autocomplete="off" required>
+    <label class="btn btn-light cho form-check-label" for="NA-confidence-3" data-target="#NA-ans-3" data-i18n='moral-survey-confidence-3'></label>
+    <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-confidence-4" autocomplete="off" required>
+    <label class="btn btn-light cho form-check-label" for="NA-confidence-4" data-target="#NA-ans-4" data-i18n='moral-survey-confidence-4'></label>
+    <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-confidence-5" autocomplete="off" required>
+    <label class="btn btn-light cho form-check-label" for="NA-confidence-5" data-target="#NA-ans-5" data-i18n='moral-survey-confidence-5'></label>
+    <div class="survey1-paragraph-body mid-font" id="NA-ans" style="display: none;">
+      TODO
+    </div>
+
+     <p class="survey1-paragraph-body lar-font" data-i18n='moral-survey-reason' style="font-weight: bolder;margin-top: 50px"></p>
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Comments</label>
+      </div>
+      <div class="invalid-feedback">
+        Please answer the above questions.
+      </div>
+    <button type="button" class="btn btn-secondary custom-btn-left" id="sub3" onclick="if(this.form.checkValidity()) { nextPage(); passedValidation();} else {  $('#myForm3').addClass('was-validated'); failedValidation();}">Next</button>
+  </form>
+  </div>
+</div>
+</div>
+<div style="display: block;width: 100%;height: 400px;"></div>
+<script type="text/javascript">
+  function disableDecisionForm() {
+    $('#decisionForm').find('input').prop('disabled', true);
+  }
+
+  function sub1OnClick() {
+    if ($("#decisionForm").addClass("was-validated").find('input[name="decision"]:checked').length > 0){
+      if ($("#option1").is(":checked")) {
+        passedValidation();
+        disableDecisionForm();
+        $('#YA-group').show();
+        $('#NA-group').hide();
+        $("#sub1").hide();
+      } else if ($("#option2").is(":checked")) {
+        passedValidation();
+        disableDecisionForm();
+        $('#NA-group').show();
+        $('#YA-group').hide();
+        $("#sub1").hide();
+      }
+      else {
+        failedValidation();
+      }
+    }
+    else {
+      failedValidation();
+    }
+  };
+
+  
+  $('input[name="YA-decision"]').click(function () {
+    let targetId = this.id.replace("YA-", "");
+    let changed = !$("#"+targetId).is(":checked");
+    
+    if (changed) {
+      let original = "";
+      for (let i = 1; i <= 5; i++) {
+        if ($("#confidence-" + i).is(":checked")) {
+          original = i;
+          break;
+        }
+      }
+      $('#YA-ans').text($.i18n("moral-survey-confidence-change") + $.i18n("moral-survey-confidence-" + original)).show(); 
+    }
+    else {
+      $('#YA-ans').text($.i18n("moral-survey-confidence-same")).show(); 
+    }
+  });
+
+  $('input[name="NA-decision"]').click(function () {
+    let targetId = this.id.replace("NA-", "");
+    let changed = !$("#"+targetId).is(":checked");
+    
+    if (changed) {
+      let original = "";
+      for (let i = 1; i <= 5; i++) {
+        if ($("#confidence-" + i).is(":checked")) {
+          original = i;
+          break;
+        }
+      }
+      $('#NA-ans').text($.i18n("moral-survey-confidence-change") + $.i18n("moral-survey-confidence-" + original)).show(); 
+    }
+    else {
+      $('#NA-ans').text($.i18n("moral-survey-confidence-same")).show(); 
+    }
+  });
+
+  $('#YA-option1').click(function () {
+    $('#YA-Msg').text($.i18n("moral-survey-judgement-same"));
+  });
+  $('#YA-option2').click(function () {
+    $('#YA-Msg').text($.i18n("moral-survey-judgement-change") + "YA");
+  });
+
+  $('#NA-option1').click(function () {
+    $('#NA-Msg').text($.i18n("moral-survey-judgement-change") + "NA").show();
+  });
+  $('#NA-option2').click(function () {
+    $('#NA-Msg').text($.i18n("moral-survey-judgement-same")).show();
+  });
+</script>
+  
