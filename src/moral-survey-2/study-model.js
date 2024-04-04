@@ -45,6 +45,83 @@ module.exports = (function(exports) {
 				display_element: $("#intro"),
 				display_next_button: false,
 			},
+			SURVEY1:{
+				name: "motivationsurvey",
+				type: "display-slide",
+				template: motivationSurveyTemplate,
+				display_element: $("#motivationsurvey"),
+				display_next_button: false,
+			},
+			MOCK_SURVEY: {
+				name: "mock-survey",
+				type: "display-slide",
+				template: mock_surveyTemplate,
+				display_element: $("#mock-survey"),
+				display_next_button: false,
+			},
+			REAL_SURVEY1: {
+				name: "real-survey1",
+				type: "display-slide",
+				template: real_survey1Template,
+				display_element: $("#real-survey1"),
+				display_next_button: false,
+			},
+			SITUATION1: {
+				name: "situation1",
+				type: "display-slide",
+				template: situation1_Template,
+				display_element: $("#situation1"),
+				display_next_button: false,
+			},
+			SITUATION2_IND: {
+				name: "situation2_ind",
+				type: "display-slide",
+				template: situation2_ind_Template,
+				display_element: $("#situation2_ind"),
+				display_next_button: false,
+			},
+			SITUATION2_GROUP: {
+				name: "situation2_group",
+				type: "display-slide",
+				template: situation2_group_Template,
+				display_element: $("#situation2_group"),
+				display_next_button: false,
+			},
+			SITUATION3_IND: {
+				name: "situation3_ind",
+				type: "display-slide",
+				template: situation3_ind_Template,
+				display_element: $("#situation3_ind"),
+				display_next_button: false,
+			},
+			COMMENT: {
+				name: "comment",
+				type: "display-slide",
+				template: comment_Template,
+				display_element: $("#comment"),
+				display_next_button: false,
+			},
+			SITUATION3_GROUP: {
+				name: "situation3_group",
+				type: "display-slide",
+				template: situation3_group_Template,
+				display_element: $("#situation3_group"),
+				display_next_button: false,
+			},
+			COMMENTS: {
+				type: "display-slide",
+				template: commentsTemplate,
+				display_element: $("#comments"),
+				name: "comments",
+				finish: function(){
+					var comments = $('#commentsForm').alpaca().getValue();
+					if (Object.keys(comments).length > 0) {
+						LITW.data.submitComments({
+							comments: comments
+						});
+					}
+				}
+			},
 			INFORMED_CONSENT: {
 				name: "informed_consent",
 				type: "display-slide",
@@ -252,5 +329,7 @@ module.exports = (function(exports) {
 	exports.study = {};
 	exports.study.params = params
 })( window.LITW = window.LITW || {} );
+
+
 
 

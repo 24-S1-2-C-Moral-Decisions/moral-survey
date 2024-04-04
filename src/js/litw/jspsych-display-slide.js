@@ -10,7 +10,7 @@
  *************************************************************/
 
 module.exports = jsPsych.plugins["display-slide"] = (function() {
-
+    console.log(display_element)
     var plugin = {};
 
     let getSlideTime = function() {
@@ -23,6 +23,7 @@ module.exports = jsPsych.plugins["display-slide"] = (function() {
 	};
 
     plugin.trial = function(display_element, trial) {
+        
         if(trial.setup) trial.setup();
 
         var template_data = {};
