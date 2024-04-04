@@ -109,14 +109,15 @@ module.exports = (function(exports) {
 				template: commentsTemplate,
 				display_element: $("#comments"),
 				name: "comments",
-				finish: function(){
-					var comments = $('#commentsForm').alpaca().getValue();
-					if (Object.keys(comments).length > 0) {
-						LITW.data.submitComments({
-							comments: comments
-						});
-					}
-				}
+				display_next_button: false,
+				// finish: function(){
+				// 	var comments = $('#commentsForm').alpaca().getValue();
+				// 	if (Object.keys(comments).length > 0) {
+				// 		LITW.data.submitComments({
+				// 			comments: comments
+				// 		});
+				// 	}
+				// }
 			},
 			RESULTS: {
 				type: "call-function",
@@ -135,7 +136,7 @@ module.exports = (function(exports) {
 		// timeline.push(params.slides.MOCK_SURVEY);
 		// timeline.push(params.slides.REAL_SURVEY1);
 		// timeline.push(params.slides.SITUATION2_IND);
-		timeline.push(params.slides.SITUATION3_IND);
+		// timeline.push(params.slides.SITUATION3_IND);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);
 	}

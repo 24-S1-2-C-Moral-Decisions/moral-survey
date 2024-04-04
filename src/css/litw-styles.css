@@ -192,9 +192,6 @@ body {
 	margin-bottom: 30px;
 }
 
-#comments { 
-	text-align: center; 
-}
 textarea.comments-box, textarea.comments_box {
 	padding: 15px;
 	font-size: 14px;
