@@ -13,17 +13,63 @@
 </head>
 
 <body class="container">
-<h2>Welcome to the LabintheWild Study Templates Package!</h2>
-<h3>Here is a list of template studies you may want to take a look:</h3>
-<div class="card" style="width: 18rem;">
-  <div class="card-img-top text-center display-1">
-      <i class="bi bi-house-gear"></i>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">Study Baseline</h5>
-    <p class="card-text">Contains typical LITW Study slides, no real experiement included!</p>
-    <a href="./moral-survey-2/index.html" class="btn btn-primary">Try it!</a>
-  </div>
+<div id="content">
+    <div id="header">
+        <a href='#'>
+            <img src='img/Logo-3.png' id='logo'
+                 alt='The Moral Decision.'/>
+        </a>
+        <div id='header-share' class='sharing-buttons'></div>
+        <div class='separator'>&nbsp;</div>
+    </div>
+
+    <div class="middle">
+        <h5>Participant Information Sheet</h5>
+        <span>Please read our Participant Information Sheet for more details about this study.
+    You can access it here: <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC" style="text-decoration: underline">Participant information sheet</a></span>
+
+        <!--
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-img-top text-center display-1">
+                <i class="bi bi-house-gear"></i>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Study Baseline</h5>
+                <p class="card-text">Contains typical LITW Study slides, no real experiement included!</p>
+
+                <a href="./moral-survey/index.html" class="btn btn-primary">Try it!</a>
+            </div>
+        </div>
+        -->
+        <h4 class="mag">Participant Consent Form</h4>
+        <p>I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction.
+            I agree to participate in the project.</p>
+
+        <!--
+        <div class="btn-group-vertical option" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <label class="btn btn-light select" for="btnradio1">Yes</label><br>
+
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-light select" for="btnradio2">No</label>
+        </div>
+        -->
+
+        <form id="myForm" class="needs-validation" novalidate>
+            <input type="radio" class="btn-check form-check-input" name="options" id="option1" autocomplete="off" required>
+            <label class="btn btn-light jud form-check-label" for="option1">Yes</label><br>
+            <input type="radio" class="btn-check form-check-input" name="options" id="option2" autocomplete="off" required>
+            <label class="btn btn-light jud form-check-label" for="option2">No</label>
+            <div class="invalid-feedback">Please answer the question</div>
+
+
+            <button type="submit" class="btn btn-secondary custom" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; width: auto;">Next</button>
+        </form>
+
+
+    </div>
+
 </div>
 <script src="index.js"></script>
 

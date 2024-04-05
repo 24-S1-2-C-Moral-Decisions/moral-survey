@@ -1,14 +1,9 @@
+var situation3_group_template = `
 <div class="lar-middle">
     <div class="survey1-paragraph">
-        <p class="survey1-paragraph-body lar-font2" style="margin-top: 20px;font-weight: bolder" data-i18n='litw-real-group-sur-p1'></p>
-        <span class="survey1-paragraph-body fst-italic" style="font-weight: bolder;" data-i18n='litw-real-group-sur-s1'></span>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p2'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p3'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p4'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p5'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p6'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p7'></p>
-        <p class="survey1-paragraph-body" data-i18n='litw-real-group-sur-p8'></p>
+        <p class="survey1-paragraph-body lar-font2" style="margin-top: 20px;font-weight: bolder" data-i18n='litw-situation3_group-p1'></p>
+        <span class="survey1-paragraph-body fst-italic" style="font-weight: bolder;" data-i18n='litw-situation3_group-s1'></span>
+        <p class="survey1-paragraph-body" data-i18n='litw-situation3_group-p2'></p>
     </div>
 
     <div class="survey1-paragraph" id="YA">
@@ -18,11 +13,11 @@
                 <span class="survey1-paragraph-body" data-i18n='litw-sur2-body-YA-p1'></span>
             </li>
             <li class="content">
-                <p class="survey1-paragraph-body" data-i18n='litw-sur2-group-YA-p2' style="font-weight: bolder"></p>
+                <p class="survey1-paragraph-body" data-i18n='litw-situation3_group-p3' style="font-weight: bolder"></p>
             </li>
         </ul>
 
-        <img class="survey1-img" src="../WechatIMG1019.jpg" alt="For every 100 Reddit users who made NA judgements, 47 users are very certain in NA">
+        <img class="survey1-img" src="../WechatIMG1021.jpg" alt="For every 100 Reddit users who made NA judgements, 84 users are very certain in NA">
         <p class="survey1-paragraph-body lar-font" data-i18n='litw-situation2_group-p4' style="font-weight: bolder"></p>
         <form id="myForm2" class="form needs-validation" novalidate>
             <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1"   name="YA-options" id="YA-option1" autocomplete="off" required>
@@ -74,6 +69,7 @@
                 <span class="survey1-paragraph-body mid-font" data-i18n='litw-sur2-body-YA-an5'></span>
             </div>
 
+
             <p class="survey1-paragraph-body lar-font" data-i18n='litw-sur2-group-reason-p1' style="font-weight: bolder;margin-top: 50px"></p>
             <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" required></textarea>
@@ -82,34 +78,56 @@
             <div class="invalid-feedback">
                 Please answer the above questions.
             </div>
+            <script>
+              (() => {
+                        'use strict'
+                        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                        const forms = document.querySelectorAll('.needs-validation')
+                    
+                        // Loop over them and prevent submission
+                        Array.from(forms).forEach(form => {
+                        form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    
+                        form.classList.add('was-validated')
+                    }, false)
+                    })
+                    })()
+            </script>
             <button type="submit" class="btn btn-secondary custom" id="sub2" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; width: auto; margin-top: 30px" onclick="if(this.form.checkValidity()) {    $('#btn-next-page').click(); }else {  this.form.stopPropagation(); } return false;">Next</button>
         </form>
     </div>
 
 </div>
 
-
 <div style="display: block;width: 100%;height: 300px;"></div>
 <script>
-    document.getElementById('YA-option1').addEventListener('click', function() {
+      document.getElementById('YA-option1').addEventListener('click', function() {
         document.getElementById('collapseExample2').classList.remove('show');
-    });
-
-    document.getElementById('YA-option2').addEventListener('click', function() {
+      });
+    
+      document.getElementById('YA-option2').addEventListener('click', function() {
         document.getElementById('collapseExample1').classList.remove('show');
-    });
-
-    var labels = document.querySelectorAll('.cho');
-    labels.forEach(label => {
-        label.addEventListener('click', function() {
-            const targetId = this.getAttribute('data-target');
-            const target = document.querySelector(targetId);
-            if (target) {
-                document.querySelectorAll('.YA-ans').forEach(ans => {
-                    ans.style.display = 'none';
-                });
-                target.style.display = 'block';
-            }
-        });
-    });
+      });
+    
+      const label_situation3 = document.querySelectorAll('.cho');
+      label_situation3.forEach(label => {
+                label.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        document.querySelectorAll('.YA-ans').forEach(ans => {
+                            ans.style.display = 'none';
+                        });
+                        target.style.display = 'block';
+                    }
+         });
+      });
 </script>
+    
+`;
+
+module.exports = situation3_group_template;

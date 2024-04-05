@@ -15,8 +15,18 @@ require("bootstrap");
 require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
-var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
+var motivationSurveyTemplate = require("../templates/motivationSurvey.html");
+var mock_surveyTemplate = require("../templates/mocksurvey.html");
+var real_survey1Template = require("../templates/realsurvey1.html");
+var situation1_Template = require("../templates/situation1.html");
+var situation2_ind_Template = require("../templates/situation2_ind.html");
+var situation2_group_Template = require("../templates/situation2_group.html");
+var situation3_ind_Template = require("../templates/situation3_ind.html");
+var situation3_group_Template = require("../templates/situation3_group.html");
+var comment_Template = require("../templates/comment.html");
+var irbTemplate = require("../templates/irb.html");
 var demographicsTemplate = require("../templates/demographics.html");
+var instructionsTemplate = require("../templates/instructions.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
@@ -24,13 +34,6 @@ var commentsTemplate = require("../templates/comments.html");
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
-// load survey templates
-var motivationSurvey = require("./content/motivationSurvey.html");
-var mock_survey = require("./content/mocksurvey.html");
-var real_survey1 = require("./content/realsurvey1.html");
-var situation1 = require("./content/situation1.html");
-var situation2_ind = require("./content/situation2_ind.html");
-var situation3_ind = require("./content/situation3_ind.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -125,8 +128,8 @@ module.exports = (function(exports) {
 			INFORMED_CONSENT: {
 				name: "informed_consent",
 				type: "display-slide",
-				template: moralAnnouncementTemplate,
-				display_element: $("#moral-announcement"),
+				template: irbTemplate,
+				display_element: $("#irb"),
 				display_next_button: false,
 			},
 			DEMOGRAPHICS: {
@@ -139,63 +142,6 @@ module.exports = (function(exports) {
 					LITW.data.submitDemographics(dem_data);
 				}
 			},
-			SURVEY1:{
-				name: "motivationsurvey",
-				type: "display-slide",
-				template: motivationSurvey,
-				display_element: $("#motivationsurvey"),
-				display_next_button: false,
-			},
-			MOCK_SURVEY: {
-				name: "mock-survey",
-				type: "display-slide",
-				template: mock_survey,
-				display_element: $("#mock-survey"),
-				display_next_button: false,
-			},
-			REAL_SURVEY1: {
-				name: "real-survey1",
-				type: "display-slide",
-				template: real_survey1,
-				display_element: $("#real-survey1"),
-				display_next_button: false,
-			},
-			SITUATION1: {
-				name: "situation1",
-				type: "display-slide",
-				template: situation1,
-				display_element: $("#situation1"),
-				display_next_button: false,
-			},
-			SITUATION2_IND: {
-				name: "situation2_ind",
-				type: "display-slide",
-				template: situation2_ind,
-				display_element: $("#situation2_ind"),
-				display_next_button: false,
-			},
-			SITUATION3_IND: {
-				name: "situation3_ind",
-				type: "display-slide",
-				template: situation3_ind,
-				display_element: $("#situation3_ind"),
-				display_next_button: false,
-			},
-			COMMENTS: {
-				type: "display-slide",
-				template: commentsTemplate,
-				display_element: $("#comments"),
-				name: "comments",
-				display_next_button: false,
-				// finish: function(){
-				// 	var comments = $('#commentsForm').alpaca().getValue();
-				// 	if (Object.keys(comments).length > 0) {
-				// 		LITW.data.submitComments({
-				// 			comments: comments
-				// 		});
-				// 	}
-				// }
-			},
 			RESULTS: {
 				type: "call-function",
 				func: function(){
@@ -206,16 +152,18 @@ module.exports = (function(exports) {
 	};
 
 	function configureStudy() {
-		// timeline.push(params.slides.INTRODUCTION);
-		// timeline.push(params.slides.INFORMED_CONSENT);
-		// // timeline.push(params.slides.DEMOGRAPHICS);
-		// timeline.push(params.slides.SURVEY1);
-		// timeline.push(params.slides.MOCK_SURVEY);
-		// timeline.push(params.slides.REAL_SURVEY1);
-		// timeline.push(params.slides.SITUATION2_IND);
-		// timeline.push(params.slides.SITUATION3_IND);
-		timeline.push(params.slides.COMMENTS);
+		timeline.push(params.slides.INTRODUCTION);
+		timeline.push(params.slides.SURVEY1);
+		timeline.push(params.slides.MOCK_SURVEY);
+		timeline.push(params.slides.REAL_SURVEY1);
+		timeline.push(params.slides.SITUATION2_IND);
+		timeline.push(params.slides.SITUATION3_IND);
+		timeline.push(params.slides.COMMENT);
+		timeline.push(params.slides.SITUATION3_GROUP);
 		timeline.push(params.slides.RESULTS);
+		timeline.push(params.slides.COMMENTS);
+		timeline.push(params.slides.INFORMED_CONSENT);
+		timeline.push(params.slides.DEMOGRAPHICS);
 	}
 
 	function calculateResults() {
@@ -328,6 +276,7 @@ module.exports = (function(exports) {
 	});
 	exports.study = {};
 	exports.study.params = params
+
 })( window.LITW = window.LITW || {} );
 
 

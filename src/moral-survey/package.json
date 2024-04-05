@@ -3,7 +3,7 @@
   "version": "2.0.0",
   "dependencies": {
     "alpaca": "^1.5.27",
-    "bootstrap": "^5.3.3",
+    "bootstrap": "^4.3.1",
     "expose-loader": "^4.1.0",
     "handlebars": "^4.7.7",
     "handlebars-loader": "^1.7.3",
@@ -16,9 +16,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publish": "webpack --mode=production",
-    "build": "webpack --mode=production",
-    "develop": "webpack --watch --mode=production",
+    "build": "webpack",
+    "develop": "webpack --watch",
     "devserver": "webpack serve --config webpack.config.js --mode development --static-directory .."
   },
   "repository": {
