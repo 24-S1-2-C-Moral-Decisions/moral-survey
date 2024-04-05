@@ -1,24 +1,67 @@
 <div id="intro-box" class="instructions-stim-container">
-    <div class="row">
-        <div class="col d-flex justify-content-center">
-            <h2 class="bolded-blue" data-i18n="litw-study-title"></h2>
+    <div class="middle">
+        <h5 >Participant Information Sheet</h5>
+        <span>Please read our Participant Information Sheet for more details about this study.
+        You can access it here: <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC" style="text-decoration: underline">Participant information sheet</a></span>
+    
+        <!--
+        <div class="card" style="width: 18rem;">
+            <div class="card-img-top text-center display-1">
+                <i class="bi bi-house-gear"></i>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Study Baseline</h5>
+                <p class="card-text">Contains typical LITW Study slides, no real experiement included!</p>
+                <a href="./moral-survey/index.html" class="btn btn-primary">Try it!</a>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-8 d-flex justify-content-center">
-            <p>
-                <span data-i18n="litw-study-description-p1"></span><br>
-                <span data-i18n="litw-study-description-p2"></span>
-            </p>
+        -->
+        <h4 class="mag text-start">Participant Consent Form</h4>
+        <p>I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction.
+            I agree to participate in the project.</p>
+
+        <!--
+        <div class="btn-group-vertical option" role="group" aria-label="Basic radio toggle button group">
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+            <label class="btn btn-light select" for="btnradio1">Yes</label><br>
+            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+            <label class="btn btn-light select" for="btnradio2">No</label>
         </div>
-    </div>
-    <div class="row">
+        -->
+
+        <form id="myForm" class="needs-validation" novalidate>
+            <div>
+                <input type="radio" class="btn-check form-check-input" name="options" id="ParticipantY" autocomplete="off" required>
+                <label class="btn btn-light jud form-check-label" for="ParticipantY">Yes</label><br>
+                <input type="radio" class="btn-check form-check-input" name="options" id="ParticipantN" autocomplete="off" required>
+                <label class="btn btn-light jud form-check-label" for="ParticipantN">No</label>
+                <div class="invalid-feedback">Please answer the question</div>
+            </div>
+            <button type="button" id="btn-intro-submit" data-i18n="moral-intro-button" class="btn btn-secondary btn-sm custom-btn-left"></button>
+        </form>
 
     </div>
-    <div class="row">
-        <div class="col d-flex justify-content-center">
-            <button type="button" class="btn btn-primary btn-lg" data-i18n="litw-study-intro-button" onclick="$('#btn-next-page').click()"></button>
-        </div>
-    </div>
 </div>
+
+<script type="text/javascript">
+    $("#btn-intro-submit").click( function() {
+        // console.log("clicked");
+        var participantY = $("#ParticipantY").prop('checked');
+        var participantN = $("#ParticipantN").prop('checked');
+        if (participantY) {
+            // should be defined in server index.js
+            nextPage();
+        } else if (participantN) {
+            // TODO: GOTO Leave Page
+            window.location.href = 'moral-survey/leave.html';
+        }
+        else {
+            // should be defined in server index.js
+            failedValidation();
+        }
+    });
+
+    $("#ParticipantY").click(passedValidation);
+    $("#ParticipantN").click(passedValidation);
+</script>
 
