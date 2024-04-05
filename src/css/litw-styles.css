@@ -588,7 +588,7 @@ select {
 
 a:link, a:visited, a:hover { 
 	text-decoration: none; 
-	color: #0099cc; 
+	/* color: #0099cc;  */
 }
 a:active { 
 	color: #003b4e; 

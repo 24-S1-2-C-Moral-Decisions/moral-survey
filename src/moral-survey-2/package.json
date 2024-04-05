@@ -17,8 +17,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "publish": "webpack --mode=production",
-    "build": "webpack --mode=production",
-    "develop": "webpack --watch --mode=production",
+    "build": "webpack --mode=development",
+    "develop": "webpack --watch --mode=development",
     "devserver": "webpack serve --config webpack.config.js --mode development --static-directory .."
   },
   "repository": {

@@ -4,7 +4,7 @@ var config = {
   entry: path.join(__dirname, "study-model.js"),
   output: {
     path: path.join(__dirname, "js"),
-    filename: "bundle-model.js"
+    filename: "bundle-model.min.js"
   },
   module: {
     rules: [
@@ -16,12 +16,12 @@ var config = {
                 exposes: "jquery",
               },
             },
-            {
-              loader: 'expose-loader',
-              options: {
-                exposes: '$',
-              },
-            }
+            // {
+            //   loader: 'expose-loader',
+            //   options: {
+            //     exposes: '$',
+            //   },
+            // }
             ]
         },
         {
