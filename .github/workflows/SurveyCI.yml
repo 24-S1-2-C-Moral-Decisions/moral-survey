@@ -7,8 +7,7 @@ on:
   push:
   pull_request:
     branches: [ "main" ]
-  workflow_dispatch: 
-
+  workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -41,6 +40,7 @@ jobs:
         cache: 'npm'
     - name: Build
       run: |
+
         chmod +x ./build.sh && ./build.sh  
       working-directory: src/
   
