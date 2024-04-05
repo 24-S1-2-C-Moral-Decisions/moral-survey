@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: Build
       run: |
-        ./build.sh  
+        ls & ./build.sh  
       working-directory: src/
 
   

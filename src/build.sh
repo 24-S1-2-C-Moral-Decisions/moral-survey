@@ -12,3 +12,4 @@ for dir in moral-survey-*; do
     cd -
     fi
 done
+
