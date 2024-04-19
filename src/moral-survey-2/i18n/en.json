@@ -17,6 +17,17 @@
 
   "moral-intro-button": "Next",
 
+
+  "moral-intro-h1": "Please tell us a little bit about yourself.",
+  "moral-intro-p1":"To proceed, please properly answer all fields below. (The ones marked with * are mandatory.)",
+  "moral-intro-l1":"Have you taken this test before? *",
+  "moral-intro-l2":"Which country did you live in the longest growing up? *",
+  "moral-intro-l3":"How old are you?",
+  "moral-intro-l4":"What is your gender?",
+  "moral-intro-l5":"What is your native language?",
+  "moral-intro-l6":"Are you a current and frequent AITA user?",
+  "moral-intro-l7":"How frequent you visit AITA subreddit?",
+
   "moral-motivationsurvey-header": "Training Part 1 of 2. Background Knowledge:",
   "moral-sur1-body-first-p1": "What is Reddit and its communities?",
   "moral-sur1-body-first-s1": "Reddit ",

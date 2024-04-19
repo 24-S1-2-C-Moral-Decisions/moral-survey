@@ -16,11 +16,12 @@ require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
 var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
-var demographicsTemplate = require("../templates/demographics.html");
+// var demographicsTemplate = require("../templates/demographics.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
+var informationTemplate = require("../templates/information.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
@@ -45,6 +46,13 @@ module.exports = (function(exports) {
 				display_element: $("#intro"),
 				display_next_button: false,
 			},
+			INFORMATION: {
+				name: "information",
+				type: "display-slide",
+				template: informationTemplate,
+				display_element: $("#infor"),
+				display_next_button: false,
+			},
 			INFORMED_CONSENT: {
 				name: "informed_consent",
 				type: "display-slide",
@@ -52,16 +60,16 @@ module.exports = (function(exports) {
 				display_element: $("#moral-announcement"),
 				display_next_button: false,
 			},
-			DEMOGRAPHICS: {
-				type: "display-slide",
-				template: demographicsTemplate,
-				display_element: $("#demographics"),
-				name: "demographics",
-				finish: function(){
-					var dem_data = $('#demographicsForm').alpaca().getValue();
-					LITW.data.submitDemographics(dem_data);
-				}
-			},
+			// DEMOGRAPHICS: {
+			// 	type: "display-slide",
+			// 	template: demographicsTemplate,
+			// 	display_element: $("#demographics"),
+			// 	name: "demographics",
+			// 	finish: function(){
+			// 		var dem_data = $('#demographicsForm').alpaca().getValue();
+			// 		LITW.data.submitDemographics(dem_data);
+			// 	}
+			// },
 			SURVEY1:{
 				name: "motivationsurvey",
 				type: "display-slide",
@@ -82,6 +90,24 @@ module.exports = (function(exports) {
 				template: real_survey1,
 				display_element: $("#real-survey1"),
 				display_next_button: false,
+				// finish: function(){
+				// 	const q1_individual_jud = $('input[name="options"]:checked').val();
+				// 	const q1_individual_conf = $('input[name="decision"]:checked').val();
+				// 	const q1_group_YA_jud = $('input[name="YA-options"]:checked').val();
+				// 	const q1_group_YA_conf = $('input[name="YA-decision"]:checked').val();
+				// 	const q1_group_NA_jud = $('input[name="NA-options"]:checked').val();
+				// 	const q1_group_NA_conf = $('input[name="NA-decision"]:checked').val();
+				// 	LITW.data.setSurvey({
+				// 		question_no:1,
+				// 		type:"individual_group",
+				// 		ind_judge:q1_individual_jud,
+				// 		ind_confidence:q1_individual_conf,
+				// 		ind_YA_judge:q1_YA_individual_jud,
+				// 		ind_YA_confidence:q1_YA_individual_conf,
+				// 		ind_NA_judge:q1_NA_individual_jud,
+				// 		ind_NA_confidence:q1_NA_individual_conf,
+				// 	})
+				// }
 			},
 			SITUATION1: {
 				name: "situation1",
@@ -131,7 +157,7 @@ module.exports = (function(exports) {
 	function configureStudy() {
 		timeline.push(params.slides.INTRODUCTION);
 		timeline.push(params.slides.INFORMED_CONSENT);
-		// timeline.push(params.slides.DEMOGRAPHICS);
+		timeline.push(params.slides.INFORMATION);
 		timeline.push(params.slides.SURVEY1);
 		timeline.push(params.slides.MOCK_SURVEY);
 		timeline.push(params.slides.REAL_SURVEY1);
