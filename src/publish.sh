@@ -2,9 +2,9 @@
 mkdir -p build
 
 cp *.html build/
-cp -r css/ build/css
-cp -r img/ build/img
-cp -r js/ build/js
+cp -r css/ build/
+cp -r img/ build/
+cp -r js/ build/
 
 for dir in moral-survey-*; do
     if [ -d "$dir" ]; then
