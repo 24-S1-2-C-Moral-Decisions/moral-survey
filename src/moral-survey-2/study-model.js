@@ -28,6 +28,7 @@ require("../js/litw/jspsych-display-slide");
 // load survey templates
 var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
+var attention_t = require("./content/attention.html");
 var real_survey1 = require("./content/realsurvey1.html");
 var situation1 = require("./content/situation1.html");
 var situation2_ind = require("./content/situation2_ind.html");
@@ -82,6 +83,13 @@ module.exports = (function(exports) {
 				type: "display-slide",
 				template: mock_survey,
 				display_element: $("#mock-survey"),
+				display_next_button: false,
+			},
+			ATTENTION: {
+				name: "attention",
+				type: "display-slide",
+				template: attention_t,
+				display_element: $("#attention"),
 				display_next_button: false,
 			},
 			REAL_SURVEY1: {
@@ -159,10 +167,10 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INFORMED_CONSENT);
 		timeline.push(params.slides.INFORMATION);
 		timeline.push(params.slides.SURVEY1);
-		timeline.push(params.slides.MOCK_SURVEY);
+		timeline.push(params.slides.ATTENTION);
 		timeline.push(params.slides.REAL_SURVEY1);
-		timeline.push(params.slides.SITUATION2_IND);
-		timeline.push(params.slides.SITUATION3_IND);
+		// timeline.push(params.slides.SITUATION2_IND);
+		// timeline.push(params.slides.SITUATION3_IND);
 		timeline.push(params.slides.COMMENTS);
 		timeline.push(params.slides.RESULTS);
 	}
@@ -206,6 +214,9 @@ module.exports = (function(exports) {
 		});
 	}
 
+	var selftexts = [];
+	var titles = [];
+	var img = []
 	function startStudy() {
 		// generate unique participant id and geolocate participant
 		LITW.data.initialize();
@@ -244,20 +255,64 @@ module.exports = (function(exports) {
 		} else {
 			toLoad['en'] = languages['en'];
 		}
-		$.i18n().load(toLoad).done(
-			function() {
+
+
+		fetch('https://moralmomentapi.azurewebsites.net/survey/questions?studyId=1', {
+			method: 'GET',
+			headers: {
+				'Accept': '*/*'
+			},
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(data => {
+			img = data.map(item => item.id);
+			selftexts = data.map(item => item.selftext);
+			titles = data.map(item => item.title);
+			sessionStorage.setItem('img', JSON.stringify(img));
+			console.log(data);
+			console.log("Self Texts:", selftexts);
+			console.log("Titles:", titles);
+
+			return fetch('./i18n/en.json', {
+				method: 'GET',
+				headers: {
+					'Accept': 'application/json'
+				}
+			});
+		})
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(json => {
+			json["moral-situation-1-title"] = titles[0];
+			json["moral-situation-1-text"] = selftexts[0];
+			json["moral-situation-2-title"] = titles[1];
+			json["moral-situation-2-text"] = selftexts[1];
+			json["moral-situation-3-title"] = titles[2];
+			json["moral-situation-3-text"] = selftexts[2];
+
+			$.i18n().load({
+				'en': json
+			}).done(function () {
 				$('head').i18n();
 				$('body').i18n();
 
 				LITW.utils.showSlide("img-loading");
-				//start the study when resources are preloaded
+
 				jsPsych.pluginAPI.preloadImages(params.preLoad,
 					function () {
 						configureStudy();
 						startStudy();
 					},
 
-					// update loading indicator
 					function (numLoaded) {
 						$("#img-loading").html(loadingTemplate({
 							msg: $.i18n("litw-template-loading"),
@@ -267,9 +322,56 @@ module.exports = (function(exports) {
 					}
 				);
 			});
+		})
+		.catch(error => {
+			console.error('error', error);
+		});
 	}
 
-
+	// function startExperiment(){
+	// 	//TODO These methods should be something like act1().then.act2().then...
+	// 	//... it is close enough to that... maybe the translation need to be encapsulated next.
+	// 	// get initial data from database (maybe needed for the results page!?)
+	// 	//readSummaryData();
+	//
+	// 	// determine and set the study language
+	// 	$.i18n().locale = LITW.locale.getLocale();
+	// 	var languages = {
+	// 		'en': './i18n/en.json?v=1.0',
+	// 		'pt': './i18n/pt-br.json?v=1.0',
+	// 	};
+	// 	//TODO needs to be a little smarter than this when serving specific language versions, like pt-BR!
+	// 	var language = LITW.locale.getLocale().substring(0,2);
+	// 	var toLoad = {};
+	// 	if(language in languages) {
+	// 		toLoad[language] = languages[language];
+	// 	} else {
+	// 		toLoad['en'] = languages['en'];
+	// 	}
+	// 	$.i18n().load(toLoad).done(
+	// 		function() {
+	// 			$('head').i18n();
+	// 			$('body').i18n();
+	//
+	// 			LITW.utils.showSlide("img-loading");
+	// 			//start the study when resources are preloaded
+	// 			jsPsych.pluginAPI.preloadImages(params.preLoad,
+	// 				function () {
+	// 					configureStudy();
+	// 					startStudy();
+	// 				},
+	//
+	// 				// update loading indicator
+	// 				function (numLoaded) {
+	// 					$("#img-loading").html(loadingTemplate({
+	// 						msg: $.i18n("litw-template-loading"),
+	// 						numLoaded: numLoaded,
+	// 						total: params.preLoad.length
+	// 					}));
+	// 				}
+	// 			);
+	// 		});
+	// }
 
 	// when the page is loaded, start the study!
 	$(document).ready(function() {
@@ -279,6 +381,13 @@ module.exports = (function(exports) {
 	exports.study.params = params
 })( window.LITW = window.LITW || {} );
 
+
+// const situation_1_title = "AITA for not wanting my husband to go back to school";
+// const situation_1_text = "Throwaway, husband uses reddit. \n\nBackstory first. I (27f) work full time as does my husband (26m). I do make more than my husband and the dicotomy is only going to increase as time goes due to my line of work. We have two kids, a 2 and a half year old  and a 10 month old. We both love our kids endlessly and share equally in all parental duties. \n\nnAll that said, I do work earlier than my husband and pick both of our children up from their respective daycares and am home with them for a couple hours before my husband gets home. When he gets home, he is more often than not in a, for lack of a better word, shitty mood. He does not like his job, and that stress follows him home. \n\nWe are not financially well off at the moment but in the future due to my job, we have spoken of the possibility of him being a stay at home dad. This is the future that I thought we were working towards. \n\nAbout a month ago, my husband informed me that he was in the process of applying for college. I was a little taken aback due to us both talking about our future with him at home. I am trying to be supportive of the idea, but, did mention that i had thought that he was looking forward to being a stay at home dad. \n\nThat is where I left the conversation. I did not tell him of my other concerns which are more responsible for my disagreement with him going back to school. I mentioned that he is in a shitty mood sometimes when he gets back home, and that attitude can sometimes be taken out on our kids. \n\nNow, I do want to stress that he is a great and loving father, but, on some days, seeing the way he interacts with our children can be heartbreaking. He can be short with them and often will shout at our oldest. Every interruption the kids can cause is likely to upset him and cause him to be angry. Most nights I will take over caring for the kids to give him a break as I can see that he is in a bad mood. \n\nThe financial aspect of college is also an issue I have. As I mentioned, we are not too financially well off and I do not know how well we could manage the prospect of student loans.";
+// const situation_2_title = "AITA for complaining that I was not allowed in the pool as it was a ‘Women only’ session.";
+// const situation_2_text = "Took my kids swimming. Toddler was happy in the baby pool, but the eldest wanted to go in the big pool. I went with her, but was told to get out as I am male. I think it was discrimination, the pool say they’re meeting a demand from the public and are being inclusive.";
+// const situation_3_title = "AITA for calling my fat friend fat after she called me a twig?";
+// const situation_3_text = "I am very self conscious about my weight. I am very skinny because of my fast metabolism and im very bony. It tears me apart when i hear people calling me a twig. I was eating lunch with some of my friends and the biggest one in the group said \"Eat\" when i was throwing out half of my sandwich. I said \"Im not hungry \" and she said \" You have to eat, your a twig\" they already know i have a fast metabolism because i told them before about it when they asked why i was so bony. I snapped back and said \" I'd rather be a twig then a whole tree\" and suddenly im the asshole. Everyone in my group of friends hate me and i want to know if its my fault.";
 
 
 

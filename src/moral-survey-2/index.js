@@ -11,3 +11,9 @@ function failedValidation(id=".invalid-feedback") {
     // do not add was-validated here
     $(id).show();
 }
+
+var result = {};
+
+window.onbeforeunload = function() {
+    sessionStorage.removeItem('img');
+};

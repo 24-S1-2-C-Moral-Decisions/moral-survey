@@ -32,6 +32,7 @@
 
 
   <div class="survey1-paragraph">
+    <span class="survey1-paragraph-body mid-font fw-bolder attend" data-i18n='moral-sur2-body-ans-text'></span>
     <form id="decisionForm" class="form needs-validation" novalidate>
       <input type="radio" class="btn-check form-check-input" name="options" id="option1" autocomplete="off" required>
       <label class="btn btn-light jud form-check-label YA-NA " data-target="#YA" for="option1" data-i18n='moral-sur2-body-ans-la1'></label><br>
@@ -42,23 +43,23 @@
 
         <div class="d-flex flex-sm-column flex-md-row flex-wrap">
           <div>
-            <input type="radio" class="btn-check form-check-input" name="decision" id="option3" autocomplete="off" required>
+            <input type="radio" class="btn-check form-check-input" name="decision" id="option3" autocomplete="off" required data-value="1">
             <label class="btn  btn-light cho form-check-label" for="option3" data-i18n='moral-sur2-body-cho-la1'></label>
           </div>
           <div>
-            <input type="radio" class="btn-check form-check-input" name="decision" id="option4" autocomplete="off" required>
+            <input type="radio" class="btn-check form-check-input" name="decision" id="option4" autocomplete="off" required data-value="2">
             <label class="btn  btn-light cho form-check-label" for="option4" data-i18n='moral-sur2-body-cho-la2'></label>
           </div>
           <div>
-            <input type="radio" class="btn-check form-check-input" name="decision" id="option5" autocomplete="off" required>
+            <input type="radio" class="btn-check form-check-input" name="decision" id="option5" autocomplete="off" required data-value="3">
             <label class="btn btn-light cho form-check-label" for="option5" data-i18n='moral-sur2-body-cho-la3'></label>
           </div>
           <div>
-            <input type="radio" class="btn-check form-check-input" name="decision" id="option6" autocomplete="off" required>
+            <input type="radio" class="btn-check form-check-input" name="decision" id="option6" autocomplete="off" required data-value="4">
             <label class="btn btn-light cho form-check-label" for="option6" data-i18n='moral-sur2-body-cho-la4'></label>
           </div>
           <div>
-            <input type="radio" class="btn-check form-check-input" name="decision" id="option7" autocomplete="off" required>
+            <input type="radio" class="btn-check form-check-input" name="decision" id="option7" autocomplete="off" required data-value="5">
             <label class="btn btn-light cho form-check-label" for="option7" data-i18n='moral-sur2-body-cho-la5'></label>
           </div>
         </div>
@@ -107,38 +108,28 @@
 
       <p class="survey1-paragraph-body lar-font" data-i18n='moral-sur2-body-cho-p1' style="font-weight: bolder;"></p>
 
-      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option3" autocomplete="off" required>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option3" autocomplete="off" required data-value="1">
       <label class="btn  btn-light cho form-check-label" for="YA-option3" data-target="#ans-1" data-i18n='moral-sur2-body-cho-la1'></label>
-      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option4" autocomplete="off" required>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option4" autocomplete="off" required data-value="2">
       <label class="btn  btn-light cho form-check-label" for="YA-option4" data-target="#ans-2" data-i18n='moral-sur2-body-cho-la2'></label>
-      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option5" autocomplete="off" required>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option5" autocomplete="off" required data-value="3">
       <label class="btn btn-light cho form-check-label" for="YA-option5" data-target="#ans-3" data-i18n='moral-sur2-body-cho-la3'></label>
-      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option6" autocomplete="off" required>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option6" autocomplete="off" required data-value="4">
       <label class="btn btn-light cho form-check-label" for="YA-option6" data-target="#ans-4" data-i18n='moral-sur2-body-cho-la4'></label>
-      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option7" autocomplete="off" required>
+      <input type="radio" class="btn-check form-check-input" name="YA-decision" id="YA-option7" autocomplete="off" required data-value="5">
       <label class="btn btn-light cho form-check-label" for="YA-option7" data-target="#ans-5" data-i18n='moral-sur2-body-cho-la5'></label>
 
 
+      <div class="survey1-paragraph-body YA-ans" id="ans-1">
+        <span class="survey1-paragraph-body mid-font" data-i18n='moral-real-change-ans'></span>
+        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
+      </div>
+
       <div class="survey1-paragraph-body YA-ans" id="ans-3">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an1'></span>
+        <span class="survey1-paragraph-body mid-font" data-i18n='moral-real-same-ans'></span>
         <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
       </div>
-      <div class="survey1-paragraph-body YA-ans" id="ans-4">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an2'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body YA-ans" id="ans-5">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an3'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body YA-ans" id="ans-6">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an4'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body YA-ans" id="ans-7">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an5'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
+
       <div class="invalid-feedback">
         Please answer the question.
       </div>
@@ -186,48 +177,38 @@
 
       <div class="d-flex flex-sm-column flex-md-row flex-wrap">
         <div>
-          <input type="radio" class="btn-check form-check-input NA-decision" name="NA-decision" id="NA-option3" autocomplete="off" required>
+          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option3" autocomplete="off" required data-value="1">
           <label class="btn  btn-light cho form-check-label" for="NA-option3" data-i18n='moral-sur2-body-cho-la1'></label>
         </div>
         <div>
-          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option4" autocomplete="off" required>
+          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option4" autocomplete="off" required data-value="2">
           <label class="btn  btn-light cho form-check-label" for="NA-option4" data-i18n='moral-sur2-body-cho-la2'></label>
         </div>
         <div>
-          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option5" autocomplete="off" required>
+          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option5" autocomplete="off" required data-value="3">
           <label class="btn btn-light cho form-check-label" for="NA-option5" data-i18n='moral-sur2-body-cho-la3'></label>
         </div>
         <div>
-          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option6" autocomplete="off" required>
+          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option6" autocomplete="off" required data-value="4">
           <label class="btn btn-light cho form-check-label" for="NA-option6" data-i18n='moral-sur2-body-cho-la4'></label>
         </div>
         <div>
-          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option7" autocomplete="off" required>
+          <input type="radio" class="btn-check form-check-input" name="NA-decision" id="NA-option7" autocomplete="off" required data-value="5">
           <label class="btn btn-light cho form-check-label" for="NA-option7" data-i18n='moral-sur2-body-cho-la5'></label>
         </div>
       </div>
 
 
+      <div class="survey1-paragraph-body NA-ans" id="NA-ans-1">
+        <span class="survey1-paragraph-body mid-font" data-i18n='moral-real-change-ans'></span>
+        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
+      </div>
+
       <div class="survey1-paragraph-body NA-ans" id="NA-ans-3">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an1'></span>
+        <span class="survey1-paragraph-body mid-font" data-i18n='moral-real-same-ans'></span>
         <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
       </div>
-      <div class="survey1-paragraph-body NA-ans" id="NA-ans-4">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an2'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body NA-ans" id="NA-ans-5">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an3'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body NA-ans" id="NA-ans-6">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an4'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
-      <div class="survey1-paragraph-body NA-ans" id="NA-ans-7">
-        <span class="survey1-paragraph-body mid-font" data-i18n='moral-sur2-body-YA-an5'></span>
-        <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-leave' style="font-weight: bolder"></p>
-      </div>
+
       <div class="invalid-feedback">
         Please answer the question.
       </div>
@@ -294,5 +275,53 @@
   $('#NA-option2').click(function () {
     $("#NA-collapseExample2").addClass("show");
     $("#NA-collapseExample1").removeClass("show");
+  });
+
+  let firstClickValue = null;
+
+  document.querySelectorAll('[name="decision"]').forEach(button => {
+    button.addEventListener('click', function() {
+
+      firstClickValue = this.getAttribute('data-value');
+      console.log(firstClickValue)
+    });
+  });
+
+  document.querySelectorAll('[name="YA-decision"]').forEach(button => {
+    button.addEventListener('click', function() {
+
+      let secondClickValue = this.getAttribute('data-value');
+
+
+      if (firstClickValue === secondClickValue) {
+
+        document.getElementById('ans-3').style.display = 'block';
+        document.getElementById('ans-1').style.display = 'none';
+      } else {
+
+        document.getElementById('ans-1').style.display = 'block';
+        document.getElementById('ans-3').style.display = 'none';
+
+      }
+    });
+  });
+
+  document.querySelectorAll('[name="NA-decision"]').forEach(button => {
+    button.addEventListener('click', function() {
+
+      let secondClickValue = this.getAttribute('data-value');
+
+
+      if (firstClickValue === secondClickValue) {
+
+        document.getElementById('NA-ans-3').style.display = 'block';
+        document.getElementById('NA-ans-1').style.display = 'none';
+      } else {
+
+        document.getElementById('NA-ans-1').style.display = 'block';
+        document.getElementById('NA-ans-3').style.display = 'none';
+
+      }
+    });
   });
 </script>
