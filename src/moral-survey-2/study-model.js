@@ -38,7 +38,7 @@ module.exports = (function(exports) {
 	params = {
 		study_id: "TO_BE_ADDED_IF_USING_LITW_INFRA",
 		study_recommendation: [],
-		preLoad: ["../img/btn-next.png","../img/btn-next-active.png","../img/ajax-loader.gif"],
+		preLoad: ["../img/ajax-loader.gif"],
 		slides: {
 			INTRODUCTION: {
 				name: "introduction",
@@ -257,7 +257,7 @@ module.exports = (function(exports) {
 		}
 
 
-		fetch('https://moralmomentapi.azurewebsites.net/survey/questions?studyId=1', {
+		fetch('https://moralmomentapi.azurewebsites.net/survey/question?studyId=1', {
 			method: 'GET',
 			headers: {
 				'Accept': '*/*'
@@ -270,11 +270,11 @@ module.exports = (function(exports) {
 			return response.json();
 		})
 		.then(data => {
-			img = data.map(item => item.id);
-			selftexts = data.map(item => item.selftext);
-			titles = data.map(item => item.title);
-			sessionStorage.setItem('img', JSON.stringify(img));
 			console.log(data);
+			img = data.id;
+			selftexts = data.selftext;
+			titles = data.title;
+			sessionStorage.setItem('img', JSON.stringify(img));
 			console.log("Self Texts:", selftexts);
 			console.log("Titles:", titles);
 
