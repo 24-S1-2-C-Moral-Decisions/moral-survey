@@ -35,7 +35,8 @@
             result.time = timeSpent
             console.log(result)
 
-            fetch('https://moralmomentapi.azurewebsites.net/survey/answer', {
+            // console.log(API_URL)
+            fetch(API_URL + 'survey/answer', {
                 method: 'POST',
                 headers: {
                     'Accept': '*/*',

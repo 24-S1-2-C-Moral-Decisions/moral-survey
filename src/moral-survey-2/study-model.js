@@ -278,8 +278,8 @@ module.exports = (function(exports) {
 			toLoad['en'] = languages['en'];
 		}
 
-
-		fetch('https://moralmomentapi.azurewebsites.net/survey/question?studyId=1', {
+		// console.log(API_URL)
+		fetch(API_URL + 'survey/question?studyId=1', {
 			method: 'GET',
 			headers: {
 				'Accept': '*/*'
