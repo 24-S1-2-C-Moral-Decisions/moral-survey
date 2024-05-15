@@ -556,10 +556,10 @@
         name="aita_user"
         style="width: max-content"
       >
-        <option selected>Choose...</option>
+        <option selected value="">Choose...</option>
         <option value="1">Yes</option>
         <option value="2">No</option>
-        <option value="Not">Prefer not to answer</option>
+        <option value="">Prefer not to answer</option>
       </select>
     </div>
     <div class="content2">
@@ -612,14 +612,24 @@
       return;
 
     var data = {};
-    data['prolificId'] = prolificId;
+    data['id'] = prolificId;
     data['takenBefore'] = [false, JSON.parse($('#takenBefore').val()), false, false, false];
-    data['country'] = $('#longest_country').val();
-    data['age'] = $('#age').val();
-    data['language'] = $('#lang').val();
-    data['frequentUser'] = $('#aita_user').val();
-    data['visitSubreddit'] = $('#visit_aita').val();
-    // console.log(data);
+    if ($('#takenBefore').val() != "")
+      data['country'] = $('#longest_country').val();
+
+    if ($('#age').val() != "")
+      data['age'] = $('#age').val();
+
+    if ($('#lang').val() != "")
+      data['language'] = $('#lang').val();
+
+    if ($('#aita_user').val() != "")
+      data['frequentUser'] = $('#aita_user').val();
+
+    if ($('#visit_aita').val() != "")
+      data['visitSubreddit'] = $('#visit_aita').val();
+
+    console.log(data);
 
     fetch(window.LITW.utils.APIBaseURL + 'survey/prolific', {
         method: 'POST',
@@ -627,9 +637,9 @@
             'Accept': '*/*',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(result)
+        body: JSON.stringify(data)
     }).then(response => response.json())
-        .then(data => console.log('Success:', data))
+        .then(res => console.log('Success:', res))
         .catch((error) => console.error('Error:', error));
   }
 
