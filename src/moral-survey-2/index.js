@@ -15,7 +15,6 @@ function failedValidation(id=".invalid-feedback") {
 var attention = false;
 
 let result = {
-    prolificId: "1",
     studyId: "1",
     answers: {
         questionId:  null,

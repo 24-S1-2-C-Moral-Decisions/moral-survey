@@ -100,6 +100,8 @@ module.exports = (function(exports) {
 				display_element: $("#leave"),
 				display_next_button: false,
 				conditional_function: function(){
+					console.log("attention:", attention)
+					return false;
 					if (attention == false){
 						return true;
 					}
@@ -277,6 +279,15 @@ module.exports = (function(exports) {
 		} else {
 			toLoad['en'] = languages['en'];
 		}
+
+		const prolificId = new URLSearchParams(window.location.search).get('prolificId');
+		console.log("prolificId: " + prolificId);
+		if (prolificId == null) {
+			console.error("prolificId Not Found");
+			alert("Invalid URL, Prolific ID Not Found.")
+		}
+		else 
+			result.prolificId = prolificId;
 
 		// console.log(API_URL)
 		fetch(API_URL + 'survey/question?studyId=1', {

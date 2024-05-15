@@ -1,16 +1,2 @@
-<div id="content">
-    <h4 class="h3 bolded-blue">Thanks for your participation! Feel free to leave the page.</h4>
-</div>
 
-
-
-<!-- Survey2 script -->
-<script src="../moral-survey-2/index.js" type="text/javascript"></script>
-<script>
-    history.replaceState({page: specifiedPageUrl}, null, specifiedPageUrl);
-
-    window.onpopstate = function(event) {
-
-        window.location.href = event.state.page;
-    };
-</script>
+<h4 class="h3 bolded-blue" data-i18n="moral-results-template"></h4>
