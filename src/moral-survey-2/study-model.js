@@ -22,6 +22,7 @@ var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
+var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
@@ -30,9 +31,7 @@ var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
 var attention_t = require("./content/attention.html");
 var real_survey1 = require("./content/realsurvey1.html");
-var situation1 = require("./content/situation1.html");
-var situation2_ind = require("./content/situation2_ind.html");
-var situation3_ind = require("./content/situation3_ind.html");
+
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -117,27 +116,6 @@ module.exports = (function(exports) {
 				// 	})
 				// }
 			},
-			SITUATION1: {
-				name: "situation1",
-				type: "display-slide",
-				template: situation1,
-				display_element: $("#situation1"),
-				display_next_button: false,
-			},
-			SITUATION2_IND: {
-				name: "situation2_ind",
-				type: "display-slide",
-				template: situation2_ind,
-				display_element: $("#situation2_ind"),
-				display_next_button: false,
-			},
-			SITUATION3_IND: {
-				name: "situation3_ind",
-				type: "display-slide",
-				template: situation3_ind,
-				display_element: $("#situation3_ind"),
-				display_next_button: false,
-			},
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
@@ -154,6 +132,7 @@ module.exports = (function(exports) {
 				// }
 			},
 			RESULTS: {
+				name: "results",
 				type: "call-function",
 				func: function(){
 					calculateResults();
@@ -168,10 +147,16 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INFORMATION);
 		timeline.push(params.slides.SURVEY1);
 		timeline.push(params.slides.ATTENTION);
-		timeline.push(params.slides.REAL_SURVEY1);
-		// timeline.push(params.slides.SITUATION2_IND);
-		// timeline.push(params.slides.SITUATION3_IND);
-		timeline.push(params.slides.COMMENTS);
+		timeline.push({
+			timeline: [
+				params.slides.REAL_SURVEY1,
+				params.slides.COMMENTS,
+			],
+			conditional_function: function(){
+				// console.log("Attention:", attention);
+				return attention;
+			}
+		});
 		timeline.push(params.slides.RESULTS);
 	}
 
@@ -216,7 +201,11 @@ module.exports = (function(exports) {
 
 	var selftexts = [];
 	var titles = [];
-	var img = []
+	var img = [];
+	var NA_percentage;
+	var YA_percentage;
+	var very_certain_YA;
+	var very_certain_NA;
 	function startStudy() {
 		// generate unique participant id and geolocate participant
 		LITW.data.initialize();
@@ -235,6 +224,7 @@ module.exports = (function(exports) {
 		});
 	}
 
+	const APIBaseURL = API_URL;
 	function startExperiment(){
 		//TODO These methods should be something like act1().then.act2().then...
 		//... it is close enough to that... maybe the translation need to be encapsulated next.
@@ -256,8 +246,17 @@ module.exports = (function(exports) {
 			toLoad['en'] = languages['en'];
 		}
 
+		const prolificId = new URLSearchParams(window.location.search).get('prolificId');
+		console.log("prolificId: " + prolificId);
+		if (prolificId == null) {
+			console.error("prolificId Not Found");
+			alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
+		}
+		else 
+			result.prolificId = prolificId;
 
-		fetch('https://moralmomentapi.azurewebsites.net/survey/question?studyId=1', {
+		// console.log(APIBaseURL)
+		fetch(APIBaseURL + 'survey/question?studyId=1', {
 			method: 'GET',
 			headers: {
 				'Accept': '*/*'
@@ -265,15 +264,19 @@ module.exports = (function(exports) {
 		})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+				throw new Error(response);
 			}
 			return response.json();
 		})
 		.then(data => {
 			console.log(data);
-			img = data.id;
+			img = data._id;
 			selftexts = data.selftext;
 			titles = data.title;
+			NA_percentage = data.NA_percentage
+			YA_percentage = data.YA_percentage
+			very_certain_YA = data.very_certain_YA
+			very_certain_NA = data.very_certain_NA
 			sessionStorage.setItem('img', JSON.stringify(img));
 			console.log("Self Texts:", selftexts);
 			console.log("Titles:", titles);
@@ -292,12 +295,26 @@ module.exports = (function(exports) {
 			return response.json();
 		})
 		.then(json => {
-			json["moral-situation-1-title"] = titles[0];
-			json["moral-situation-1-text"] = selftexts[0];
-			json["moral-situation-2-title"] = titles[1];
-			json["moral-situation-2-text"] = selftexts[1];
-			json["moral-situation-3-title"] = titles[2];
-			json["moral-situation-3-text"] = selftexts[2];
+			YA = Math.round(YA_percentage * 100)
+			NA = Math.round(NA_percentage * 100)
+			certain_NA = Math.floor(very_certain_NA * 100)
+			certain_YA = Math.floor(very_certain_YA * 100)
+			YA_NA_percentage = YA.toString() + ":" + NA.toString()
+			YA_percentage = YA.toString()
+			NA_percentage = NA.toString()
+			very_certain_NA = certain_NA.toString()
+			very_certain_YA = certain_YA.toString()
+			json["moral-situation-1-title"] = titles;
+			json["moral-situation-1-text"] = selftexts;
+			json["moral-sur2-body-YA-percent"] = YA_NA_percentage;
+			json["moral-sur2-body-YA-num"] = YA_percentage + "%";
+			json["moral-sur2-body-YA-num2"] = NA_percentage + "%";
+			json["moral-real-group-NA-certain"] = very_certain_NA;
+			json["moral-real-group-YA-certain"] = very_certain_YA
+			// json["moral-situation-2-title"] = titles[1];
+			// json["moral-situation-2-text"] = selftexts[1];
+			// json["moral-situation-3-title"] = titles[2];
+			// json["moral-situation-3-text"] = selftexts[2];
 
 			$.i18n().load({
 				'en': json
@@ -379,6 +396,7 @@ module.exports = (function(exports) {
 	});
 	exports.study = {};
 	exports.study.params = params
+	exports.utils.APIBaseURL = APIBaseURL
 })( window.LITW = window.LITW || {} );
 
 
@@ -388,6 +406,3 @@ module.exports = (function(exports) {
 // const situation_2_text = "Took my kids swimming. Toddler was happy in the baby pool, but the eldest wanted to go in the big pool. I went with her, but was told to get out as I am male. I think it was discrimination, the pool say they’re meeting a demand from the public and are being inclusive.";
 // const situation_3_title = "AITA for calling my fat friend fat after she called me a twig?";
 // const situation_3_text = "I am very self conscious about my weight. I am very skinny because of my fast metabolism and im very bony. It tears me apart when i hear people calling me a twig. I was eating lunch with some of my friends and the biggest one in the group said \"Eat\" when i was throwing out half of my sandwich. I said \"Im not hungry \" and she said \" You have to eat, your a twig\" they already know i have a fast metabolism because i told them before about it when they asked why i was so bony. I snapped back and said \" I'd rather be a twig then a whole tree\" and suddenly im the asshole. Everyone in my group of friends hate me and i want to know if its my fault.";
-
-
-

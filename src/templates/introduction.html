@@ -63,5 +63,11 @@
 
     $("#ParticipantY").click(passedValidation);
     $("#ParticipantN").click(passedValidation);
-</script>
 
+    $(document).ready(function() {
+        $('#btn-intro-submit').click(function() {
+            const startTime = new Date().getTime();
+            sessionStorage.setItem('startTime', startTime);
+        });
+    });
+</script>

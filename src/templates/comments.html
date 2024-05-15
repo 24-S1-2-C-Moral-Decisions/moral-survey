@@ -4,8 +4,8 @@
     </div>
     <p class="survey1-paragraph-body" data-i18n='moral-comment-p1' ></p>
          <div class="form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 150px"></textarea>
-          <label for="floatingTextarea2">Comments</label>
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea5" style="height: 150px"></textarea>
+          <label for="floatingTextarea5">Comments</label>
         </div>
         <p class="survey1-paragraph-body" data-i18n='moral-comment-p2' ></p>
         <p class="survey1-paragraph-body" data-i18n='moral-comment-p3' ></p>
@@ -14,6 +14,39 @@
           <li class="content"><span class="survey1-paragraph-body" data-i18n='moral-comment-s1'></span><a href="https://www.betterhelp.com/get-started/" target="_blank">https://www.betterhelp.com/get-started/ </a></li>
           <li class="content"><span class="survey1-paragraph-body" data-i18n='moral-comment-s2'></span><br><a href="https://internationaltherapistdirectory.com/all-locations/" target="_blank">https://internationaltherapistdirectory.com/all-locations/  </a></li>
         </ul>
-        <button type="button" class="btn btn-secondary btn btn-secondary custom-btn-left" onclick="nextPage()">Next</button>
+        <button type="button" id="comment-btn" class="btn btn-secondary btn btn-secondary custom-btn-left" onclick="nextPage()">Next</button>
    
   </div>
+
+
+<script>
+    $(document).ready(function() {
+        $('#comment-btn').click(function() {
+            const startTime = sessionStorage.getItem('startTime');
+            let timeSpent = null
+            if (startTime) {
+                const endTime = new Date().getTime();
+                timeSpent = (endTime - startTime) / 1000;
+                console.log("Time spent: " + timeSpent + " seconds");
+                sessionStorage.removeItem('startTime');
+            }
+
+            result.comments = $('#floatingTextarea5').val();
+            result.time = timeSpent
+            console.log(result)
+
+            // console.log(window.LITW.utils.APIBaseURL)
+            fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
+                method: 'POST',
+                headers: {
+                    'Accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(result)
+            }).then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch((error) => console.error('Error:', error));
+        });
+    });
+
+</script>

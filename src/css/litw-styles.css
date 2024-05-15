@@ -324,7 +324,7 @@ textarea.comments-box, textarea.comments_box {
 	clear: both;
 	float: right;
 	margin-bottom: 30px;
-	background: url("../img/btn-next.png");
+	/*background: url("../img/btn-next.png");*/
 	width: 100px;
 	height: 60px;
 	border: none;
@@ -338,7 +338,7 @@ textarea.comments-box, textarea.comments_box {
 	cursor: pointer;
 }
 .btn-next-page:active, #btn-next-page:active { 
-	background: url("../img/btn-next-active.png");
+	/*background: url("../img/btn-next-active.png");*/
 }
 
 
@@ -377,7 +377,8 @@ input[type=checkbox], label {
 	cursor: pointer;
 }
 select {
-	max-width: 200px;
+	width: 75%;
+	/*max-width: 200px;*/
 }
 .task-input:checked + label img {
 	border: 7px solid #33cc33;
@@ -722,7 +723,6 @@ a:active {
 }
 
 .content{
-	font-family: "Times New Roman", Times, serif;
 	font-size:19px;
 	margin-top: 5px;
 	width: 100%;
@@ -740,7 +740,6 @@ a:active {
 	font-size: 20px;
 }
 .survey1-paragraph-body{
-	font-family: "Times New Roman", Times, serif;
 	font-size: 19px;
 	line-height: 30px;
 	padding: 0;
@@ -762,7 +761,6 @@ a:active {
 }
 .mid-font{
 	font-size: 20px;
-	font-family: "Times New Roman", Times, serif;
 }
 .answer p{
 	margin-bottom: 0;
@@ -820,3 +818,19 @@ a:active {
 :root {
 	--bs-form-valid-color: black;
   }
+.attend{
+	color: #0a58ca;
+}
+
+.moral-text{
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.mid_gap{
+	gap: 2.5%
+}
+
+.flex-gap{
+	gap: 4%
+}
