@@ -31,9 +31,7 @@ var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
 var attention_t = require("./content/attention.html");
 var real_survey1 = require("./content/realsurvey1.html");
-var situation1 = require("./content/situation1.html");
-var situation2_ind = require("./content/situation2_ind.html");
-var situation3_ind = require("./content/situation3_ind.html");
+
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -93,23 +91,6 @@ module.exports = (function(exports) {
 				display_element: $("#attention"),
 				display_next_button: false,
 			},
-			LEAVE: {
-				name: "leave",
-				type: "display-slide",
-				template: leaveTemplate,
-				display_element: $("#leave"),
-				display_next_button: false,
-				conditional_function: function(){
-					console.log("attention:", attention)
-					return false;
-					if (attention == false){
-						return true;
-					}
-					else{
-						return false;
-					}
-				}
-			},
 			REAL_SURVEY1: {
 				name: "real-survey1",
 				type: "display-slide",
@@ -134,27 +115,6 @@ module.exports = (function(exports) {
 				// 		ind_NA_confidence:q1_NA_individual_conf,
 				// 	})
 				// }
-			},
-			SITUATION1: {
-				name: "situation1",
-				type: "display-slide",
-				template: situation1,
-				display_element: $("#situation1"),
-				display_next_button: false,
-			},
-			SITUATION2_IND: {
-				name: "situation2_ind",
-				type: "display-slide",
-				template: situation2_ind,
-				display_element: $("#situation2_ind"),
-				display_next_button: false,
-			},
-			SITUATION3_IND: {
-				name: "situation3_ind",
-				type: "display-slide",
-				template: situation3_ind,
-				display_element: $("#situation3_ind"),
-				display_next_button: false,
 			},
 			COMMENTS: {
 				type: "display-slide",
@@ -187,11 +147,16 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INFORMATION);
 		timeline.push(params.slides.SURVEY1);
 		timeline.push(params.slides.ATTENTION);
-		timeline.push(params.slides.LEAVE);
-		timeline.push(params.slides.REAL_SURVEY1);
-		// timeline.push(params.slides.SITUATION2_IND);
-		// timeline.push(params.slides.SITUATION3_IND);
-		timeline.push(params.slides.COMMENTS);
+		timeline.push({
+			timeline: [
+				params.slides.REAL_SURVEY1,
+				params.slides.COMMENTS,
+			],
+			conditional_function: function(){
+				// console.log("Attention:", attention);
+				return attention;
+			}
+		});
 		timeline.push(params.slides.RESULTS);
 	}
 
@@ -259,6 +224,7 @@ module.exports = (function(exports) {
 		});
 	}
 
+	const APIBaseURL = API_URL;
 	function startExperiment(){
 		//TODO These methods should be something like act1().then.act2().then...
 		//... it is close enough to that... maybe the translation need to be encapsulated next.
@@ -284,13 +250,13 @@ module.exports = (function(exports) {
 		console.log("prolificId: " + prolificId);
 		if (prolificId == null) {
 			console.error("prolificId Not Found");
-			alert("Invalid URL, Prolific ID Not Found.")
+			alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
 		}
 		else 
 			result.prolificId = prolificId;
 
-		// console.log(API_URL)
-		fetch(API_URL + 'survey/question?studyId=1', {
+		// console.log(APIBaseURL)
+		fetch(APIBaseURL + 'survey/question?studyId=1', {
 			method: 'GET',
 			headers: {
 				'Accept': '*/*'
@@ -298,7 +264,7 @@ module.exports = (function(exports) {
 		})
 		.then(response => {
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+				throw new Error(response);
 			}
 			return response.json();
 		})
@@ -430,6 +396,7 @@ module.exports = (function(exports) {
 	});
 	exports.study = {};
 	exports.study.params = params
+	exports.utils.APIBaseURL = APIBaseURL
 })( window.LITW = window.LITW || {} );
 
 
@@ -439,6 +406,3 @@ module.exports = (function(exports) {
 // const situation_2_text = "Took my kids swimming. Toddler was happy in the baby pool, but the eldest wanted to go in the big pool. I went with her, but was told to get out as I am male. I think it was discrimination, the pool say they’re meeting a demand from the public and are being inclusive.";
 // const situation_3_title = "AITA for calling my fat friend fat after she called me a twig?";
 // const situation_3_text = "I am very self conscious about my weight. I am very skinny because of my fast metabolism and im very bony. It tears me apart when i hear people calling me a twig. I was eating lunch with some of my friends and the biggest one in the group said \"Eat\" when i was throwing out half of my sandwich. I said \"Im not hungry \" and she said \" You have to eat, your a twig\" they already know i have a fast metabolism because i told them before about it when they asked why i was so bony. I snapped back and said \" I'd rather be a twig then a whole tree\" and suddenly im the asshole. Everyone in my group of friends hate me and i want to know if its my fault.";
-
-
-

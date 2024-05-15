@@ -36,7 +36,4 @@ window.onbeforeunload = function() {
     sessionStorage.removeItem('img');
 };
 // 保存指定页面的相对路径
-var specifiedPageUrl = 'http://localhost:8080/';
-
-
-
+// const specifiedPageUrl = 'http://localhost:8080/';

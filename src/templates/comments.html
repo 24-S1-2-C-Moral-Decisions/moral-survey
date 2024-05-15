@@ -35,8 +35,8 @@
             result.time = timeSpent
             console.log(result)
 
-            // console.log(API_URL)
-            fetch(API_URL + 'survey/answer', {
+            // console.log(window.LITW.utils.APIBaseURL)
+            fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
                 method: 'POST',
                 headers: {
                     'Accept': '*/*',
