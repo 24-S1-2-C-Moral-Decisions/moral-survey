@@ -8,22 +8,22 @@
     <div class="content2">
       <label
         class="survey1-paragraph-header form-label"
-        for="test"
+        for="takenBefore"
         data-i18n="moral-intro-l1"
         style="width: 400px"
       ></label
       ><br />
       <select
         class="form-select w-75"
-        id="test"
-        name="test"
+        id="takenBefore"
+        name="takenBefore"
         style="width: 300px"
         autocomplete="off"
         required
       >
         <option value="">Choose...</option>
-        <option value="1">Yes</option>
-        <option value="2">No</option>
+        <option value=true>Yes</option>
+        <option value=false>No</option>
       </select>
       <div class="invalid-feedback">You need to answer this question.</div>
     </div>
@@ -585,7 +585,7 @@
       </select>
     </div>
     <button
-      type="submit"
+      type="button"
       class="btn btn-secondary btn btn-secondary custom-btn-left"
       style="
         --bs-btn-padding-y: 0.25rem;
@@ -594,13 +594,45 @@
         width: auto;
         margin-top: 20px;
       "
-      onclick="if(this.form.checkValidity()) { $('#btn-next-page').click(); }else {  this.form.stopPropagation(); } return false;"
+      onclick="if(this.form.checkValidity()) { 
+        postProlific();
+        $('#btn-next-page').click(); 
+      }else {
+        this.form.stopPropagation(); 
+      } return false;"
     >
       Next
     </button>
   </form>
 </div>
 <script>
+  function postProlific(){
+    const prolificId = new URLSearchParams(window.location.search).get('prolificId');
+    if (prolificId == null)
+      return;
+
+    var data = {};
+    data['prolificId'] = prolificId;
+    data['takenBefore'] = [false, JSON.parse($('#takenBefore').val()), false, false, false];
+    data['country'] = $('#longest_country').val();
+    data['age'] = $('#age').val();
+    data['language'] = $('#lang').val();
+    data['frequentUser'] = $('#aita_user').val();
+    data['visitSubreddit'] = $('#visit_aita').val();
+    // console.log(data);
+
+    fetch(window.LITW.utils.APIBaseURL + 'survey/prolific', {
+        method: 'POST',
+        headers: {
+            'Accept': '*/*',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(result)
+    }).then(response => response.json())
+        .then(data => console.log('Success:', data))
+        .catch((error) => console.error('Error:', error));
+  }
+
   (() => {
     "use strict";
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
