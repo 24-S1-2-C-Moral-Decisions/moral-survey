@@ -2,23 +2,27 @@
 
 ### run in docker
 
+1. First, install [node.js](https://nodejs.org/en) and npm (npm will automatically installed with node.js).
+
+​	Add node and npm to path.
+
 1. First, install [docker](https://docs.docker.com/get-docker/)
 2. run docker container
 
 ```bash
-cd survey
-# macOS
-docker run -it --rm -v './src':/survey -w /survey -p 8080:8080 node:20.11-slim /bin/bash
+cd src
 
-# windows
-docker run -it --rm -v "path/to/survey/src/dir":/survey -w /survey -p 8080:8080 node:20.11-slim /bin/bash
+# build src
+./build.sh
 
-# inside docker container
-# install dependencies (only need to run once)
-npm install
+#publish
+./publish.sh
 
-# run server
-npm run dev  
+# build docker image
+docker build -t moral-survey .
+
+# run docker container
+docker run -d -p 8080:80 moral-survey
 ```
 
 ### run in local
@@ -27,29 +31,18 @@ npm run dev
 
 ​	Add node and npm to path.
 
-
-
-2. Try the following command to see if you've installed node and npm correctly.
-
-```bas
-node --version
-npm --v
-```
-
-
-
-3. Enter the root directory of project: `/moral-front-end/`
-
-​	Run the following command to install dependencies.
-
-```ba
-npm install
-```
-
-
-
-4. Run server at development mode:
+2. Build the project
 
 ```bash
-npm run dev             
+cd src
+
+./build.sh
+```
+
+3. Enter the directory of of a survey: `cd moral-survey-2`
+
+​	Run the following command run.
+
+```ba
+npm run devserver
 ```
