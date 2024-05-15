@@ -2,6 +2,7 @@ var path = require("path");
 var webpack = require('webpack');
 
 var config = () => {
+  console.log("API_URL: ", process.env.API_URL);
   let baseUrl = process.env.API_URL ? '"' + process.env.API_URL + '"' : "https://moralmomentapi.azurewebsites.net/";
   console.log("API_URL: ", baseUrl);
   return {
@@ -12,7 +13,7 @@ var config = () => {
     },
     plugins: [
       new webpack.DefinePlugin({
-        API_URL: baseUrl,
+        API_URL: JSON.stringify(baseUrl),
       }),
     ],
     module: {
