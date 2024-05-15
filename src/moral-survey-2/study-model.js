@@ -99,6 +99,14 @@ module.exports = (function(exports) {
 				template: leaveTemplate,
 				display_element: $("#leave"),
 				display_next_button: false,
+				conditional_function: function(){
+					if (attention == false){
+						return true;
+					}
+					else{
+						return false;
+					}
+				}
 			},
 			REAL_SURVEY1: {
 				name: "real-survey1",
@@ -162,6 +170,7 @@ module.exports = (function(exports) {
 				// }
 			},
 			RESULTS: {
+				name: "results",
 				type: "call-function",
 				func: function(){
 					calculateResults();
@@ -176,6 +185,7 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INFORMATION);
 		timeline.push(params.slides.SURVEY1);
 		timeline.push(params.slides.ATTENTION);
+		timeline.push(params.slides.LEAVE);
 		timeline.push(params.slides.REAL_SURVEY1);
 		// timeline.push(params.slides.SITUATION2_IND);
 		// timeline.push(params.slides.SITUATION3_IND);

@@ -34,22 +34,16 @@
 
 <script>
     function check_attention(){
-        var check = true
+        attention = true
         if($("#attention-form")[0].checkValidity()) {
             if ($("#attention-3").is(":checked")){
-                check = false
+                attention = false
             }
             if ($("#attention-4").is(":checked")){
-                check = false
+                attention = false
             }
-            if (check){
-                nextPage();
-                passedValidation();
-            }
-            else {
-                window.location.href = '../../templates/leave.html'
-                passedValidation();
-            }
+            nextPage();
+            passedValidation();
         } else {  $('#attention-form').addClass('was-validated'); failedValidation();}
     }
 
