@@ -22,6 +22,7 @@ var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
+var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
@@ -90,6 +91,13 @@ module.exports = (function(exports) {
 				type: "display-slide",
 				template: attention_t,
 				display_element: $("#attention"),
+				display_next_button: false,
+			},
+			LEAVE: {
+				name: "leave",
+				type: "display-slide",
+				template: leaveTemplate,
+				display_element: $("#leave"),
 				display_next_button: false,
 			},
 			REAL_SURVEY1: {
@@ -216,7 +224,11 @@ module.exports = (function(exports) {
 
 	var selftexts = [];
 	var titles = [];
-	var img = []
+	var img = [];
+	var NA_percentage;
+	var YA_percentage;
+	var very_certain_YA;
+	var very_certain_NA;
 	function startStudy() {
 		// generate unique participant id and geolocate participant
 		LITW.data.initialize();
@@ -271,9 +283,13 @@ module.exports = (function(exports) {
 		})
 		.then(data => {
 			console.log(data);
-			img = data.id;
+			img = data._id;
 			selftexts = data.selftext;
 			titles = data.title;
+			NA_percentage = data.NA_percentage
+			YA_percentage = data.YA_percentage
+			very_certain_YA = data.very_certain_YA
+			very_certain_NA = data.very_certain_NA
 			sessionStorage.setItem('img', JSON.stringify(img));
 			console.log("Self Texts:", selftexts);
 			console.log("Titles:", titles);
@@ -292,12 +308,26 @@ module.exports = (function(exports) {
 			return response.json();
 		})
 		.then(json => {
-			json["moral-situation-1-title"] = titles[0];
-			json["moral-situation-1-text"] = selftexts[0];
-			json["moral-situation-2-title"] = titles[1];
-			json["moral-situation-2-text"] = selftexts[1];
-			json["moral-situation-3-title"] = titles[2];
-			json["moral-situation-3-text"] = selftexts[2];
+			YA = Math.round(YA_percentage * 100)
+			NA = Math.round(NA_percentage * 100)
+			certain_NA = Math.floor(very_certain_NA * 100)
+			certain_YA = Math.floor(very_certain_YA * 100)
+			YA_NA_percentage = YA.toString() + ":" + NA.toString()
+			YA_percentage = YA.toString()
+			NA_percentage = NA.toString()
+			very_certain_NA = certain_NA.toString()
+			very_certain_YA = certain_YA.toString()
+			json["moral-situation-1-title"] = titles;
+			json["moral-situation-1-text"] = selftexts;
+			json["moral-sur2-body-YA-percent"] = YA_NA_percentage;
+			json["moral-sur2-body-YA-num"] = YA_percentage + "%";
+			json["moral-sur2-body-YA-num2"] = NA_percentage + "%";
+			json["moral-real-group-NA-certain"] = very_certain_NA;
+			json["moral-real-group-YA-certain"] = very_certain_YA
+			// json["moral-situation-2-title"] = titles[1];
+			// json["moral-situation-2-text"] = selftexts[1];
+			// json["moral-situation-3-title"] = titles[2];
+			// json["moral-situation-3-text"] = selftexts[2];
 
 			$.i18n().load({
 				'en': json

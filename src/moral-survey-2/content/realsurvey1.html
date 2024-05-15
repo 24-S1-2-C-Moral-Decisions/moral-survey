@@ -48,15 +48,28 @@
   </div>
   <div class="survey1-paragraph" id="YA">
     <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-group-p1' style="font-weight: bolder"></p>
+
     <ul>
-      <li class="content"><span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s1' style="font-weight: bolder"></span>
+      <li class="content">
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s1' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-percent' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s2' style="font-weight: bolder"></span>
         <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p1'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-num'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p3'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p4'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-num2'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p5'></span>
+
       </li>
       <li class="content">
-        <p class="survey1-paragraph-body" data-i18n='moral-real-group-YA-p2' style="font-weight: bolder"></p>
+        <span class="survey1-paragraph-body" data-i18n='moral-real-group-YA-p2' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-real-group-NA-certain' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-real-group-YA-s3' style="font-weight: bolder"></span>
       </li>
     </ul>
-    <img class="survey1-img" id="survey-1-YA" alt="For every 100 Reddit users who made NA judgements, 47 users are very certain in NA">
+
+    <img class="survey1-img" id="survey-1-YA" alt="For every 100 Reddit users who made NA judgements">
     <p class="survey1-paragraph-body lar-font" data-i18n='moral-situation2_group-p4' style="font-weight: bolder"></p>
     <form id="myForm2" class="form needs-validation" novalidate>
       <input type="radio" class="btn-check form-check-input" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample1" value="YA" name="YA-options" id="YA-option1" autocomplete="off" required>
@@ -119,14 +132,26 @@
   </div>
   <div class="survey1-paragraph" id="NA">
     <p class="survey1-paragraph-body" data-i18n='moral-sur2-body-group-p1' style="font-weight: bolder"></p>
+
     <ul>
-      <li class="content"><span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s1' style="font-weight: bolder"></span>
+      <li class="content">
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s1' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-percent' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-s2' style="font-weight: bolder"></span>
         <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p1'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-num'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p3'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p4'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-num2'></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-sur2-body-YA-p5'></span>
       </li>
       <li class="content">
-        <p class="survey1-paragraph-body" data-i18n='moral-situation1-NA-p1' style="font-weight: bolder"></p>
+        <sapn class="survey1-paragraph-body" data-i18n='moral-situation2-NA-p1' style="font-weight: bolder"></sapn>
+        <span class="survey1-paragraph-body" data-i18n='moral-real-group-YA-certain' style="font-weight: bolder"></span>
+        <span class="survey1-paragraph-body" data-i18n='moral-real-group-NA-s3' style="font-weight: bolder"></span>
       </li>
     </ul>
+
   <img class="survey1-img" id="survey-1-NA" alt="For every 100 Reddit users who made YA judgements, 33 users are very certain in YA.">
     <p class="survey1-paragraph-body lar-font" data-i18n='moral-situation2_group-p4' style="font-weight: bolder"></p>
   <form id="myForm3" class="form needs-validation" novalidate>
@@ -179,12 +204,12 @@
   </form>
   </div>
 </div>
-</div>
+
 <div style="display: block;width: 100%;height: 400px;"></div>
 <script type="text/javascript">
 
+  // result.answers = {}
 
-  result.question1 = {};
   function disableDecisionForm() {
     $('#decisionForm').find('input').prop('disabled', true);
   }
@@ -195,7 +220,22 @@
       var formData = new FormData(form_result);
 
       for (const [key, value] of formData.entries()) {
-        result.question1[key] = value;
+        if (key === "options"){
+          result.answers.individualAnswer.isAsshole = value === "YA";
+        }
+        if (key === "decision"){
+          if (value === "completely uncertain"){
+            result.answers.individualAnswer.rating = 1
+          }else if(value === "uncertain"){
+            result.answers.individualAnswer.rating = 2
+          }else if(value === "neutral"){
+            result.answers.individualAnswer.rating = 3
+          }else if(value === "certain"){
+            result.answers.individualAnswer.rating = 4
+          }else if(value === "completely certain"){
+            result.answers.individualAnswer.rating = 5
+          }
+        }
       }
       if ($("#option1").is(":checked")) {
         passedValidation();
@@ -287,23 +327,57 @@
     const img = JSON.parse(sessionStorage.getItem('img'));
     console.log(img)
     console.log(typeof img)
-    imgElement.src = `./img/${img[0]}-YA.jpg`;
-    imgElement2.src = `./img/${img[0]}-NA.jpg`;
+    imgElement.src = `../img/uncertainty/${img}_NA.png`;
+    imgElement2.src = `../img/uncertainty/${img}_YA.png`;
   });
   function submit_YAdata() {
       var YA_result = $('#myForm2')[0];
       var YA_Data = new FormData(YA_result);
-      YA_Data.forEach(function(value, key) {
-        result.question1[key] = value;
-      });
+      result.answers.questionId = JSON.parse(sessionStorage.getItem('img'));
+      for (const [key, value] of YA_Data.entries()) {
+        if (key === "YA-options"){
+          result.answers.groupAnswer.isAsshole = value === "YA";
+        }
+        if (key === "YA-decision"){
+          if (value === "completely uncertain"){
+            result.answers.groupAnswer.rating = 1
+          }else if(value === "uncertain"){
+            result.answers.groupAnswer.rating = 2
+          }else if(value === "neutral"){
+            result.answers.groupAnswer.rating = 3
+          }else if(value === "certain"){
+            result.answers.groupAnswer.rating = 4
+          }else if(value === "completely certain"){
+            result.answers.groupAnswer.rating = 5
+          }
+        }
+      }
+      result.answers.comments = $('#floatingTextarea2').val();
       console.log(result);
   }
   function submit_NAdata() {
       var NA_result = $('#myForm3')[0];
       var NA_Data = new FormData(NA_result);
+      result.answers.questionId = JSON.parse(sessionStorage.getItem('img'));
       NA_Data.forEach(function(value, key) {
-        result.question1[key] = value;
+        if (key === "NA-options"){
+          result.answers.groupAnswer.isAsshole = value === "YA";
+        }
+        if (key === "NA-decision"){
+          if (value === "completely uncertain"){
+            result.answers.groupAnswer.rating = 1
+          }else if(value === "uncertain"){
+            result.answers.groupAnswer.rating = 2
+          }else if(value === "neutral"){
+            result.answers.groupAnswer.rating = 3
+          }else if(value === "certain"){
+            result.answers.groupAnswer.rating = 4
+          }else if(value === "completely certain"){
+            result.answers.groupAnswer.rating = 5
+          }
+        }
       });
+    result.answers.comments = $('#floatingTextarea3').val();
     console.log(result);
   }
 

@@ -12,8 +12,32 @@ function failedValidation(id=".invalid-feedback") {
     $(id).show();
 }
 
-var result = {};
+var attention = false;
+
+let result = {
+    prolificId: "1",
+    studyId: "1",
+    answers: {
+        questionId:  null,
+        individualAnswer: {
+            isAsshole: null,
+            rating: null
+        },
+        groupAnswer: {
+            isAsshole: null,
+            rating: null
+        },
+        comments: null
+    },
+    comments: null,
+    time: null
+};
 
 window.onbeforeunload = function() {
     sessionStorage.removeItem('img');
 };
+// 保存指定页面的相对路径
+var specifiedPageUrl = 'http://localhost:8080/';
+
+
+
