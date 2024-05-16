@@ -16,7 +16,7 @@ var attention = false;
 
 let result = {
     studyId: "1",
-    answers: {
+    answer: {
         questionId:  null,
         individualAnswer: {
             isAsshole: null,
