@@ -35,7 +35,7 @@ var real_survey1 = require("./content/realsurvey1.html");
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
-		study_id: "TO_BE_ADDED_IF_USING_LITW_INFRA",
+		study_id: LITW.data.getStudyId(),
 		study_recommendation: [],
 		preLoad: ["../img/ajax-loader.gif"],
 		slides: {
@@ -206,25 +206,18 @@ module.exports = (function(exports) {
 		});
 	}
 
-	var selftexts = [];
-	var titles = [];
-	var img = [];
-	var NA_percentage;
-	var YA_percentage;
-	var very_certain_YA;
-	var very_certain_NA;
 	function startStudy() {
 		// generate unique participant id and geolocate participant
 		LITW.data.initialize();
 		// save URL params
 		params.URL = LITW.utils.getParamsURL();
-		if( Object.keys(params.URL).length > 0 ) {
-			LITW.data.submitData(params.URL,'litw:paramsURL');
-		}
+		// if( Object.keys(params.URL).length > 0 ) {
+		// 	LITW.data.submitData(params.URL,'litw:paramsURL');
+		// }
 		// populate study recommendation
-		LITW.engage.getStudiesRecommendation(2, (studies_list) => {
-			params.study_recommendation = studies_list;
-		});
+		// LITW.engage.getStudiesRecommendation(2, (studies_list) => {
+		// 	params.study_recommendation = studies_list;
+		// });
 		// initiate pages timeline
 		jsPsych.init({
 		  timeline: timeline
@@ -263,92 +256,75 @@ module.exports = (function(exports) {
 			result.prolificId = prolificId;
 
 		// console.log(APIBaseURL)
-		fetch(APIBaseURL + 'survey/question?studyId=1', {
-			method: 'GET',
-			headers: {
-				'Accept': '*/*'
-			},
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error(response);
-			}
-			return response.json();
-		})
-		.then(data => {
-			console.log(data);
-			img = data._id;
-			selftexts = data.selftext;
-			titles = data.title;
-			NA_percentage = data.NA_percentage
-			YA_percentage = data.YA_percentage
-			very_certain_YA = data.very_certain_YA
-			very_certain_NA = data.very_certain_NA
-			sessionStorage.setItem('img', JSON.stringify(img));
-			console.log("Self Texts:", selftexts);
-			console.log("Titles:", titles);
-
-			return fetch('./i18n/en.json', {
-				method: 'GET',
-				headers: {
-					'Accept': 'application/json'
-				}
-			});
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.json();
-		})
-		.then(json => {
-			YA = Math.round(YA_percentage * 100)
-			NA = Math.round(NA_percentage * 100)
-			certain_NA = Math.floor(very_certain_NA * 100)
-			certain_YA = Math.floor(very_certain_YA * 100)
-			YA_NA_percentage = YA.toString() + ":" + NA.toString()
-			YA_percentage = YA.toString()
-			NA_percentage = NA.toString()
-			very_certain_NA = certain_NA.toString()
-			very_certain_YA = certain_YA.toString()
-			json["moral-situation-1-title"] = titles;
-			json["moral-situation-1-text"] = selftexts;
-			json["moral-sur2-body-YA-percent"] = YA_NA_percentage;
-			json["moral-sur2-body-YA-num"] = YA_percentage + "%";
-			json["moral-sur2-body-YA-num2"] = NA_percentage + "%";
-			json["moral-real-group-NA-certain"] = very_certain_NA;
-			json["moral-real-group-YA-certain"] = very_certain_YA
-			// json["moral-situation-2-title"] = titles[1];
-			// json["moral-situation-2-text"] = selftexts[1];
-			// json["moral-situation-3-title"] = titles[2];
-			// json["moral-situation-3-text"] = selftexts[2];
-
-			$.i18n().load({
-				'en': json
-			}).done(function () {
-				$('head').i18n();
-				$('body').i18n();
-
-				LITW.utils.showSlide("img-loading");
-
-				jsPsych.pluginAPI.preloadImages(params.preLoad,
-					function () {
-						configureStudy();
-						startStudy();
-					},
-
-					function (numLoaded) {
-						$("#img-loading").html(loadingTemplate({
-							msg: $.i18n("litw-template-loading"),
-							numLoaded: numLoaded,
-							total: params.preLoad.length
-						}));
+		LITW.data.fetchQuestions(APIBaseURL).then(data => {
+			LITW.data.questions = data;
+			if (Object.keys(LITW.data.questions).length > 0) {
+				LITW.data.questions.img = JSON.stringify(LITW.data.questions._id);
+				LITW.data.questions.YA_percentage = Math.round(LITW.data.questions.YA_percentage * 100)
+				LITW.data.questions.NA_percentage = Math.round(LITW.data.questions.NA_percentage * 100)
+				LITW.data.questions.very_certain_NA = Math.floor(LITW.data.questions.very_certain_NA * 100).toString()
+				LITW.data.questions.very_certain_YA = Math.floor(LITW.data.questions.very_certain_YA * 100).toString()
+				LITW.data.questions.YA_NA_percentage = LITW.data.questions.YA_percentage.toString() + ":" + LITW.data.questions.YA_percentage.toString()
+	
+				console.log(LITW.data.questions);
+	
+				// sessionStorage.setItem('img', JSON.stringify(LITW.data.questions.img));
+				console.log("Self Texts:", LITW.data.questions.selftext);
+				console.log("Titles:", LITW.data.questions.title);
+	
+				fetch('./i18n/en.json', {
+					method: 'GET',
+					headers: {
+						'Accept': 'application/json'
 					}
-				);
-			});
-		})
-		.catch(error => {
-			console.error('error', error);
+				})
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json();
+				})
+				.then(json => {
+					json["moral-situation-1-title"] = LITW.data.questions.title;
+					json["moral-situation-1-text"] = LITW.data.questions.selftext;
+					json["moral-sur2-body-YA-percent"] = LITW.data.questions.YA_NA_percentage;
+					json["moral-sur2-body-YA-num"] = LITW.data.questions.YA_percentage + "%";
+					json["moral-sur2-body-YA-num2"] = LITW.data.questions.NA_percentage + "%";
+					json["moral-real-group-NA-certain"] = LITW.data.questions.very_certain_NA;
+					json["moral-real-group-YA-certain"] = LITW.data.questions.very_certain_YA
+					// json["moral-situation-2-title"] = titles[1];
+					// json["moral-situation-2-text"] = selftexts[1];
+					// json["moral-situation-3-title"] = titles[2];
+					// json["moral-situation-3-text"] = selftexts[2];
+		
+					$.i18n().load({
+						'en': json
+					}).done(function () {
+						$('head').i18n();
+						$('body').i18n();
+		
+						LITW.utils.showSlide("img-loading");
+		
+						jsPsych.pluginAPI.preloadImages(params.preLoad,
+							function () {
+								configureStudy();
+								startStudy();
+							},
+		
+							function (numLoaded) {
+								$("#img-loading").html(loadingTemplate({
+									msg: $.i18n("litw-template-loading"),
+									numLoaded: numLoaded,
+									total: params.preLoad.length
+								}));
+							}
+						);
+					});
+				})
+				.catch(error => {
+					console.error('error', error);
+				});
+			}
 		});
 	}
 

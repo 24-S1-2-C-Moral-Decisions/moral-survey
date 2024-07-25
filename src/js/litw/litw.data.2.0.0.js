@@ -19,14 +19,18 @@
     var version = '2.0.0',
         params = {
             _isInitialized: false,
-            participantId: 0,
+            prolificId: -1,
+            studyId: -1,
             ipCountry: "not_fetched_or_initialized",
             ipRegion: "not_fetched_or_initialized",
             ipCity: "not_fetched_or_initialized",
             userAgent: "not_fetched_or_initialized"
         },
-        getParticipantId = function() {
+        getProlificId = function() {
             return params.participantId;
+        },
+        getStudyId = function() {
+            return params.studyId;
         },
         getCountry = function() {
             return params.ipCountry;
@@ -48,9 +52,11 @@
 
             if (!params._isInitialized) {
                 params._isInitialized = true;
-                params.participantId = uuidv4();
-                params.userAgent = navigator.userAgent;
                 params.url = getRequestParams();
+                params.prolificId = params.url["prolificId"];
+                params.studyId = params.url["studyId"];
+                params.userAgent = navigator.userAgent;
+                
                 return $.getJSON(geoip_url, function(data) {
                     params.ipCity = data.city;
                     params.ipRegion = data.region;
@@ -69,6 +75,25 @@
                     submitData(data,"litw:initialize");
                 });
             }
+        },
+
+        fetchQuestions = function(baseUrl) {
+            return fetch(baseUrl + 'survey/question?studyId='+params.studyId, {
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*'
+                },
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(response);
+                }
+                return response.json();
+            });
+
+            // let questionnaire_url = '/service/questionnaire';
+            // return $.getJSON(questionnaire_url, function(data) {
+            //     console.log(data);
+            // });
         },
 
         getRequestParams = function () {
@@ -96,7 +121,7 @@
             if (!params._isInitialized) {
                 initialize();
             }
-            data.uuid = getParticipantId();
+            data.prolificId = getProlificId();
             data.data_type = dataType;
             _submit(data, false);
         },
@@ -120,6 +145,7 @@
     var Data = {
         consentAccepted: false,
         surveyStartTime: null,
+        questions: {},
     };
     exports.data = Data;
     exports.data.submitComments = submitComments;
@@ -129,10 +155,12 @@
     exports.data.submitStudyData = submitStudyData;
     exports.data.submitData = submitData;
     exports.data.initialize = initialize;
-    exports.data.getParticipantId = getParticipantId;
+    exports.data.getProlificId = getProlificId;
+    exports.data.getStudyId = getStudyId;
     exports.data.getCountry = getCountry;
     exports.data.getCity = getCity;
     exports.data.getURLparams = getURLparams;
     exports.data.isInitialized = isInitialized;
+    exports.data.fetchQuestions = fetchQuestions;
 
 })( window.LITW = window.LITW || {} );
