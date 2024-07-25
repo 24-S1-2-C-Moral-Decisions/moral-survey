@@ -1,40 +1,41 @@
 <div id="intro-box" class="instructions-stim-container">
-    <div class="middle">
-        <h5 >Participant Information Sheet</h5>
-        <span>Please read our Participant Information Sheet for more details about this study.
-        You can access it here: <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC" style="text-decoration: underline">Participant information sheet</a></span>
-    
-        <!--
-        <div class="card" style="width: 18rem;">
-            <div class="card-img-top text-center display-1">
-                <i class="bi bi-house-gear"></i>
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">Study Baseline</h5>
-                <p class="card-text">Contains typical LITW Study slides, no real experiement included!</p>
-                <a href="./moral-survey/index.html" class="btn btn-primary">Try it!</a>
-            </div>
-        </div>
-        -->
-        <h4 class="mag">Participant Consent Form</h4>
-        <p>I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction.
-            I agree to participate in the project.</p>
+    <div class="text-start">
+        <h4 class="fs-4" data-i18n='moral-welcome'>Welcome to the Understanding Daily Moral Decisions Study!</h5>
+        <span class="fw-bold fs-5" data-i18n='moral-points-to-know'>A few essential points about this survey that you will probably want to know before starting:</span>
+        
+        <ul class="fs-6 mt-1">
+            {{#times 6}}
+            <li class="mb-2">
+                <span class="fw-bold" data-i18n='moral-points-{{this}}-title'>###</span>
+                <span data-i18n="moral-points-{{this}}">###</span>
+            </li>
+            {{/times}}
+            <li class="mb-2">
+                <span class="fw-bold" data-i18n='moral-points-contact-title'>###</span>
+                <span data-i18n="moral-points-contact-1">###</span>
+                <span>Ziyu Chen at <a href="mailto:Ziyu.Chen@anu.edu.au">Ziyu.Chen@anu.edu.au</a></span>
+                <span data-i18n="moral-points-contact-2">###</span>
+                <span>Lexing Xie at <a href="mailto:lexing.xie@anu.edu.au">lexing.xie@anu.edu.au</a></span>
+                <span data-i18n="moral-points-contact-3">###</span>
+                <span>Colin Klein at <a href="mailto:Colin.Klein@anu.edu.au">Colin.Klein@anu.edu.au</a>.</span>
+            </li>
 
-        <!--
-        <div class="btn-group-vertical option" role="group" aria-label="Basic radio toggle button group">
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-            <label class="btn btn-light select" for="btnradio1">Yes</label><br>
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <label class="btn btn-light select" for="btnradio2">No</label>
-        </div>
-        -->
+            <li class="mb-2">
+                <span class="fw-bold" data-i18n='moral-points-more-details-title'>###</span>
+                <span data-i18n="moral-points-more-details-1">###</span>
+                <a href="https://anu.au1.qualtrics.com/CP/File.php?F=F_9yvnzsMGMVdmXuC" data-i18n="moral-points-more-details-2">###</a>
+            </li>
+        </ul>
+        
+        <h4 class="fs-4"  data-i18n="moral-participant-consetn-title">###</h4>
+        <p class="fs-6"  data-i18n="moral-participant-consetn">###</p>
 
-        <form id="myForm" class="needs-validation" novalidate>
+        <form id="myForm" class="needs-validation" novalidate class="fs-6">
             <div>
                 <input type="radio" class="btn-check form-check-input" name="options" id="ParticipantY" autocomplete="off" required>
-                <label class="btn btn-light jud form-check-label" for="ParticipantY">Yes</label><br>
+                <label class="btn btn-light jud form-check-label" for="ParticipantY" data-i18n="moral-yes">###</label><br>
                 <input type="radio" class="btn-check form-check-input" name="options" id="ParticipantN" autocomplete="off" required>
-                <label class="btn btn-light jud form-check-label" for="ParticipantN">No</label>
+                <label class="btn btn-light jud form-check-label" for="ParticipantN" data-i18n="moral-no">###</label>
                 <div class="invalid-feedback">Please answer the question</div>
             </div>
             <button type="button" id="btn-intro-submit" data-i18n="moral-intro-button" class="btn btn-secondary btn-sm btn btn-secondary custom-btn-left"></button>
