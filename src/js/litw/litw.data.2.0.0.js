@@ -19,7 +19,7 @@
     var version = '2.0.0',
         params = {
             _isInitialized: false,
-            prolificId: -1,
+            prolificId: null,
             studyId: -1,
             ipCountry: "not_fetched_or_initialized",
             ipRegion: "not_fetched_or_initialized",
@@ -44,7 +44,7 @@
         getURLparams = function () {
             return params.url;
         },
-        initialize = function() {
+        initialize = function(baseUrl) {
             let litw_locale = LITW.locale.getLocale() || "";
             // TODO: This is not working because I did not figure how to get the client IP behind the NGINX yet!
             // let geoip_url = '/service/geoip';
@@ -52,10 +52,17 @@
 
             if (!params._isInitialized) {
                 params._isInitialized = true;
+                LITW.utils.baseUrl = baseUrl || LITW.utils.baseUrl;
                 params.url = getRequestParams();
                 params.prolificId = params.url["prolificId"];
                 params.studyId = params.url["studyId"];
                 params.userAgent = navigator.userAgent;
+
+                console.log("prolificId: " + params.prolificId);
+                if (params.prolificId == null) {
+                    console.error("prolificId Not Found");
+                    alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
+                }
                 
                 return $.getJSON(geoip_url, function(data) {
                     params.ipCity = data.city;
@@ -75,25 +82,6 @@
                     submitData(data,"litw:initialize");
                 });
             }
-        },
-
-        fetchQuestions = function(baseUrl) {
-            return fetch(baseUrl + 'survey/question?studyId='+params.studyId, {
-                method: 'GET',
-                headers: {
-                    'Accept': '*/*'
-                },
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error(response);
-                }
-                return response.json();
-            });
-
-            // let questionnaire_url = '/service/questionnaire';
-            // return $.getJSON(questionnaire_url, function(data) {
-            //     console.log(data);
-            // });
         },
 
         getRequestParams = function () {
@@ -161,6 +149,5 @@
     exports.data.getCity = getCity;
     exports.data.getURLparams = getURLparams;
     exports.data.isInitialized = isInitialized;
-    exports.data.fetchQuestions = fetchQuestions;
 
 })( window.LITW = window.LITW || {} );

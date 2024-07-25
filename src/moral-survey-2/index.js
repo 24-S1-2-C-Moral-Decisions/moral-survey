@@ -14,23 +14,23 @@ function failedValidation(id=".invalid-feedback") {
 
 var attention = false;
 
-let result = {
-    studyId: "1",
-    answer: {
-        questionId:  null,
-        individualAnswer: {
-            isAsshole: null,
-            rating: null
-        },
-        groupAnswer: {
-            isAsshole: null,
-            rating: null
-        },
-        comments: null
-    },
-    comments: null,
-    time: null
-};
+// let result = {
+//     studyId: "1",
+//     answer: {
+//         questionId:  null,
+//         individualAnswer: {
+//             isAsshole: null,
+//             rating: null
+//         },
+//         groupAnswer: {
+//             isAsshole: null,
+//             rating: null
+//         },
+//         comments: null
+//     },
+//     comments: null,
+//     time: null
+// };
 
 window.onbeforeunload = function() {
     sessionStorage.removeItem('img');

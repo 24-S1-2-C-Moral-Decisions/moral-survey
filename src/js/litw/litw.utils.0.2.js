@@ -239,11 +239,40 @@
                 result[key] = paramsURL.get(key);
             }
             return result;
+        },
+
+        fetchQuestions = async function(baseUrl) {
+            const response = await fetch(baseUrl + 'survey/question?studyId=' + LITW.data.getStudyId(), {
+                method: 'GET',
+                headers: {
+                    'Accept': '*/*'
+                },
+            });
+            if (!response.ok) {
+                throw new Error(response);
+            }
+            return await response.json();
+        },
+
+        postProlificInfo = function(data) {
+            data['id'] = LITW.data.getStudyId();
+            fetch(window.LITW.utils.APIBaseURL + 'survey/prolific', {
+                method: 'POST',
+                headers: {
+                    'Accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(response => response.json())
+                .then(res => console.log('Success:', res))
+                .catch((error) => console.error('Error:', error));
         };
 
 
     /**** PUBLIC METHODS ****/
-    exports.utils = {};
+    exports.utils = {
+        baseUrl: "https://moralmomentapi.azurewebsites.net/",
+    };
     exports.utils.showNextButton = showNextButton;
     exports.utils.hideNextButton = hideNextButton;
     exports.utils.showSlide = showSlide;
@@ -251,5 +280,7 @@
     exports.utils.hideLoadingIcon = hideLoadingIcon;
     exports.utils.shuffleArrays = shuffleArrays;
     exports.utils.getParamsURL = getParamsURL;
+    exports.utils.fetchQuestions = fetchQuestions;
+    exports.utils.updateProlificInfo = postProlificInfo;
 
 })(window.LITW = window.LITW || {});

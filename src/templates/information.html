@@ -585,7 +585,7 @@
       </select>
     </div>
     <button
-      type="button"
+      type="submit"
       class="btn btn-secondary btn btn-secondary custom-btn-left"
       style="
         --bs-btn-padding-y: 0.25rem;
@@ -607,14 +607,9 @@
 </div>
 <script>
   function postProlific(){
-    const prolificId = new URLSearchParams(window.location.search).get('prolificId');
-    if (prolificId == null)
-      return;
-
     var data = {};
-    data['id'] = prolificId;
     data['takenBefore'] = [false, JSON.parse($('#takenBefore').val()), false, false, false];
-    if ($('#takenBefore').val() != "")
+    if ($('#longest_country').val() != "")
       data['country'] = $('#longest_country').val();
 
     if ($('#age').val() != "")
@@ -629,18 +624,7 @@
     if ($('#visit_aita').val() != "")
       data['visitSubreddit'] = $('#visit_aita').val();
 
-    console.log(data);
-
-    fetch(window.LITW.utils.APIBaseURL + 'survey/prolific', {
-        method: 'POST',
-        headers: {
-            'Accept': '*/*',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    }).then(response => response.json())
-        .then(res => console.log('Success:', res))
-        .catch((error) => console.error('Error:', error));
+    LITW.utils.updateProlificInfo(data);
   }
 
   (() => {

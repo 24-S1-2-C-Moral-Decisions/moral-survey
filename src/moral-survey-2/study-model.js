@@ -15,7 +15,6 @@ require("bootstrap");
 require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
-var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
 // var demographicsTemplate = require("../templates/demographics.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
@@ -53,23 +52,6 @@ module.exports = (function(exports) {
 				display_element: $("#infor"),
 				display_next_button: false,
 			},
-			INFORMED_CONSENT: {
-				name: "informed_consent",
-				type: "display-slide",
-				template: moralAnnouncementTemplate,
-				display_element: $("#moral-announcement"),
-				display_next_button: false,
-			},
-			// DEMOGRAPHICS: {
-			// 	type: "display-slide",
-			// 	template: demographicsTemplate,
-			// 	display_element: $("#demographics"),
-			// 	name: "demographics",
-			// 	finish: function(){
-			// 		var dem_data = $('#demographicsForm').alpaca().getValue();
-			// 		LITW.data.submitDemographics(dem_data);
-			// 	}
-			// },
 			SURVEY1:{
 				name: "motivationsurvey",
 				type: "display-slide",
@@ -145,7 +127,6 @@ module.exports = (function(exports) {
 		timeline.push(params.slides.INTRODUCTION);
 		timeline.push({
 			timeline: [
-				params.slides.INFORMED_CONSENT,
 				params.slides.INFORMATION,
 				params.slides.SURVEY1,
 				params.slides.ATTENTION,
@@ -206,9 +187,10 @@ module.exports = (function(exports) {
 		});
 	}
 
+	const APIBaseURL = API_URL;
 	function startStudy() {
 		// generate unique participant id and geolocate participant
-		LITW.data.initialize();
+		LITW.data.initialize(APIBaseURL);
 		// save URL params
 		params.URL = LITW.utils.getParamsURL();
 		// if( Object.keys(params.URL).length > 0 ) {
@@ -224,7 +206,6 @@ module.exports = (function(exports) {
 		});
 	}
 
-	const APIBaseURL = API_URL;
 	function startExperiment(){
 		//TODO These methods should be something like act1().then.act2().then...
 		//... it is close enough to that... maybe the translation need to be encapsulated next.
@@ -246,17 +227,7 @@ module.exports = (function(exports) {
 			toLoad['en'] = languages['en'];
 		}
 
-		const prolificId = new URLSearchParams(window.location.search).get('prolificId');
-		console.log("prolificId: " + prolificId);
-		if (prolificId == null) {
-			console.error("prolificId Not Found");
-			alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
-		}
-		else 
-			result.prolificId = prolificId;
-
-		// console.log(APIBaseURL)
-		LITW.data.fetchQuestions(APIBaseURL).then(data => {
+		LITW.utils.fetchQuestions(APIBaseURL).then(data => {
 			LITW.data.questions = data;
 			if (Object.keys(LITW.data.questions).length > 0) {
 				LITW.data.questions.img = JSON.stringify(LITW.data.questions._id);
