@@ -143,18 +143,25 @@ module.exports = (function(exports) {
 
 	function configureStudy() {
 		timeline.push(params.slides.INTRODUCTION);
-		timeline.push(params.slides.INFORMED_CONSENT);
-		timeline.push(params.slides.INFORMATION);
-		timeline.push(params.slides.SURVEY1);
-		timeline.push(params.slides.ATTENTION);
 		timeline.push({
 			timeline: [
-				params.slides.REAL_SURVEY1,
-				params.slides.COMMENTS,
+				params.slides.INFORMED_CONSENT,
+				params.slides.INFORMATION,
+				params.slides.SURVEY1,
+				params.slides.ATTENTION,
+				{
+					timeline: [
+						params.slides.REAL_SURVEY1,
+						params.slides.COMMENTS,
+					],
+					conditional_function: function(){
+						return attention;
+					}
+				},
+
 			],
 			conditional_function: function(){
-				// console.log("Attention:", attention);
-				return attention;
+				return LITW.data.consentAccepted;
 			}
 		});
 		timeline.push(params.slides.RESULTS);

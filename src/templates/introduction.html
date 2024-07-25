@@ -46,15 +46,13 @@
 
 <script type="text/javascript">
     $("#btn-intro-submit").click( function() {
-        // console.log("clicked");
+        console.log("clicked");
         var participantY = $("#ParticipantY").prop('checked');
         var participantN = $("#ParticipantN").prop('checked');
-        if (participantY) {
+        if (participantY || participantN) {
             // should be defined in server index.js
+            LITW.data.submitConsent(participantY);
             nextPage();
-        } else if (participantN) {
-            // TODO: GOTO Leave Page
-            window.location.href = 'moral-survey/leave.html';
         }
         else {
             // should be defined in server index.js
@@ -68,7 +66,7 @@
     $(document).ready(function() {
         $('#btn-intro-submit').click(function() {
             const startTime = new Date().getTime();
-            sessionStorage.setItem('startTime', startTime);
+            LITW.data.surveyStartTime = startTime;
         });
     });
 </script>

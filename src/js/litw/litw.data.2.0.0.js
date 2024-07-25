@@ -106,8 +106,8 @@
         submitDemographics = function(data) {
             submitData(data,"study:demographics")
         },
-        submitConsent = function(data) {
-            submitData(data,"study:informed_consent")
+        submitConsent = function(accepted) {
+            Data.consentAccepted = accepted;
         },
         submitConfig = function(data) {
             submitData(data,"study:configuration")
@@ -117,7 +117,11 @@
         };
 
     /**** PUBLIC METHODS ****/
-    exports.data = {};
+    var Data = {
+        consentAccepted: false,
+        surveyStartTime: null,
+    };
+    exports.data = Data;
     exports.data.submitComments = submitComments;
     exports.data.submitDemographics = submitDemographics;
     exports.data.submitConsent = submitConsent;
