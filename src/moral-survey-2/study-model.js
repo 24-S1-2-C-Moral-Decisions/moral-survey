@@ -86,24 +86,6 @@ module.exports = (function(exports) {
 				template: real_survey1,
 				display_element: $("#real-survey1"),
 				display_next_button: false,
-				// finish: function(){
-				// 	const q1_individual_jud = $('input[name="options"]:checked').val();
-				// 	const q1_individual_conf = $('input[name="decision"]:checked').val();
-				// 	const q1_group_YA_jud = $('input[name="YA-options"]:checked').val();
-				// 	const q1_group_YA_conf = $('input[name="YA-decision"]:checked').val();
-				// 	const q1_group_NA_jud = $('input[name="NA-options"]:checked').val();
-				// 	const q1_group_NA_conf = $('input[name="NA-decision"]:checked').val();
-				// 	LITW.data.setSurvey({
-				// 		question_no:1,
-				// 		type:"individual_group",
-				// 		ind_judge:q1_individual_jud,
-				// 		ind_confidence:q1_individual_conf,
-				// 		ind_YA_judge:q1_YA_individual_jud,
-				// 		ind_YA_confidence:q1_YA_individual_conf,
-				// 		ind_NA_judge:q1_NA_individual_jud,
-				// 		ind_NA_confidence:q1_NA_individual_conf,
-				// 	})
-				// }
 			},
 			COMMENTS: {
 				type: "display-slide",
@@ -111,14 +93,6 @@ module.exports = (function(exports) {
 				display_element: $("#comments"),
 				name: "comments",
 				display_next_button: false,
-				// finish: function(){
-				// 	var comments = $('#commentsForm').alpaca().getValue();
-				// 	if (Object.keys(comments).length > 0) {
-				// 		LITW.data.submitComments({
-				// 			comments: comments
-				// 		});
-				// 	}
-				// }
 			},
 			RESULTS: {
 				name: "results",
@@ -132,7 +106,7 @@ module.exports = (function(exports) {
 
 	function setUpSlideData() {
 		params.slides.UNDERSTAND_TOPIC.template_data = {
-			topic: LITW.data.getTopic(),
+			topic: LITW.data.getTopic()
 		};
 	}
 

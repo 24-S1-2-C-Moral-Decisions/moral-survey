@@ -66,8 +66,17 @@
 
   "moral-topic-practice-img-explain-uncertainty": "In the AITA community, for every 100 Reddit users who made YA judgments, 14 users are very certain and 86 users are NOT very certain.",
   "moral-topic-practice-question-uncertainty": "In this situation, the group who judged NA - No, the individual is Not an Asshole has",
+  "moral-topic-practice-question-uncertainty-ans-p1": "Well done, it's a correct answer!",
+  "moral-topic-practice-question-uncertainty-ans-s1": "Explanation:",
+  "moral-topic-practice-question-uncertainty-ans-s2": " The group who judged the individual as Not an Asshole has high uncertainty because over half of the population are not very certain.",
+  "moral-topic-practice-question-uncertainty-ans2-p1":"Sorry, it's a wrong answer.",
+  "moral-topic-practice-question-uncertainty-ans2-s1":"Explanation:",
+  "moral-topic-practice-question-uncertainty-ans2-s2":" The group who judged the individual as Not an Asshole has high uncertainty because over half of the population are not very certain.",
+  "moral-topic-practice-question-uncertainty-ans2-s3":"Note:",
+  "moral-topic-practice-question-uncertainty-ans2-s4":"To proceed, you need to choose the correct answer in this question.",
 
-
+  "moral-practice-skip" : "If you do not want to do the training part, you can click the skip button to go directly to the formal test.",
+  "moral-skip": "Skip",
   "moral-yes": "Yes",
   "moral-no": "No",
   "moral-next": "Next",
@@ -133,14 +142,6 @@
   "moral-sur1-body-qus-p2": "In AITA community,",
   "moral-sur1-body-qus-p3": "For every 100 Reddit users who made NA judgements, 43 users are very certain in NA, as shown below:",
   "moral-sur1-body-qus-p4": "In this situation, the group who judged the individual as Not an Asshole has",
-  "moral-sur1-body-ans-p1": "Well done, it's a correct answer!",
-  "moral-sur1-body-ans-s1": "Explanation:",
-  "moral-sur1-body-ans-s2": " The group who judged the individual as Not an Asshole has high uncertainty because over half of the population are not very certain.",
-  "moral-sur1-body-ans2-p1":"Sorry, it's a wrong answer.",
-  "moral-sur1-body-ans2-s1":"Explanation:",
-  "moral-sur1-body-ans2-s2":" The group who judged the individual as Not an Asshole has high uncertainty because over half of the population are not very certain.",
-  "moral-sur1-body-ans2-s3":"Note:",
-  "moral-sur1-body-ans2-s4":"To proceed, you need to choose the correct answer in this question.",
 
 
   "moral-sur2-body-first-s1":"Note: ",
