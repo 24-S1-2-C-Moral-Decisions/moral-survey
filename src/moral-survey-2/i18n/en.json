@@ -30,8 +30,47 @@
   "moral-participant-consetn-title": "Participant Consent Form",
   "moral-participant-consetn": "I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction. I agree to participate in the project.",
 
+  "moral-page-1-3" : "Page 1 of 3.",
+
+  "moral-topic-what-is-reddit": "What is Reddit and its communities?",
+  "moral-topic-reddit": "Reddit",
+  "moral-topic-what-is-reddit-ans": "is a social news aggregation, content rating, and discussion website. User-generated posts are organized by subject into user-created boards called \"communities\". Posts are then voted up or down by other members.",
+  "moral-topic-what-is-aita": "What is the r/AmItheAsshole community?",
+  "moral-topic-aita": "r/AmItheAsshole",
+  "moral-topic-what-is-aita-ans": ", abbreviated as AITA, is a Reddit community where users post about their real-world interpersonal conflicts and receive judgment from other Reddit users. The question at the heart of each post is ‘Am I the Asshole?’, that is, whether the poster was in the wrong in the scenario they describe.",
+  "moral-topic-categorize-judgments": "We categorize judgments in the AITA Community into 2 primary types:",
+  "moral-topic-judgments-1": "1. YA - Yes, the Individual reporting the situation is an Asshole:",
+  "moral-topic-judgments-1-detail-1": "It combines two types of judgments from the AITA community:",
+  "moral-topic-judgments-1-detail-2": "You are The Asshole (YTA): the Individual reporting the situation is at fault.",
+  "moral-topic-judgments-1-detail-3": "Everyone Sucks Here (ESH): all parties involved in the situation are at fault.",
+  "moral-topic-judgments-2": "2. NA - No, the Individual reporting the situation is Not an Asshole:",
+  "moral-topic-judgments-2-detail-1": "It combines two types of judgments from the AITA community:",
+  "moral-topic-judgments-2-detail-2": "You are Not The Asshole (NTA): the Individual reporting the situation is not at fault in the situation.",
+  "moral-topic-judgments-2-detail-3": "No Asshole Here (NAH): none of the parties involved are at fault.",
+  "moral-topic-reddit-summary-1": "Reddit users write down their opinions, and their language often reflects how certain they are about the judgment, such as ",
+  "moral-topic-reddit-summary-2": "“NA. And you did 100% the right thing by ...”",
+  "moral-topic-reddit-summary-3": " (a very certain expression) or ",
+  "moral-topic-reddit-summary-4": "“NA but I'm really torn on this one, from one side ...”",
+  "moral-topic-reddit-summary-5": " (a very uncertain expression).  We tally this information for the group of users and present it here.",
+
+  "moral-topic-practice-question": "Practice Question - ",
+
+  "moral-topic-understand-uncertainty": "Understand Uncertainty in the AITA community",
+  "moral-topic-uncertainty": "Uncertainty",
+  "moral-topic-what-is-uncertainty": "1.1 What is Uncertainty on Reddit？",
+  "moral-topic-what-is-uncertainty-ans": "Uncertainty within each judgment group reflects the overall percentage of members who are not very certain about their judgment:",
+  "moral-topic-high-uncertainty": "High uncertainty",
+  "moral-topic-high-uncertainty-explain": " means over half of people in a judgment group are not very certain about their judgment;",
+  "moral-topic-low-uncertainty": "Low uncertainty",
+  "moral-topic-low-uncertainty-explain": " means over half of people in a judgment group are very certain about their judgment.",
+
+  "moral-topic-practice-img-explain-uncertainty": "In the AITA community, for every 100 Reddit users who made YA judgments, 14 users are very certain and 86 users are NOT very certain.",
+  "moral-topic-practice-question-uncertainty": "In this situation, the group who judged NA - No, the individual is Not an Asshole has",
+
+
   "moral-yes": "Yes",
   "moral-no": "No",
+  "moral-next": "Next",
 
   "moral-announcement-header": "Statement and Announcement",
   "moral-announcement-subheader-1": "You're about to take a Survey of Moral Moment. Your contribution to our research allows us to learn more about cognitive differences around the world. The results from your test will also tell you something about yourself!",

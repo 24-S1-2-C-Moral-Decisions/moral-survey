@@ -44,6 +44,25 @@
         getURLparams = function () {
             return params.url;
         },
+
+        getTopic = function() {
+            switch (params.studyId) {
+                case '1':
+                    return "controversy";
+                case '2':
+                    return "uncertainty";
+                case '3':
+                    return "controversy-uncertainty";
+                case '4':
+                    return "relevant-reasonings";
+                case '5':
+                    return "irrelevant-reasonings";
+            
+                default:
+                    return "Unknown-Topic";
+            }
+        },
+
         initialize = function(baseUrl) {
             let litw_locale = LITW.locale.getLocale() || "";
             // TODO: This is not working because I did not figure how to get the client IP behind the NGINX yet!
@@ -52,8 +71,8 @@
 
             if (!params._isInitialized) {
                 params._isInitialized = true;
-                LITW.utils.baseUrl = baseUrl || LITW.utils.baseUrl;
-                params.url = getRequestParams();
+                LITW.utils.APIaseUrl = baseUrl || LITW.utils.APIBaseURL;
+                params.url = LITW.utils.getRequestParams();
                 params.prolificId = params.url["prolificId"];
                 params.studyId = params.url["studyId"];
                 params.userAgent = navigator.userAgent;
@@ -82,11 +101,6 @@
                     submitData(data,"litw:initialize");
                 });
             }
-        },
-
-        getRequestParams = function () {
-            let urlSearchParams = new URLSearchParams(window.location.search);
-            return Object.fromEntries(urlSearchParams.entries());
         },
 
         uuidv4 = function() {
@@ -149,5 +163,6 @@
     exports.data.getCity = getCity;
     exports.data.getURLparams = getURLparams;
     exports.data.isInitialized = isInitialized;
+    exports.data.getTopic = getTopic;
 
 })( window.LITW = window.LITW || {} );

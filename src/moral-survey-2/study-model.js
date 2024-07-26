@@ -15,7 +15,7 @@ require("bootstrap");
 require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
-// var demographicsTemplate = require("../templates/demographics.html");
+var understandTemplate = require("../templates/understandTopic.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
@@ -57,6 +57,13 @@ module.exports = (function(exports) {
 				type: "display-slide",
 				template: motivationSurvey,
 				display_element: $("#motivationsurvey"),
+				display_next_button: false,
+			},
+			UNDERSTAND_TOPIC: {
+				name: "understand-topic",
+				type: "display-slide",
+				template: understandTemplate,
+				display_element: $("#understand-topic"),
 				display_next_button: false,
 			},
 			MOCK_SURVEY: {
@@ -123,11 +130,19 @@ module.exports = (function(exports) {
 		}
 	};
 
+	function setUpSlideData() {
+		params.slides.UNDERSTAND_TOPIC.template_data = {
+			topic: LITW.data.getTopic(),
+		};
+	}
+
 	function configureStudy() {
-		timeline.push(params.slides.INTRODUCTION);
+		setUpSlideData();
+		// timeline.push(params.slides.INTRODUCTION);
 		timeline.push({
 			timeline: [
-				params.slides.INFORMATION,
+				// params.slides.INFORMATION,
+				params.slides.UNDERSTAND_TOPIC,
 				params.slides.SURVEY1,
 				params.slides.ATTENTION,
 				{
@@ -142,7 +157,8 @@ module.exports = (function(exports) {
 
 			],
 			conditional_function: function(){
-				return LITW.data.consentAccepted;
+				// return LITW.data.consentAccepted;
+				return true;
 			}
 		});
 		timeline.push(params.slides.RESULTS);
@@ -189,10 +205,8 @@ module.exports = (function(exports) {
 
 	const APIBaseURL = API_URL;
 	function startStudy() {
-		// generate unique participant id and geolocate participant
-		LITW.data.initialize(APIBaseURL);
 		// save URL params
-		params.URL = LITW.utils.getParamsURL();
+		params.URL = LITW.utils.getRequestParams();
 		// if( Object.keys(params.URL).length > 0 ) {
 		// 	LITW.data.submitData(params.URL,'litw:paramsURL');
 		// }
@@ -212,6 +226,9 @@ module.exports = (function(exports) {
 		// get initial data from database (maybe needed for the results page!?)
 		//readSummaryData();
 
+		// generate unique participant id and geolocate participant
+		LITW.data.initialize(APIBaseURL);
+
 		// determine and set the study language
 		$.i18n().locale = LITW.locale.getLocale();
 		var languages = {
@@ -227,7 +244,7 @@ module.exports = (function(exports) {
 			toLoad['en'] = languages['en'];
 		}
 
-		LITW.utils.fetchQuestions(APIBaseURL).then(data => {
+		LITW.utils.fetchQuestions().then(data => {
 			LITW.data.questions = data;
 			if (Object.keys(LITW.data.questions).length > 0) {
 				LITW.data.questions.img = JSON.stringify(LITW.data.questions._id);

@@ -232,17 +232,13 @@
             }
         },
 
-        getParamsURL = function() {
-            let result = {};
-            let paramsURL = (new URL(document.location)).searchParams;
-            for (let key of paramsURL.keys()) {
-                result[key] = paramsURL.get(key);
-            }
-            return result;
+        getRequestParams = function () {
+            let urlSearchParams = new URLSearchParams(window.location.search);
+            return Object.fromEntries(urlSearchParams.entries());
         },
 
-        fetchQuestions = async function(baseUrl) {
-            const response = await fetch(baseUrl + 'survey/question?studyId=' + LITW.data.getStudyId(), {
+        fetchQuestions = async function() {
+            const response = await fetch( Utils.APIBaseURL + 'survey/question?studyId=' + LITW.data.getStudyId(), {
                 method: 'GET',
                 headers: {
                     'Accept': '*/*'
@@ -256,7 +252,7 @@
 
         postProlificInfo = function(data) {
             data['id'] = LITW.data.getStudyId();
-            fetch(window.LITW.utils.APIBaseURL + 'survey/prolific', {
+            fetch(Utils.APIBaseURL + 'survey/prolific', {
                 method: 'POST',
                 headers: {
                     'Accept': '*/*',
@@ -266,20 +262,22 @@
             }).then(response => response.json())
                 .then(res => console.log('Success:', res))
                 .catch((error) => console.error('Error:', error));
-        };
+        }        
+        ;
 
 
     /**** PUBLIC METHODS ****/
-    exports.utils = {
-        baseUrl: "https://moralmomentapi.azurewebsites.net/",
-    };
+    var Utils = {
+        APIBaseURL: "https://moralmomentapi.azurewebsites.net/",
+    }
+    exports.utils = Utils;
     exports.utils.showNextButton = showNextButton;
     exports.utils.hideNextButton = hideNextButton;
     exports.utils.showSlide = showSlide;
     exports.utils.showLoadingIcon = showLoadingIcon;
     exports.utils.hideLoadingIcon = hideLoadingIcon;
     exports.utils.shuffleArrays = shuffleArrays;
-    exports.utils.getParamsURL = getParamsURL;
+    exports.utils.getRequestParams = getRequestParams;
     exports.utils.fetchQuestions = fetchQuestions;
     exports.utils.updateProlificInfo = postProlificInfo;
 
