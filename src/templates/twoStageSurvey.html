@@ -1,0 +1,205 @@
+<div class="lar-middle">
+    <h1 class="fw-bold" data-i18n="moral-page-{{currentPage}}-{{totalPage}}">###</h1>
+    <h2 class="fw-bold"">{{pageTitle}}</h2>
+
+    <div class="container d-flex flex-column">
+        {{#if note}}
+            <div class="fs-7 pt-3">
+                <span class="fs-6 fw-bold">{{note.desc}}</span>
+                {{#each note.items}}
+                    <p>
+                        <span class="fw-bold">{{this.title}}</span>
+                        {{#each this.desc}}
+                            </br>
+                            <span class="p-2">{{this}}</span>
+                        {{/each}}
+                    </p>
+                {{/each}}
+            </div>
+        {{/if}}
+
+        <div id="individual">
+            <h4 class="fw-bold" data-i18n="moral-training-task1"></h4>
+
+            <div class="fs-4" style="line-height: 1.1;">
+                <p class="fw-bold">{{question.title}}</p>
+                <p>{{question.selftext}}</p>
+                <p class="fw-bold" data-i18n="moral-question-what-judgment"></p>
+                <div class="container d-flex flex-column">
+                    <div class="pb-2">
+                        <input type="radio" class="btn-check" name="individualJudgment" id="individual-YA" autocomplete="off">
+                        <label class="btn btn-outline-secondary w-100" for="individual-YA" data-i18n="moral-question-what-judgment-YA" onclick="setIndividualJudgment('YA')">###</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="btn-check" name="individualJudgment" id="individual-NA" autocomplete="off">
+                        <label class="btn btn-outline-secondary w-100" for="individual-NA" data-i18n="moral-question-what-judgment-NA" onclick="setIndividualJudgment('NA')">###</label>
+                    </div>
+                    <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                </div>
+            </div>
+            <button
+                id="finalize"
+                type="button"
+                class="btn btn-secondary custom-btn-left me-auto"
+                data-i18n="moral-next"
+                onclick="finalizeJudgment()"
+                >
+                Next
+            </button>
+        </div>
+
+        <div id="group" class="mt-5">
+            <h4 class="fw-bold" data-i18n="moral-training-task2-{{topic}}"></h4>
+
+            <div class="fs-4" style="line-height: 1.1;">
+                
+                <div id="YA">
+                    <img class="img-fluid" src="../img/{{topic}}/{{question._id}}_YA.png" alt="{{topic}}/{{question._id}}">
+
+                    <p class="fw-bold">
+                        <span data-i18n="moral-question-community-disagree-1"></span>
+                        <span>100</span>
+                        <span data-i18n="moral-question-community-disagree-2"></span>
+                        YA , {{question.very_certain_YA}}
+                        <span data-i18n="moral-question-community-disagree-3"></span>
+                        {{question.not_very_certain_YA}}
+                        <span data-i18n="moral-question-community-disagree-4"></span>
+                    </p>
+                </div>
+
+                <div id="NA" class="pb-3">
+                    <img class="img-fluid" src="../img/{{topic}}/{{question._id}}_NA.png" alt="{{topic}}/{{question._id}}">
+
+                    <p class="fw-bold">
+                        <span data-i18n="moral-question-community-disagree-1"></span>
+                        <span>100</span>
+                        <span data-i18n="moral-question-community-disagree-2"></span>
+                        NA , {{question.very_certain_NA}}
+                        <span data-i18n="moral-question-community-disagree-3"></span>
+                        {{question.not_very_certain_NA}}
+                        <span data-i18n="moral-question-community-disagree-4"></span>
+                    </p>
+                </div>
+
+                <div class="container d-flex flex-column">
+                    <div class="pb-2">
+                        <input type="radio" class="btn-check" name="groupJudgment" id="group-YA" autocomplete="off">
+                        <label class="btn btn-outline-secondary w-100" for="group-YA" data-i18n="moral-question-what-judgment-YA" onclick="setGroupJudgment('YA')">###</label>
+                    </div>
+                    <div>
+                        <input type="radio" class="btn-check" name="groupJudgment" id="group-NA" autocomplete="off">
+                        <label class="btn btn-outline-secondary w-100" for="group-NA" data-i18n="moral-question-what-judgment-NA" onclick="setGroupJudgment('NA')">###</label>
+                    </div>
+                    <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                    <div class="pt-2" class="collapse">
+                        <p id="judgmentResult" class="survey1-paragraph-body mid-font fw-bolder">
+                            <span id="judgmentSame" data-i18n="moral-question-judgment-same"></span>
+                            <span id="judgmentChange_NA">
+                                <span data-i18n="moral-question-judgment-change"></span>
+                                <span data-i18n="moral-question-what-judgment-YA"></span>
+                            </span>
+                            <span id="judgmentChange_YA">
+                                <span data-i18n="moral-question-judgment-change"></span>
+                                <span data-i18n="moral-question-what-judgment-NA"></span>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {{#if isTraing}}
+                <button
+                    type="button"
+                    class="btn btn-secondary custom-btn-left me-auto"
+                    data-i18n="moral-next"
+                    onclick="tryNext(true, '{{question._id}}')"
+                    >
+                    Next
+                </button>
+            {{else}}
+                <button
+                    id="next"
+                    type="button"
+                    class="btn btn-secondary custom-btn-left me-auto"
+                    data-i18n="moral-next"
+                    onclick="tryNext(false, '{{question._id}}')"
+                    >
+                    Next
+                </button>
+            {{/if}}
+        </div>
+    </div>
+</div>
+<script>
+    let individualJudgment = "";
+    let groupJudgment = "";
+    let comment = "";
+    $("#group").hide();
+    $("#judgmentResult").hide();
+
+    function setIndividualJudgment(ans){
+        individualJudgment = ans;
+        $("#individual #invalid-feedback").hide();
+    }
+
+    function setGroupJudgment(ans){
+        groupJudgment = ans;
+        $("#group #invalid-feedback").hide();
+        $("#judgmentResult").show();
+        if (individualJudgment == ans) {
+            $("#judgmentSame").show();
+            $("#judgmentChange_NA").hide();
+            $("#judgmentChange_YA").hide();
+        } else {
+            $("#judgmentSame").hide();
+            if (ans == "YA") {
+                $("#judgmentChange_YA").show();
+                $("#judgmentChange_NA").hide();
+            } else {
+                $("#judgmentChange_NA").show();
+                $("#judgmentChange_YA").hide();
+            }
+        }
+    }
+
+    function finalizeJudgment(){
+        if (individualJudgment != "") {
+            $("#individual input").prop('disabled', true);
+            $("#finalize").hide();
+            $("#group").show();
+
+            if (individualJudgment == "YA") {
+                $("#NA").show();
+                $("#YA").hide();
+            } else {
+                $("#YA").show();
+                $("#NA").hide();
+            }
+        } else {
+            $("#individual #invalid-feedback").show();
+        }
+
+    }
+
+    function tryNext(isTraing, id) {
+        if (groupJudgment != "") {
+            let result = {
+                answer: {
+                    questionId: id,
+                    individualAnswer: {
+                        isAsshole: individualJudgment == "YA",
+                    },
+                    groupAnswer: {
+                        isAsshole: groupJudgment == "YA",
+                    },
+                    comment: comment
+                }
+            };
+            if (!isTraing) {
+                LITW.utils.saveResultData(result);
+            }
+            nextPage();
+        } else {
+            $("#group #invalid-feedback").show();
+        }
+    }
+</script>

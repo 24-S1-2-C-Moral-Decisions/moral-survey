@@ -262,7 +262,19 @@
             }).then(response => response.json())
                 .then(res => console.log('Success:', res))
                 .catch((error) => console.error('Error:', error));
-        }        
+        },
+
+        doTranslation = function(str) {
+            return str;
+        },
+
+        saveResultData = function(data) {
+            LITW.data.result = {
+                ...LITW.data.result,
+                ...data
+            }
+            console.log(LITW.data.result);
+        }
         ;
 
 
@@ -280,5 +292,7 @@
     exports.utils.getRequestParams = getRequestParams;
     exports.utils.fetchQuestions = fetchQuestions;
     exports.utils.updateProlificInfo = postProlificInfo;
+    exports.utils.doTranslation = doTranslation;
+    exports.utils.saveResultData = saveResultData;
 
 })(window.LITW = window.LITW || {});

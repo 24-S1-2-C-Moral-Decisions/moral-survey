@@ -26,6 +26,39 @@
             ipCity: "not_fetched_or_initialized",
             userAgent: "not_fetched_or_initialized"
         },
+
+        trainingData = [
+            // placeholder for training data
+            {},
+            // controversy
+            {},
+            // uncertainty
+            {
+                _id: "../meat",
+                title: "Am I the asshole for not buying meat for my 9 year old daughter?",
+                selftext: "I’ve raised my daughter vegetarian from birth and a few years ago made" +
+                " the switch the veganism. Me and her father are separated and a few months ago she "+
+                " tried meat at his and liked it. He has her 2 nights a week so now she’s eating meat"+
+                ", dairy and eggs at his. When she told me I said that was fine, it’s her body and she"+
+                " gets to decide what goes into it, she then asked me if she could get some meat when "+
+                "we went shopping but I said no. The smell and everything about meat kinda makes me feel"+
+                " sick and I’d be the one having to prepare it for her. I let her have cheese and eggs "+
+                "now at ours but she’s asked me again if she can get meat.",
+                very_certain_YA: 1,
+                not_very_certain_YA: 100 - 1,
+                very_certain_NA: 43,
+                not_very_certain_NA: 100 - 43,
+                YA_percentage: 0.5,
+                NA_percentage: 0.5,
+            },
+            // controversy-uncertainty
+            {},
+            // relevant-reasonings
+            {},
+            // irrelevant-reasonings
+            {}
+        ],
+
         getProlificId = function() {
             return params.participantId;
         },
@@ -61,6 +94,10 @@
                 default:
                     return "Unknown-Topic";
             }
+        },
+
+        getTrainingData = function() {
+            return trainingData[params.studyId];
         },
 
         initialize = function(baseUrl) {
@@ -147,6 +184,7 @@
     var Data = {
         consentAccepted: false,
         surveyStartTime: null,
+        skipTraining: false,
         questions: {},
     };
     exports.data = Data;
@@ -164,5 +202,6 @@
     exports.data.getURLparams = getURLparams;
     exports.data.isInitialized = isInitialized;
     exports.data.getTopic = getTopic;
+    exports.data.getTrainingData = getTrainingData;
 
 })( window.LITW = window.LITW || {} );

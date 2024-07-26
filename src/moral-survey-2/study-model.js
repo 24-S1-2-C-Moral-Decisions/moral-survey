@@ -16,6 +16,7 @@ require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
 var understandTemplate = require("../templates/understandTopic.html");
+var twoStageSurveyTemplate = require("../templates/twoStageSurvey.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
@@ -26,7 +27,6 @@ require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
 // load survey templates
-var motivationSurvey = require("./content/motivationSurvey.html");
 var mock_survey = require("./content/mocksurvey.html");
 var attention_t = require("./content/attention.html");
 var real_survey1 = require("./content/realsurvey1.html");
@@ -52,18 +52,18 @@ module.exports = (function(exports) {
 				display_element: $("#infor"),
 				display_next_button: false,
 			},
-			SURVEY1:{
-				name: "motivationsurvey",
-				type: "display-slide",
-				template: motivationSurvey,
-				display_element: $("#motivationsurvey"),
-				display_next_button: false,
-			},
 			UNDERSTAND_TOPIC: {
 				name: "understand-topic",
 				type: "display-slide",
 				template: understandTemplate,
 				display_element: $("#understand-topic"),
+				display_next_button: false,
+			},
+			TWO_STAGE_TRAINING: {
+				name: "two-stage-training",
+				type: "display-slide",
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-training"),
 				display_next_button: false,
 			},
 			MOCK_SURVEY: {
@@ -108,6 +108,30 @@ module.exports = (function(exports) {
 		params.slides.UNDERSTAND_TOPIC.template_data = {
 			topic: LITW.data.getTopic()
 		};
+		params.slides.TWO_STAGE_TRAINING.template_data = {
+			topic: LITW.data.getTopic(),
+			isTraing: true,
+			currentPage: 1,
+			totalPage: 2,
+			pageTitle: $.i18n("moral-training-header"),
+			note: {
+				desc: $.i18n("moral-training-note-desc"),
+				items: [
+					{
+						title: $.i18n("moral-training-task1"),
+						desc: [$.i18n("moral-training-task1-desc")]
+					},
+					{
+						title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
+						desc: [
+							$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
+							$.i18n("moral-training-task2-desc")
+						]
+					}
+				],
+			},
+			question: LITW.data.getTrainingData()
+		};
 	}
 
 	function configureStudy() {
@@ -116,8 +140,15 @@ module.exports = (function(exports) {
 		timeline.push({
 			timeline: [
 				// params.slides.INFORMATION,
-				params.slides.UNDERSTAND_TOPIC,
-				params.slides.SURVEY1,
+				// params.slides.UNDERSTAND_TOPIC,
+				{
+					timeline: [
+						params.slides.TWO_STAGE_TRAINING,
+					],
+					conditional_function: function(){
+						return LITW.data.skipTraining;
+					}
+				},
 				params.slides.ATTENTION,
 				{
 					timeline: [
