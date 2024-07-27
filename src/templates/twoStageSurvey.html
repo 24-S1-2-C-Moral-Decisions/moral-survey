@@ -120,7 +120,7 @@
                     </div>
                 </div>
 
-                <div class="fs-4 pt-4 confident">
+                <div class="fs-4 pt-4 confident container">
                     <p class="fw-bolder" data-i18n='moral-question-how-confident'></p>
                     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
                         {{#times 5}}
@@ -130,10 +130,20 @@
                             </div>
                         {{/times}}
                     </div>
-                    <div class="invalid-feedback" data-i18n="moral-please-answer">
+                    <span class="invalid-feedback" data-i18n="moral-please-answer"></span>
+                    <div class="pt-2">
+                        <p id="confidentResult" class="survey1-paragraph-body mid-font fw-bolder">
+                            <span id="confidentSame" data-i18n="moral-question-confidence-same"></span>
+                            <span id="confidentChange">
+                                <span data-i18n="moral-question-confidence-change"></span>
+                                <span id="prev-confident" > ### </span>
+                            </span>
+                        </p>
                     </div>
+                </div>
             </div>
             {{#if isTraing}}
+                <p id="training-end" class="fs-6 pt-4 fw-bold" data-i18n="moral-training-end"></p>
                 <button
                     type="button"
                     class="btn btn-secondary custom-btn-left me-auto"
@@ -156,6 +166,19 @@
         </div>
     </div>
 </div>
+{{#if isTraing}}
+    <script>
+        $("#training-end").hide();
+        // add an extra EventListener 
+        $("#group input").on("click", function() {
+                console.log($("#group input:checked").length);
+                if ($("#group input:checked").length == 2) {
+                    $("#training-end").show();
+                }
+            }
+        );
+    </script>
+{{/if}}
 <script>
     let individualJudgment = "";
     let groupJudgment = "";
@@ -164,6 +187,7 @@
     let comment = "";
     $("#group").hide();
     $("#judgmentResult").hide();
+    $("#confidentResult").hide();
 
     function setIndividualJudgment(ans){
         individualJudgment = ans;
@@ -221,6 +245,16 @@
     function setGroupConfident(ans){
         groupConfident = ans;
         $("#group .confident .invalid-feedback").hide();
+        $("#confidentResult").show();
+        console.log(ans);
+        if (individualConfident == ans) {
+            $("#confidentSame").show();
+            $("#confidentChange").hide();
+        } else {
+            $("#confidentSame").hide();
+            $("#confidentChange").show();
+            $("#confidentChange #prev-confident").text($.i18n("moral-question-confidence-" + individualConfident));
+        }
     }
 
     function tryNext(isTraing, id) {

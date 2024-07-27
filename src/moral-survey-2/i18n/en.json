@@ -77,6 +77,7 @@
   "moral-topic-practice-question-uncertainty-ans2-s4":"To proceed, you need to choose the correct answer in this question.",
 
   "moral-training-header": "A training survey question",
+  "moral-training-end": "This concludes our training and practice session. You are now ready to do the actual survey.",
   "moral-training-note-desc" : "There are two tasks in the survey question.",
   "moral-training-task1" : "Task 1: Make a Decision by Yourself",
   "moral-training-task1-desc" : "First, you will read about a situation containing a moral dilemma, and then judge whether the individual reporting the situation was ‘the asshole’ given their actions and also indicate your confidence in the judgment.",
@@ -103,6 +104,10 @@
   "moral-question-confidence-3" : "3 - neutral",
   "moral-question-confidence-4" : "4 - certain",
   "moral-question-confidence-5" : "5 - completely certain",
+  "moral-question-confidence-same" : "Your confidence stays the same.",
+  "moral-question-confidence-change" : "Your confidence changed. Your initial confidence was",
+
+  "moral-attention-title": "Please indicate your agreement with the statement below",
 
 
   "moral-please-answer": "Please answer the question.",
