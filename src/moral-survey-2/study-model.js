@@ -66,6 +66,15 @@ module.exports = (function(exports) {
 				display_element: $("#two-stage-training"),
 				display_next_button: false,
 			},
+
+			TWO_STAGE_SURVEY: {
+				name: "two-stage-training",
+				type: "display-slide",
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-training"),
+				display_next_button: false,
+			},
+
 			ATTENTION_List: [
 				{
 					name: "attention",
@@ -145,6 +154,23 @@ module.exports = (function(exports) {
 			question: LITW.data.getTrainingData()
 		};
 
+		params.slides.TWO_STAGE_SURVEY.template_data = {
+			topic: LITW.data.getTopic(),
+			currentPage: 1,
+			totalPage: 4,
+			pageTitle: $.i18n("moral-survey-start"),
+			note: {
+				// desc: $.i18n("moral-survey-start"),
+				items: [
+					{
+						title: $.i18n("moral-survey-note"),
+						desc: [$.i18n("moral-survey-note-desc")]
+					}
+				],
+			},
+			question: LITW.data.getQuestionData(),
+		};
+
 		params.slides.ATTENTION_List.forEach((slide, index) => {
 			slide.template_data = {
 				...LITW.data.getRandomAttentionCheck(),
@@ -167,14 +193,15 @@ module.exports = (function(exports) {
 				// 		return LITW.data.skipTraining;
 				// 	}
 				// },
-				params.slides.ATTENTION_List[0],
+				// params.slides.ATTENTION_List[0],
 				{
 					timeline: [
-						params.slides.REAL_SURVEY1,
+						params.slides.TWO_STAGE_SURVEY,
 						params.slides.COMMENTS,
 					],
 					conditional_function: function(){
-						return LITW.data.attentionCheckPassed;
+						// return LITW.data.attentionCheckPassed;
+						return true;
 					}
 				},
 
@@ -268,21 +295,9 @@ module.exports = (function(exports) {
 		}
 
 		LITW.utils.fetchQuestions().then(data => {
-			LITW.data.questions = data;
-			if (Object.keys(LITW.data.questions).length > 0) {
-				LITW.data.questions.img = JSON.stringify(LITW.data.questions._id);
-				LITW.data.questions.YA_percentage = Math.round(LITW.data.questions.YA_percentage * 100)
-				LITW.data.questions.NA_percentage = Math.round(LITW.data.questions.NA_percentage * 100)
-				LITW.data.questions.very_certain_NA = Math.floor(LITW.data.questions.very_certain_NA * 100).toString()
-				LITW.data.questions.very_certain_YA = Math.floor(LITW.data.questions.very_certain_YA * 100).toString()
-				LITW.data.questions.YA_NA_percentage = LITW.data.questions.YA_percentage.toString() + ":" + LITW.data.questions.YA_percentage.toString()
-	
-				console.log(LITW.data.questions);
-	
-				// sessionStorage.setItem('img', JSON.stringify(LITW.data.questions.img));
-				console.log("Self Texts:", LITW.data.questions.selftext);
-				console.log("Titles:", LITW.data.questions.title);
-	
+			if (Object.keys(data).length > 0) {
+				LITW.data.setQuestion(data);
+
 				fetch('./i18n/en.json', {
 					method: 'GET',
 					headers: {

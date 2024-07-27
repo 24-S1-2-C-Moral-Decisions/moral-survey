@@ -125,6 +125,28 @@
             return trainingData[params.studyId];
         },
 
+        getQuestionData = function() {
+            console.log("Data.questions: ", Data.questions);
+            return Data.questions;
+        },
+
+        setQuestion = function(data) {
+            Data.questions = data;
+            Data.questions.img = JSON.stringify(Data.questions._id);
+            Data.questions.YA_percentage = Math.round(Data.questions.YA_percentage * 100)
+            Data.questions.NA_percentage = Math.round(Data.questions.NA_percentage * 100)
+            Data.questions.very_certain_NA = Math.floor(Data.questions.very_certain_NA * 100).toString()
+            Data.questions.not_very_certain_NA = 100 - Data.questions.very_certain_NA
+            Data.questions.very_certain_YA = Math.floor(Data.questions.very_certain_YA * 100).toString()
+            Data.questions.not_very_certain_YA = 100 - Data.questions.very_certain_YA
+            Data.questions.YA_NA_percentage = Data.questions.YA_percentage.toString() + ":" + Data.questions.YA_percentage.toString()
+            console.log(LITW.data.questions);
+
+            // sessionStorage.setItem('img', JSON.stringify(LITW.data.questions.img));
+            console.log("Self Texts:", LITW.data.questions.selftext);
+            console.log("Titles:", LITW.data.questions.title);
+        },
+
         getRandomAttentionCheck = function() {
             let randomIndex = Math.floor(Math.random() * attentionQuestions.length);
             return attentionQuestions[randomIndex];
@@ -234,5 +256,7 @@
     exports.data.getTopic = getTopic;
     exports.data.getTrainingData = getTrainingData;
     exports.data.getRandomAttentionCheck = getRandomAttentionCheck;
+    exports.data.getQuestionData = getQuestionData;
+    exports.data.setQuestion = setQuestion;
 
 })( window.LITW = window.LITW || {} );
