@@ -22,13 +22,13 @@ var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
+var attentionTemplate = require("../templates/attention.html")
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
 // load survey templates
 var mock_survey = require("./content/mocksurvey.html");
-var attention_t = require("./content/attention.html");
 var real_survey1 = require("./content/realsurvey1.html");
 
 module.exports = (function(exports) {
@@ -66,6 +66,24 @@ module.exports = (function(exports) {
 				display_element: $("#two-stage-training"),
 				display_next_button: false,
 			},
+			ATTENTION_List: [
+				{
+					name: "attention",
+					type: "display-slide",
+					template: attentionTemplate,
+					display_element: $("#attention"),
+					display_next_button: false,
+				},
+				 {
+					name: "attention",
+					type: "display-slide",
+					template: attentionTemplate,
+					display_element: $("#attention"),
+					display_next_button: false,
+				}
+			],
+
+
 			MOCK_SURVEY: {
 				name: "mock-survey",
 				type: "display-slide",
@@ -73,13 +91,7 @@ module.exports = (function(exports) {
 				display_element: $("#mock-survey"),
 				display_next_button: false,
 			},
-			ATTENTION: {
-				name: "attention",
-				type: "display-slide",
-				template: attention_t,
-				display_element: $("#attention"),
-				display_next_button: false,
-			},
+			
 			REAL_SURVEY1: {
 				name: "real-survey1",
 				type: "display-slide",
@@ -132,6 +144,12 @@ module.exports = (function(exports) {
 			},
 			question: LITW.data.getTrainingData()
 		};
+
+		params.slides.ATTENTION_List.forEach((slide, index) => {
+			slide.template_data = {
+				...LITW.data.getRandomAttentionCheck(),
+			};
+		});
 	}
 
 	function configureStudy() {
@@ -141,22 +159,22 @@ module.exports = (function(exports) {
 			timeline: [
 				// params.slides.INFORMATION,
 				// params.slides.UNDERSTAND_TOPIC,
-				{
-					timeline: [
-						params.slides.TWO_STAGE_TRAINING,
-					],
-					conditional_function: function(){
-						return LITW.data.skipTraining;
-					}
-				},
-				params.slides.ATTENTION,
+				// {
+				// 	timeline: [
+				// 		params.slides.TWO_STAGE_TRAINING,
+				// 	],
+				// 	conditional_function: function(){
+				// 		return LITW.data.skipTraining;
+				// 	}
+				// },
+				params.slides.ATTENTION_List[0],
 				{
 					timeline: [
 						params.slides.REAL_SURVEY1,
 						params.slides.COMMENTS,
 					],
 					conditional_function: function(){
-						return attention;
+						return LITW.data.attentionCheckPassed;
 					}
 				},
 

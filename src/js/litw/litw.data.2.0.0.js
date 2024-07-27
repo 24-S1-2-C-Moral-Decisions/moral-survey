@@ -59,6 +59,31 @@
             {}
         ],
 
+        attentionQuestions = [
+            {
+                question: "I have lunch on the moon every afternoon",
+                options: [
+                    "Strongly Disagree",
+                    "Disagree",
+                    "Neutral",
+                    "Agree",
+                    "Strongly Agree"
+                ],
+                expextedList: ["Strongly Disagree", "Disagree"]
+            },
+            {
+                note: "Please remember, to verify that you are reading the survey questions attentively, when you encounter a question about your favorite season, you are to select 'Winter' regardless of your true preference.",
+                question: "According to the above instruction, which season will you state as your favorite?",
+                options: [
+                    "Spring",
+                    "Summer",
+                    "Autumn",
+                    "Winter"
+                ],
+                expextedList: ["Winter"]
+            }
+        ],
+
         getProlificId = function() {
             return params.participantId;
         },
@@ -98,6 +123,11 @@
 
         getTrainingData = function() {
             return trainingData[params.studyId];
+        },
+
+        getRandomAttentionCheck = function() {
+            let randomIndex = Math.floor(Math.random() * attentionQuestions.length);
+            return attentionQuestions[randomIndex];
         },
 
         initialize = function(baseUrl) {
@@ -203,5 +233,6 @@
     exports.data.isInitialized = isInitialized;
     exports.data.getTopic = getTopic;
     exports.data.getTrainingData = getTrainingData;
+    exports.data.getRandomAttentionCheck = getRandomAttentionCheck;
 
 })( window.LITW = window.LITW || {} );

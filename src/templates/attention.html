@@ -1,0 +1,50 @@
+<div class="lar-middle">
+    <h1 class="fw-bold" data-i18n="moral-attention-title">###</h1>
+    <!-- <h2 class="fw-bold"">{{check}}</h2> -->
+
+    <div class="fs-4 p-4 attention">
+
+        {{#if note}}
+            <p><i>{{note}}</i></p>
+        {{/if}}
+
+        <p class="fw-bold">{{question}}</p>
+
+        <div class="container d-flex flex-column">
+            {{#each options}}
+                <div class="pb-2">
+                    <input type="radio" class="btn-check" name="attentionCheck" id="attention-{{@index}}" autocomplete="off">
+                    <label class="btn btn-outline-secondary btn-light w-100" for="attention-{{@index}}" onclick="attentionChoose('{{this}}')">{{this}}</label>
+                </div>
+            {{/each}}
+        </div>
+        <div class="invalid-feedback" data-i18n="moral-please-answer"></div>
+    </div>
+    <button
+        type="button"
+        class="btn btn-secondary custom-btn-left me-auto"
+        data-i18n="moral-next"
+        onclick="checkAttention('{{expextedList}}')"
+        >
+        Next
+    </button>
+</div>
+<script>
+    let choose = ""
+    LITW.data.attentionCheckPassed = false
+    function attentionChoose(ans){
+        choose = ans
+        $(".addention .invalid-feedback").hide()
+    }
+
+    function checkAttention(expextedList){
+        if(choose == ""){
+            $(".attention .invalid-feedback").show()
+            return
+        }
+        LITW.data.attentionCheckPassed = expextedList.split(",").includes(choose)
+        console.log(LITW.data.attentionCheckPassed)
+        nextPage()
+    }
+
+</script>
