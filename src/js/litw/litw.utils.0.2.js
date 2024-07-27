@@ -273,7 +273,6 @@
                 ...LITW.data.result,
                 ...data
             }
-            console.log(LITW.data.result);
         }
         ;
 

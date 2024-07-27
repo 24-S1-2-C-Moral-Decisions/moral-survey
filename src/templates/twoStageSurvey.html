@@ -21,22 +21,36 @@
         <div id="individual">
             <h4 class="fw-bold" data-i18n="moral-training-task1"></h4>
 
-            <div class="fs-4" style="line-height: 1.1;">
+            <div class="fs-4 judgment" style="line-height: 1.1;">
                 <p class="fw-bold">{{question.title}}</p>
                 <p>{{question.selftext}}</p>
                 <p class="fw-bold" data-i18n="moral-question-what-judgment"></p>
                 <div class="container d-flex flex-column">
                     <div class="pb-2">
                         <input type="radio" class="btn-check" name="individualJudgment" id="individual-YA" autocomplete="off">
-                        <label class="btn btn-outline-secondary w-100" for="individual-YA" data-i18n="moral-question-what-judgment-YA" onclick="setIndividualJudgment('YA')">###</label>
+                        <label class="btn btn-outline-secondary btn-light w-100" for="individual-YA" data-i18n="moral-question-what-judgment-YA" onclick="setIndividualJudgment('YA')">###</label>
                     </div>
                     <div>
                         <input type="radio" class="btn-check" name="individualJudgment" id="individual-NA" autocomplete="off">
-                        <label class="btn btn-outline-secondary w-100" for="individual-NA" data-i18n="moral-question-what-judgment-NA" onclick="setIndividualJudgment('NA')">###</label>
+                        <label class="btn btn-outline-secondary btn-light w-100" for="individual-NA" data-i18n="moral-question-what-judgment-NA" onclick="setIndividualJudgment('NA')">###</label>
                     </div>
-                    <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                    <div class="invalid-feedback" data-i18n="moral-please-answer"></div>
                 </div>
             </div>
+
+            <div class="fs-4 pt-4 confident">
+                <p class="fw-bolder" data-i18n='moral-question-how-confident'></p>
+                <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
+                    {{#times 5}}
+                        <div class="col">
+                            <input type="radio" class="btn-check" name="individualConfident" id="individual-confident-{{this}}" autocomplete="off">
+                            <label class="btn btn-outline-secondary btn-light w-100 h-100 text-center flex-center" for="individual-confident-{{this}}" data-i18n="moral-question-confidence-{{this}}" onclick="setIndividualConfident('{{this}}')">###</label>
+                        </div>
+                    {{/times}}
+                </div>
+                <div class="invalid-feedback" data-i18n="moral-please-answer"></div>
+            </div>
+
             <button
                 id="finalize"
                 type="button"
@@ -81,16 +95,16 @@
                     </p>
                 </div>
 
-                <div class="container d-flex flex-column">
+                <div class="container d-flex flex-column judgment">
                     <div class="pb-2">
                         <input type="radio" class="btn-check" name="groupJudgment" id="group-YA" autocomplete="off">
-                        <label class="btn btn-outline-secondary w-100" for="group-YA" data-i18n="moral-question-what-judgment-YA" onclick="setGroupJudgment('YA')">###</label>
+                        <label class="btn btn-outline-secondary btn-light w-100" for="group-YA" data-i18n="moral-question-what-judgment-YA" onclick="setGroupJudgment('YA')">###</label>
                     </div>
                     <div>
                         <input type="radio" class="btn-check" name="groupJudgment" id="group-NA" autocomplete="off">
-                        <label class="btn btn-outline-secondary w-100" for="group-NA" data-i18n="moral-question-what-judgment-NA" onclick="setGroupJudgment('NA')">###</label>
+                        <label class="btn btn-outline-secondary btn-light w-100" for="group-NA" data-i18n="moral-question-what-judgment-NA" onclick="setGroupJudgment('NA')">###</label>
                     </div>
-                    <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                    <div class="invalid-feedback" data-i18n="moral-please-answer"></div>
                     <div class="pt-2" class="collapse">
                         <p id="judgmentResult" class="survey1-paragraph-body mid-font fw-bolder">
                             <span id="judgmentSame" data-i18n="moral-question-judgment-same"></span>
@@ -105,6 +119,19 @@
                         </p>
                     </div>
                 </div>
+
+                <div class="fs-4 pt-4 confident">
+                    <p class="fw-bolder" data-i18n='moral-question-how-confident'></p>
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
+                        {{#times 5}}
+                            <div class="col">
+                                <input type="radio" class="btn-check" name="groupConfident" id="group-confident-{{this}}" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-light w-100 h-100 text-center flex-center" for="group-confident-{{this}}" data-i18n="moral-question-confidence-{{this}}" onclick="setGroupConfident('{{this}}')">###</label>
+                            </div>
+                        {{/times}}
+                    </div>
+                    <div class="invalid-feedback" data-i18n="moral-please-answer">
+                    </div>
             </div>
             {{#if isTraing}}
                 <button
@@ -132,18 +159,48 @@
 <script>
     let individualJudgment = "";
     let groupJudgment = "";
+    let individualConfident = "";
+    let groupConfident = "";
     let comment = "";
     $("#group").hide();
     $("#judgmentResult").hide();
 
     function setIndividualJudgment(ans){
         individualJudgment = ans;
-        $("#individual #invalid-feedback").hide();
+        $("#individual .judgment .invalid-feedback").hide();
+    }
+
+    function setIndividualConfident(ans){
+        individualConfident = ans;
+        $("#individual .confident .invalid-feedback").hide();
+    }
+
+    function finalizeJudgment(){
+        if (individualJudgment != "" && individualConfident != "") {
+            $("#individual .judgment input").prop('disabled', true);
+            $("#individual .confident input").prop('disabled', true);
+
+            if (individualJudgment == "YA") {
+                $("#NA").show();
+                $("#YA").hide();
+            } else {
+                $("#YA").show();
+                $("#NA").hide();
+            }
+
+            $("#finalize").hide();
+            $("#group").show();
+        } else if (individualJudgment == "") {
+            $("#individual .judgment .invalid-feedback").show();
+        }
+        else if (individualConfident == "") {
+            $("#individual .confident .invalid-feedback").show();
+        }
     }
 
     function setGroupJudgment(ans){
         groupJudgment = ans;
-        $("#group #invalid-feedback").hide();
+        $("#group .judgment .invalid-feedback").hide();
         $("#judgmentResult").show();
         if (individualJudgment == ans) {
             $("#judgmentSame").show();
@@ -161,35 +218,23 @@
         }
     }
 
-    function finalizeJudgment(){
-        if (individualJudgment != "") {
-            $("#individual input").prop('disabled', true);
-            $("#finalize").hide();
-            $("#group").show();
-
-            if (individualJudgment == "YA") {
-                $("#NA").show();
-                $("#YA").hide();
-            } else {
-                $("#YA").show();
-                $("#NA").hide();
-            }
-        } else {
-            $("#individual #invalid-feedback").show();
-        }
-
+    function setGroupConfident(ans){
+        groupConfident = ans;
+        $("#group .confident .invalid-feedback").hide();
     }
 
     function tryNext(isTraing, id) {
-        if (groupJudgment != "") {
+        if (groupJudgment != "" && groupConfident != "") {
             let result = {
                 answer: {
                     questionId: id,
                     individualAnswer: {
                         isAsshole: individualJudgment == "YA",
+                        rating: Number(individualConfident)
                     },
                     groupAnswer: {
                         isAsshole: groupJudgment == "YA",
+                        rating: Number(groupConfident)
                     },
                     comment: comment
                 }
@@ -197,9 +242,14 @@
             if (!isTraing) {
                 LITW.utils.saveResultData(result);
             }
+            console.log(result);
             nextPage();
-        } else {
-            $("#group #invalid-feedback").show();
+        } 
+        else if (groupJudgment == "") {
+            $("#group .judgment .invalid-feedback").show();
+        }
+        else if (groupConfident == "") {
+            $("#group .confident .invalid-feedback").show();
         }
     }
 </script>

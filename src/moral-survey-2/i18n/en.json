@@ -97,6 +97,15 @@
   "moral-question-judgment-same" : "Your judgment stays the same.",
   "moral-question-judgment-change" : "Your judgment changed. Your initial judgment was ",
 
+  "moral-question-how-confident" : "How confident are you in your chosen decision?",
+  "moral-question-confidence-1" : "1 - completely uncertain",
+  "moral-question-confidence-2" : "2 - uncertain",
+  "moral-question-confidence-3" : "3 - neutral",
+  "moral-question-confidence-4" : "4 - certain",
+  "moral-question-confidence-5" : "5 - completely certain",
+
+
+  "moral-please-answer": "Please answer the question.",
   "moral-practice-skip" : "If you do not want to do the training part, you can click the skip button to go directly to the formal test.",
   "moral-skip": "Skip",
   "moral-yes": "Yes",
