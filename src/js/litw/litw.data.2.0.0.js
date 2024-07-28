@@ -85,7 +85,7 @@
         ],
 
         getProlificId = function() {
-            return params.participantId;
+            return params.prolificId;
         },
         getStudyId = function() {
             return params.studyId;
@@ -258,7 +258,7 @@
                         userAgent: params.userAgent,
                         urlParams: params.url
                     };
-                    submitData(data,"litw:initialize");
+                    // submitData(data,"litw:initialize");
                 });
             }
         },
@@ -268,39 +268,37 @@
             /[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
         },
         _submit = function(obj_data, finalAttempt) {
-            // $.ajax({
-            //     url: '/service/data/',
-            //     type: 'POST',
-            //     contentType: 'application/json',
-            //     data: JSON.stringify(obj_data),
-            // }).fail(function(e) {
-            //     if (!finalAttempt) {
-            //         _submit(obj_data, true);
-            //     }
-            // });
+            fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
+                method: 'POST',
+                headers: {
+                    'Accept': '*/*',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(obj_data)
+            }).then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch((error) => {
+                    if (finalAttempt) {
+                        console.error('Error:', error);
+                    } else {
+                        _submit(obj_data, true);
+                    }
+                });
         },
-        submitData = function(data, dataType) {
-            if (!params._isInitialized) {
-                initialize();
-            }
-            data.prolificId = getProlificId();
-            data.data_type = dataType;
-            _submit(data, false);
-        },
-        submitComments = function(data) {
-            submitData(data,"study:comments")
-        },
-        submitDemographics = function(data) {
-            submitData(data,"study:demographics")
-        },
-        submitConsent = function(accepted) {
-            Data.consentAccepted = accepted;
-        },
-        submitConfig = function(data) {
-            submitData(data,"study:configuration")
-        },
-        submitStudyData = function(data) {
-            submitData(data,"study:data")
+        submitStudyData = function() {
+            let timeElapsed = jsPsych.totalTime()/1000/60;
+            let comments = $('#floatingTextarea5').val();
+
+            let result = {
+                prolificId: getProlificId(),
+                studyId: getStudyId(),
+                answer: Data.result,
+                time: timeElapsed,
+                comments: comments,
+            };
+            console.log(result);
+            _submit(result, false);
+            nextPage();
         };
 
     /**** PUBLIC METHODS ****/
@@ -311,12 +309,7 @@
         questions: {},
     };
     exports.data = Data;
-    exports.data.submitComments = submitComments;
-    exports.data.submitDemographics = submitDemographics;
-    exports.data.submitConsent = submitConsent;
-    exports.data.submitStudyConfig = submitConfig;
     exports.data.submitStudyData = submitStudyData;
-    exports.data.submitData = submitData;
     exports.data.initialize = initialize;
     exports.data.getProlificId = getProlificId;
     exports.data.getStudyId = getStudyId;

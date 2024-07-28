@@ -28,10 +28,6 @@ var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
-// load survey templates
-var mock_survey = require("./content/mocksurvey.html");
-var real_survey1 = require("./content/realsurvey1.html");
-
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -108,21 +104,6 @@ module.exports = (function(exports) {
 				display_next_button: false,
 			},
 
-			MOCK_SURVEY: {
-				name: "mock-survey",
-				type: "display-slide",
-				template: mock_survey,
-				display_element: $("#mock-survey"),
-				display_next_button: false,
-			},
-			
-			REAL_SURVEY1: {
-				name: "real-survey1",
-				type: "display-slide",
-				template: real_survey1,
-				display_element: $("#real-survey1"),
-				display_next_button: false,
-			},
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
@@ -207,38 +188,38 @@ module.exports = (function(exports) {
 
 	function configureStudy() {
 		setUpSlideData();
-		// timeline.push(params.slides.INTRODUCTION);
+		timeline.push(params.slides.INTRODUCTION);
 		timeline.push({
 			timeline: [
-				// params.slides.INFORMATION,
-				// params.slides.UNDERSTAND_TOPIC,
-				// {
-				// 	timeline: [
-						// params.slides.TWO_STAGE_TRAINING,
-				// 	],
-				// 	conditional_function: function(){
-				// 		return LITW.data.skipTraining;
-				// 	}
-				// },
-				// params.slides.ATTENTION_List[0],
+				params.slides.INFORMATION,
+				params.slides.UNDERSTAND_TOPIC,
 				{
 					timeline: [
-						// params.slides.TWO_STAGE_SURVEY,
-						// params.slides.ATTENTION_List[1],
+						params.slides.TWO_STAGE_TRAINING,
+					],
+					conditional_function: function(){
+						return LITW.data.skipTraining;
+					}
+				},
+				params.slides.ATTENTION_List[0],
+				{
+					timeline: [
+						params.slides.TWO_STAGE_SURVEY,
+						params.slides.ATTENTION_List[1],
 						{
 							timeline: [
-								// params.slides.LIKERT_SCALE_0,
-								// params.slides.LIKERT_SCALE_1,
+								params.slides.LIKERT_SCALE_0,
+								params.slides.LIKERT_SCALE_1,
 								params.slides.COMMENTS,
 							],
 							conditional_function: function(){
-								// return LITW.data.attentionCheckPassed;
+								return LITW.data.attentionCheckPassed;
 								return true;
 							}
 						},
 					],
 					conditional_function: function(){
-						// return LITW.data.attentionCheckPassed;
+						return LITW.data.attentionCheckPassed;
 						return true;
 					}
 				},

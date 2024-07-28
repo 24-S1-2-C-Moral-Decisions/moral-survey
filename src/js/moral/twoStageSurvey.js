@@ -104,7 +104,7 @@
             if (!isTraing) {
                 LITW.utils.saveResultData(result);
             }
-            console.log(result);
+            // console.log(result);
             nextPage();
         }
         else if (Data.groupJudgment == "") {
