@@ -33,10 +33,9 @@
   "moral-page-1-2" : "Page 1 of 2.",
   "moral-page-2-2" : "Page 2 of 2.",
 
-  "moral-page-1-4" : "Page 1 of 4.",
-  "moral-page-2-4" : "Page 2 of 4.",
-  "moral-page-3-4" : "Page 3 of 4.",
-  "moral-page-4-4" : "Page 4 of 4.",
+  "moral-page-1-4" : "Page 1 of 3.",
+  "moral-page-2-4" : "Page 2 of 3.",
+  "moral-page-3-4" : "Page 3 of 3.",
 
   "moral-topic-what-is-reddit": "What is Reddit and its communities?",
   "moral-topic-reddit": "Reddit",
@@ -118,7 +117,6 @@
   "moral-survey-note-desc":" Please carefully read through the situation and select your answers, there will be no back button for each page.",
   "moral-survey-start": "The survey starts now.",
   "moral-question-comment": "What is your reason for changing or not changing your confidence or judgment? (optional but much appreciated)",
-
 
   "moral-please-answer": "Please answer the question.",
   "moral-practice-skip" : "If you do not want to do the training part, you can click the skip button to go directly to the formal test.",

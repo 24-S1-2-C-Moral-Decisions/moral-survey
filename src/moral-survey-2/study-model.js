@@ -23,6 +23,7 @@ var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
 var attentionTemplate = require("../templates/attention.html")
+var likertScaleTemplate = require("../templates/likertScale.html")
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
@@ -92,6 +93,13 @@ module.exports = (function(exports) {
 				}
 			],
 
+			LIKERT_SCALE: {
+				name: "likert-scale",
+				type: "display-slide",
+				template: likertScaleTemplate,
+				display_element: $("#likert-scale"),
+				display_next_button: false,
+			},
 
 			MOCK_SURVEY: {
 				name: "mock-survey",
@@ -133,7 +141,7 @@ module.exports = (function(exports) {
 			topic: LITW.data.getTopic(),
 			isTraing: true,
 			currentPage: 1,
-			totalPage: 2,
+			totalPage: 4,
 			pageTitle: $.i18n("moral-training-header"),
 			note: {
 				desc: $.i18n("moral-training-note-desc"),
@@ -156,7 +164,7 @@ module.exports = (function(exports) {
 
 		params.slides.TWO_STAGE_SURVEY.template_data = {
 			topic: LITW.data.getTopic(),
-			currentPage: 1,
+			currentPage: 2,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-survey-start"),
 			note: {
@@ -169,6 +177,13 @@ module.exports = (function(exports) {
 				],
 			},
 			question: LITW.data.getQuestionData(),
+		};
+
+		params.slides.LIKERT_SCALE.template_data = {
+			currentPage: 3,
+			totalPage: 4,
+			note: "The below 15 questions help us understand what your personality is. Your honest opinions are crucial for our research. When you finish all the questions in this page, click on the button '"+ $.i18n("moral-next") +"' to proceed.",
+			question: LITW.data.getLikertScaleQuestions(),
 		};
 
 		params.slides.ATTENTION_List.forEach((slide, index) => {
@@ -200,6 +215,7 @@ module.exports = (function(exports) {
 						// params.slides.ATTENTION_List[1],
 						{
 							timeline: [
+								params.slides.LIKERT_SCALE,
 								params.slides.COMMENTS,
 							],
 							conditional_function: function(){

@@ -147,6 +147,29 @@
             console.log("Titles:", LITW.data.questions.title);
         },
 
+        getLikertScaleQuestions = function() {
+            return {
+                title: "I see myself as someone who ...",
+                dimensions: [
+                    "1. worries a lot",
+                    "2. gets nervous easily",
+                    "3. remains calm in tense situations",
+                    "4. is talkative",
+                    "5. is outgoing, sociable",
+                    "6. is reserved",
+                    "7. is original, comes up with new ideas",
+                    "8. values artistic, aesthetic experiences",
+                    "9. has an active imagination",
+                    "10. is sometimes rude to others",
+                    "11. has a forgiving nature",
+                    "12. is considerate and kind to almost everyone",
+                    "13. is sometimes shy, inhibited",
+                    "14. tends to be lazy",
+                    "15. does things efficiently",
+                ]
+            };
+        },
+
         getRandomAttentionCheck = function() {
             let randomIndex = Math.floor(Math.random() * attentionQuestions.length);
             let res = attentionQuestions[randomIndex];
@@ -260,5 +283,6 @@
     exports.data.getRandomAttentionCheck = getRandomAttentionCheck;
     exports.data.getQuestionData = getQuestionData;
     exports.data.setQuestion = setQuestion;
+    exports.data.getLikertScaleQuestions = getLikertScaleQuestions;
 
 })( window.LITW = window.LITW || {} );
