@@ -345,7 +345,7 @@ module.exports = (function(exports) {
 		
 							function (numLoaded) {
 								$("#img-loading").html(loadingTemplate({
-									msg: $.i18n("litw-template-loading"),
+									msg: $.i18n("moral-template-loading"),
 									numLoaded: numLoaded,
 									total: params.preLoad.length
 								}));

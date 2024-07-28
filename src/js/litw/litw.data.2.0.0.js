@@ -299,6 +299,9 @@
             console.log(result);
             _submit(result, false);
             nextPage();
+        },
+        submitConsent = function(accepted) {
+            Data.consentAccepted = accepted;
         };
 
     /**** PUBLIC METHODS ****/
@@ -310,6 +313,7 @@
     };
     exports.data = Data;
     exports.data.submitStudyData = submitStudyData;
+    exports.data.submitConsent = submitConsent;
     exports.data.initialize = initialize;
     exports.data.getProlificId = getProlificId;
     exports.data.getStudyId = getStudyId;

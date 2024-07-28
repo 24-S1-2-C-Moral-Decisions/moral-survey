@@ -88,18 +88,16 @@
         Data.comment = $("#comment").val();
         if (Data.groupJudgment != "" && Data.groupConfident != "") {
             let result = {
-                answer: {
-                    questionId: id,
-                    individualAnswer: {
-                        isAsshole: Data.individualJudgment == "YA",
-                        rating: Number(Data.individualConfident)
-                    },
-                    groupAnswer: {
-                        isAsshole: Data.groupJudgment == "YA",
-                        rating: Number(Data.groupConfident)
-                    },
-                    comment: Data.comment
-                }
+                questionId: id,
+                individualAnswer: {
+                    isAsshole: Data.individualJudgment == "YA",
+                    rating: Number(Data.individualConfident)
+                },
+                groupAnswer: {
+                    isAsshole: Data.groupJudgment == "YA",
+                    rating: Number(Data.groupConfident)
+                },
+                comment: Data.comment
             };
             if (!isTraing) {
                 LITW.utils.saveResultData(result);
