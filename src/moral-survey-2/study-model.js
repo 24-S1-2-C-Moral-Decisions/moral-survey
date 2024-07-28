@@ -93,7 +93,14 @@ module.exports = (function(exports) {
 				}
 			],
 
-			LIKERT_SCALE: {
+			LIKERT_SCALE_0: {
+				name: "likert-scale",
+				type: "display-slide",
+				template: likertScaleTemplate,
+				display_element: $("#likert-scale"),
+				display_next_button: false,
+			},
+			LIKERT_SCALE_1: {
 				name: "likert-scale",
 				type: "display-slide",
 				template: likertScaleTemplate,
@@ -179,11 +186,16 @@ module.exports = (function(exports) {
 			question: LITW.data.getQuestionData(),
 		};
 
-		params.slides.LIKERT_SCALE.template_data = {
+		params.slides.LIKERT_SCALE_0.template_data = {
 			currentPage: 3,
 			totalPage: 4,
-			note: "The below 15 questions help us understand what your personality is. Your honest opinions are crucial for our research. When you finish all the questions in this page, click on the button '"+ $.i18n("moral-next") +"' to proceed.",
-			question: LITW.data.getLikertScaleQuestions(),
+			...LITW.data.getLikertScaleQuestions(0),
+		};
+
+		params.slides.LIKERT_SCALE_1.template_data = {
+			currentPage: 4,
+			totalPage: 4,
+			...LITW.data.getLikertScaleQuestions(1),
 		};
 
 		params.slides.ATTENTION_List.forEach((slide, index) => {
@@ -215,7 +227,8 @@ module.exports = (function(exports) {
 						// params.slides.ATTENTION_List[1],
 						{
 							timeline: [
-								params.slides.LIKERT_SCALE,
+								// params.slides.LIKERT_SCALE_0,
+								// params.slides.LIKERT_SCALE_1,
 								params.slides.COMMENTS,
 							],
 							conditional_function: function(){

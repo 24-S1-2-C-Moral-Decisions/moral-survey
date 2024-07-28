@@ -147,27 +147,73 @@
             console.log("Titles:", LITW.data.questions.title);
         },
 
-        getLikertScaleQuestions = function() {
-            return {
-                title: "I see myself as someone who ...",
-                dimensions: [
-                    "1. worries a lot",
-                    "2. gets nervous easily",
-                    "3. remains calm in tense situations",
-                    "4. is talkative",
-                    "5. is outgoing, sociable",
-                    "6. is reserved",
-                    "7. is original, comes up with new ideas",
-                    "8. values artistic, aesthetic experiences",
-                    "9. has an active imagination",
-                    "10. is sometimes rude to others",
-                    "11. has a forgiving nature",
-                    "12. is considerate and kind to almost everyone",
-                    "13. is sometimes shy, inhibited",
-                    "14. tends to be lazy",
-                    "15. does things efficiently",
-                ]
-            };
+        likertScaleQuestions = [
+            {
+                note: "The below 15 questions help us understand what your personality is. Your honest opinions are crucial for our research. When you finish all the questions in this page, click on the button '"+ $.i18n("moral-next") +"' to proceed.",
+                questionBlockSize: 2,
+                optionBlockSize: 10,
+                dimensions: ["strongly disagree", "disagree", "somewhat disagree", "neither agree nor disagree", "somewhat agree", "agree", "strongly agree"],
+                question: {
+                    title: "I see myself as someone who ...",
+                    items: [
+                        "1. worries a lot",
+                        "2. gets nervous easily",
+                        "3. remains calm in tense situations",
+                        "4. is talkative",
+                        "5. is outgoing, sociable",
+                        "6. is reserved",
+                        "7. is original, comes up with new ideas",
+                        "8. values artistic, aesthetic experiences",
+                        "9. has an active imagination",
+                        "10. is sometimes rude to others",
+                        "11. has a forgiving nature",
+                        "12. is considerate and kind to almost everyone",
+                        "13. is sometimes shy, inhibited",
+                        "14. tends to be lazy",
+                        "15. does things efficiently",
+                    ]
+                }
+            },
+            {
+                note: "We are interested in understanding how people differ in making decisions. Your honest opinions are crucial for our research. When you finish all the questions in this page, click on the button '"+ $.i18n("moral-next") +"' to proceed.",
+                questionBlockSize: 5,
+                optionBlockSize: 7,
+                dimensions: ["strongly disagree", "disagree", "neither agree nor disagree", "agree", "strongly agree"],
+                question: {
+                    title: "Please indicate how you make decisions by ticking the response that best fits your usual style for each of the following 25 questions.",
+                    items: [
+                        "1. When I make decisions, I tend to rely on my intuition.",
+                        "2. I rarely make important decisions without consulting other people.",
+                        "3. When I make a decision, it is more important for me to feel the decision is right than to have a rational reason for it",
+                        "4. I double-check my information sources to be sure I have the right facts before making decisions",
+                        "5. I use the advice of other people in making my important decisions",
+                        "6. I put off making decisions because thinking about them makes me uneasy",
+                        "7. I make decisions in a logical and systematic way",
+                        "8. When making decisions I do what I think first",
+                        "9. I generally make snap decisions",
+                        "10. I like to have someone steer me in the right direction when I am faced with important decisions",
+                        "11. My decision-making requires careful thought",
+                        "12. When making a decision, I trust my inner feelings and reactions",
+                        "13. When making a decision, I consider various options in terms of a specified goal",
+                        "14. I avoid making important decisions until the pressure is on",
+                        "15. I often make impulsive decisions",
+                        "16. When making decisions, I rely upon my instincts",
+                        "17. I generally make decisions that feel right to me",
+                        "18. I often need the assistance of other people when making important decisions",
+                        "19. I postpone decision making whenever possible",
+                        "20. I often make decisions on the spur of the moment",
+                        "21. I often put off making important decisions",
+                        "22. If I have the support of others, it is easier for me to make important decisions",
+                        "23. I generally make important decisions only if I am obligated",
+                        "24. I make quick decisions",
+                        "25. I usually have a rational basis for making decisions"
+                    ]
+                }
+            }
+        ],
+
+        getLikertScaleQuestions = function(index) {
+            return likertScaleQuestions[index];
         },
 
         getRandomAttentionCheck = function() {
