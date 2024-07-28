@@ -149,7 +149,9 @@
 
         getRandomAttentionCheck = function() {
             let randomIndex = Math.floor(Math.random() * attentionQuestions.length);
-            return attentionQuestions[randomIndex];
+            let res = attentionQuestions[randomIndex];
+            attentionQuestions.splice(randomIndex, 1);
+            return res;
         },
 
         initialize = function(baseUrl) {

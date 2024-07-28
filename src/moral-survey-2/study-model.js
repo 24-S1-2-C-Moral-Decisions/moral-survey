@@ -60,18 +60,18 @@ module.exports = (function(exports) {
 				display_next_button: false,
 			},
 			TWO_STAGE_TRAINING: {
-				name: "two-stage-training",
+				name: "two-stage-survey",
 				type: "display-slide",
 				template: twoStageSurveyTemplate,
-				display_element: $("#two-stage-training"),
+				display_element: $("#two-stage-survey"),
 				display_next_button: false,
 			},
 
 			TWO_STAGE_SURVEY: {
-				name: "two-stage-training",
+				name: "two-stage-survey",
 				type: "display-slide",
 				template: twoStageSurveyTemplate,
-				display_element: $("#two-stage-training"),
+				display_element: $("#two-stage-survey"),
 				display_next_button: false,
 			},
 
@@ -187,7 +187,7 @@ module.exports = (function(exports) {
 				// params.slides.UNDERSTAND_TOPIC,
 				// {
 				// 	timeline: [
-				// 		params.slides.TWO_STAGE_TRAINING,
+						// params.slides.TWO_STAGE_TRAINING,
 				// 	],
 				// 	conditional_function: function(){
 				// 		return LITW.data.skipTraining;
@@ -196,15 +196,23 @@ module.exports = (function(exports) {
 				// params.slides.ATTENTION_List[0],
 				{
 					timeline: [
-						params.slides.TWO_STAGE_SURVEY,
-						params.slides.COMMENTS,
+						// params.slides.TWO_STAGE_SURVEY,
+						// params.slides.ATTENTION_List[1],
+						{
+							timeline: [
+								params.slides.COMMENTS,
+							],
+							conditional_function: function(){
+								// return LITW.data.attentionCheckPassed;
+								return true;
+							}
+						},
 					],
 					conditional_function: function(){
 						// return LITW.data.attentionCheckPassed;
 						return true;
 					}
 				},
-
 			],
 			conditional_function: function(){
 				// return LITW.data.consentAccepted;
@@ -311,18 +319,6 @@ module.exports = (function(exports) {
 					return response.json();
 				})
 				.then(json => {
-					json["moral-situation-1-title"] = LITW.data.questions.title;
-					json["moral-situation-1-text"] = LITW.data.questions.selftext;
-					json["moral-sur2-body-YA-percent"] = LITW.data.questions.YA_NA_percentage;
-					json["moral-sur2-body-YA-num"] = LITW.data.questions.YA_percentage + "%";
-					json["moral-sur2-body-YA-num2"] = LITW.data.questions.NA_percentage + "%";
-					json["moral-real-group-NA-certain"] = LITW.data.questions.very_certain_NA;
-					json["moral-real-group-YA-certain"] = LITW.data.questions.very_certain_YA
-					// json["moral-situation-2-title"] = titles[1];
-					// json["moral-situation-2-text"] = selftexts[1];
-					// json["moral-situation-3-title"] = titles[2];
-					// json["moral-situation-3-text"] = selftexts[2];
-		
 					$.i18n().load({
 						'en': json
 					}).done(function () {

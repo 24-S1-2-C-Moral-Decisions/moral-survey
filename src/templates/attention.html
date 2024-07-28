@@ -14,7 +14,7 @@
             {{#each options}}
                 <div class="pb-2">
                     <input type="radio" class="btn-check" name="attentionCheck" id="attention-{{@index}}" autocomplete="off">
-                    <label class="btn btn-outline-secondary btn-light w-100" for="attention-{{@index}}" onclick="attentionChoose('{{this}}')">{{this}}</label>
+                    <label class="btn btn-outline-secondary btn-light w-100" for="attention-{{@index}}" onclick="MORAL.attention.attentionChoose('{{this}}')">{{this}}</label>
                 </div>
             {{/each}}
         </div>
@@ -24,27 +24,8 @@
         type="button"
         class="btn btn-secondary custom-btn-left me-auto"
         data-i18n="moral-next"
-        onclick="checkAttention('{{expextedList}}')"
+        onclick="MORAL.attention.checkAttention('{{expextedList}}')"
         >
         Next
     </button>
 </div>
-<script>
-    let choose = ""
-    LITW.data.attentionCheckPassed = false
-    function attentionChoose(ans){
-        choose = ans
-        $(".addention .invalid-feedback").hide()
-    }
-
-    function checkAttention(expextedList){
-        if(choose == ""){
-            $(".attention .invalid-feedback").show()
-            return
-        }
-        LITW.data.attentionCheckPassed = expextedList.split(",").includes(choose)
-        console.log(LITW.data.attentionCheckPassed)
-        nextPage()
-    }
-
-</script>
