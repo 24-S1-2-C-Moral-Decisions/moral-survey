@@ -198,7 +198,8 @@ module.exports = (function(exports) {
 						params.slides.TWO_STAGE_TRAINING,
 					],
 					conditional_function: function(){
-						return LITW.data.skipTraining;
+						console.log(LITW.data.skipTraining);
+						return !LITW.data.skipTraining;
 					}
 				},
 				params.slides.ATTENTION_List[0],
