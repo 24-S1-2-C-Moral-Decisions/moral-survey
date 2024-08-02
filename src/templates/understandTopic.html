@@ -1,6 +1,6 @@
 <div class="ms-5 me-5">
-    <h1 class="bolded-blue" data-i18n="moral-page-1-2">###</h1>
-    <h2 class="bolded-blue" data-i18n="moral-topic-understand-{{topic}}">###</h1>
+    <h1 class="bolded-blue" data-i18n="moral-page-1-3">###</h1>
+    <h3 class="bolded-blue" data-i18n="moral-topic-understand-controversy-uncertainty">###</h1>
     
     <div class="container d-flex flex-column">
         <div class="pb-3 fs-5">
@@ -38,11 +38,7 @@
 
         <div class="pb-3 fs-5">
             <div>
-                <span data-i18n="moral-topic-reddit-summary-1">###</span>
-                <i data-i18n="moral-topic-reddit-summary-2">###</i>
-                <span data-i18n="moral-topic-reddit-summary-3">###</span>
-                <i data-i18n="moral-topic-reddit-summary-4">###</i>
-                <span data-i18n="moral-topic-reddit-summary-5">###</span>
+                <span data-i18n="moral-topic-reddit-controversy-uncertainty-summary">###</span>
             </div>
 
             <div class="pt-3">
@@ -50,28 +46,109 @@
                 <button type="button" class="btn btn-secondary me-auto" onclick="skipTraing()" data-i18n="moral-skip"></button>
             </div>
             <div class="p-3">
-                <h3 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
-                <p class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}-ans"></p>
+                <h3 class="bolded-blue" data-i18n="moral-topic-what-is-controversy">###</h3>
+                <span class="bolded-blue ms-auto" data-i18n="moral-topic-controversy" >###</span>
+                <span class="ms-auto" data-i18n="moral-topic-what-is-controversy-ans">###</span>
                 <ul>
                     <li class="pb-1">
-                        <u data-i18n="moral-topic-high-uncertainty"></u>
-                        <span data-i18n="moral-topic-high-uncertainty-explain"></span>
+                        <u data-i18n="moral-topic-high-controversy">###</u>
+                        <span data-i18n="moral-topic-high-controversy-explain">###</span>
                     </li>
                     <li>
-                        <u data-i18n="moral-topic-low-uncertainty"></u>
-                        <span data-i18n="moral-topic-low-uncertainty-explain"></span>
+                        <u data-i18n="moral-topic-low-controversy">###</u>
+                        <span data-i18n="moral-topic-low-controversy-explain">###</span>
                     </li>
                 </ul>
             </div>
             <div class="p-3">
                 <h4 class="bolded-blue">
-                    <span data-i18n="moral-topic-practice-question"></span>
-                    <span data-i18n="moral-topic-{{topic}}"></span>
+                    <span data-i18n="moral-topic-practice-question">###</span>
+                    <span data-i18n="moral-topic-understand-controversy">###</span>
                 </h4>
-                <img class="img-fluid" src="../img/{{topic}}_example.png" alt="{{topic}}_example">
-                <p data-i18n="moral-topic-practice-img-explain-{{topic}}"></p>
-                <p class="bolded-blue" data-i18n="moral-topic-practice-question-uncertainty"></p>
+                <img class="img-fluid" src="../img/controversy&uncertainty/2-YA-98-NA.png" alt="controversy&uncertainty">
+                <p data-i18n="moral-topic-practice-img-explain-controversy">###</p>
+                <ul>
+                    <li class="pb-1">
+                        <span data-i18n="moral-topic-practice-img-explain-controversy-item1">###</span>
+                    </li>
+                    <li>
+                        <span data-i18n="moral-topic-practice-img-explain-controversy-item2">###</span>
+                    </li>
+                </ul>
+                <p class="bolded-blue" data-i18n="moral-topic-practice-question-controversy"></p>
                 <div id="practice-question" class="p-2">
+                    <div class="container d-flex flex-column">
+                        <div class="pb-2">
+                            <input type="radio" class="btn-check" name="practice" id="high-controversy" autocomplete="off">
+                            <label class="btn btn-outline-secondary w-100" for="high-controversy" data-i18n="moral-topic-high-controversy" onclick="checkAsnwer(0)">###</label>
+                        </div>
+                        <div>
+                            <input type="radio" class="btn-check" name="practice" id="low-controversy" autocomplete="off">
+                            <label class="btn btn-outline-secondary w-100" for="low-controversy" data-i18n="moral-topic-low-controversy" onclick="checkAsnwer(1)">###</label>
+                        </div>
+                        <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                    </div>
+                    <div class="pt-2">
+                        <div class="collapse" id="correct">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-p1' >###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-an1-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s2'>###</span>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-s3'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s4'>###</span>
+                        </div>
+                        <div class="collapse" id="wrong">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans2-p1'>###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans2-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans2-s2'>###</span><br>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pb-3 fs-5">
+            <div>
+                <span data-i18n="moral-topic-reddit-summary-1">###</span>
+                <i data-i18n="moral-topic-reddit-summary-2">###</i>
+                <span data-i18n="moral-topic-reddit-summary-3">###</span>
+                <i data-i18n="moral-topic-reddit-summary-4">###</i>
+                <span data-i18n="moral-topic-reddit-summary-5">###</span>
+            </div>
+
+            <div class="p-3">
+                <h3 class="bolded-blue" data-i18n="moral-topic-what-is-uncertainty">###</h3>
+                <span class="bolded-blue ms-auto" data-i18n="moral-topic-uncertainty" >###</span>
+                <span class="ms-auto" data-i18n="moral-topic-what-is-uncertainty-ans">###</span>
+                <ul>
+                    <li class="pb-1">
+                        <u data-i18n="moral-topic-high-uncertainty">###</u>
+                        <span data-i18n="moral-topic-high-uncertainty-explain">###</span>
+                    </li>
+                    <li>
+                        <u data-i18n="moral-topic-low-uncertainty">###</u>
+                        <span data-i18n="moral-topic-low-uncertainty-explain">###</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="p-3">
+                <h4 class="bolded-blue">
+                    <span data-i18n="moral-topic-practice-question">###</span>
+                    <span data-i18n="moral-topic-understand-uncertainty">###</span>
+                </h4>
+                <img class="img-fluid" src="../img/controversy&uncertainty/51-YA-49-NA.png" alt="controversy&uncertainty">
+                <p data-i18n="moral-topic-practice-img-explain-uncertainty">###</p>
+                <ul>
+                    <li class="pb-1">
+                        <span data-i18n="moral-topic-practice-img-explain-uncertainty-item1">###</span>
+                    </li>
+                    <li>
+                        <span data-i18n="moral-topic-practice-img-explain-uncertainty-item2">###</span>
+                    </li>
+                </ul>
+                <p class="bolded-blue" data-i18n="moral-topic-practice-question-uncertainty"></p>
+                <div id="practice-question-2" class="p-2">
                     <div class="container d-flex flex-column">
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-uncertainty" autocomplete="off">
@@ -81,24 +158,25 @@
                             <input type="radio" class="btn-check" name="practice" id="low-uncertainty" autocomplete="off">
                             <label class="btn btn-outline-secondary w-100" for="low-uncertainty" data-i18n="moral-topic-low-uncertainty" onclick="checkAsnwer(0)">###</label>
                         </div>
-                        <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
+                        <div class="invalid-feedback" id="invalid-feedback-2">Please answer the question</div>
                     </div>
                     <div class="pt-2">
-                        <div class="collapse" id="correct">
-                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans-p1' ></p>
-                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans-s1'></span>
-                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-{{topic}}-ans-s2'></span>
+                        <div class="collapse" id="correct-2">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-p1' >###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans-s2'>###</span>
                         </div>
-                        <div class="collapse" id="wrong">
-                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-p1'"></p>
-                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s1'></span>
-                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s2'></span><br>
-                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s3'></span>
-                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s4'></span>
+                        <div class="collapse" id="wrong-2">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-p1'>###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s2'>###</span><br>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s3'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s4'>###</span>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
             
