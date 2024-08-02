@@ -64,7 +64,15 @@ module.exports = (function(exports) {
 				display_next_button: false,
 			},
 
-			TWO_STAGE_SURVEY: {
+			TWO_STAGE_SURVEY_0: {
+				name: "two-stage-survey",
+				type: "display-slide",
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-survey"),
+				display_next_button: false,
+			},
+
+			TWO_STAGE_SURVEY_1: {
 				name: "two-stage-survey",
 				type: "display-slide",
 				template: twoStageSurveyTemplate,
@@ -131,30 +139,31 @@ module.exports = (function(exports) {
 			currentPage: 2,
 			totalPage: 3,
 			pageTitle: $.i18n("moral-training-header"),
-			note: {
-				desc: $.i18n("moral-training-note-desc"),
-				items: [
-					{
-						title: $.i18n("moral-training-task1"),
-						desc: [$.i18n("moral-training-task1-desc")]
-					},
-					{
-						title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
-						desc: [
-							$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
-							$.i18n("moral-training-task2-desc")
-						]
-					}
-				],
-			},
 			question: LITW.data.getTrainingData()
 		};
 
-		params.slides.TWO_STAGE_SURVEY.template_data = {
+		params.slides.TWO_STAGE_SURVEY_0.template_data = {
 			topic: LITW.data.getTopic(),
 			currentPage: 1,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-survey-start"),
+			note: {
+				// desc: $.i18n("moral-survey-start"),
+				items: [
+					{
+						title: $.i18n("moral-survey-note"),
+						desc: [$.i18n("moral-survey-note-desc")]
+					}
+				],
+			},
+			question: LITW.data.getQuestionData(),
+		};
+
+		params.slides.TWO_STAGE_SURVEY_1.template_data = {
+			topic: LITW.data.getTopic(),
+			currentPage: 2,
+			totalPage: 4,
+			pageTitle: $.i18n("moral-training-task2-controversy"),
 			note: {
 				// desc: $.i18n("moral-survey-start"),
 				items: [
@@ -205,8 +214,9 @@ module.exports = (function(exports) {
 				params.slides.ATTENTION_List[0],
 				{
 					timeline: [
-						params.slides.TWO_STAGE_SURVEY,
+						params.slides.TWO_STAGE_SURVEY_0,
 						params.slides.ATTENTION_List[1],
+						params.slides.TWO_STAGE_SURVEY_1,
 						{
 							timeline: [
 								params.slides.LIKERT_SCALE_0,

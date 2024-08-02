@@ -80,27 +80,26 @@
                     <div class="container d-flex flex-column">
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-controversy" autocomplete="off">
-                            <label class="btn btn-outline-secondary w-100" for="high-controversy" data-i18n="moral-topic-high-controversy" onclick="checkAsnwer(0)">###</label>
+                            <label class="btn btn-outline-secondary w-100" for="high-controversy" data-i18n="moral-topic-high-controversy" onclick="checkAnswer(0,0)">###</label>
                         </div>
                         <div>
                             <input type="radio" class="btn-check" name="practice" id="low-controversy" autocomplete="off">
-                            <label class="btn btn-outline-secondary w-100" for="low-controversy" data-i18n="moral-topic-low-controversy" onclick="checkAsnwer(1)">###</label>
+                            <label class="btn btn-outline-secondary w-100" for="low-controversy" data-i18n="moral-topic-low-controversy" onclick="checkAnswer(1,0)">###</label>
                         </div>
                         <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
                     </div>
                     <div class="pt-2">
                         <div class="collapse" id="correct">
-                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-p1' >###</p>
-                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-an1-s1'>###</span>
-                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s2'>###</span>
-                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-s3'>###</span>
-                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s4'>###</span>
-                        </div>
-                        <div class="collapse" id="wrong">
                             <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans2-p1'>###</p>
                             <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans2-s1'>###</span>
                             <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans2-s2'>###</span><br>
-
+                        </div>
+                        <div class="collapse" id="wrong">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-p1' >###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s2'>###</span>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans1-s3'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s4'>###</span>
                         </div>
                     </div>
                 </div>
@@ -152,11 +151,11 @@
                     <div class="container d-flex flex-column">
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-uncertainty" autocomplete="off">
-                            <label class="btn btn-outline-secondary w-100" for="high-uncertainty" data-i18n="moral-topic-high-uncertainty" onclick="checkAsnwer(1)">###</label>
+                            <label class="btn btn-outline-secondary w-100" for="high-uncertainty" data-i18n="moral-topic-high-uncertainty" onclick="checkAnswer(1,1)">###</label>
                         </div>
                         <div>
                             <input type="radio" class="btn-check" name="practice" id="low-uncertainty" autocomplete="off">
-                            <label class="btn btn-outline-secondary w-100" for="low-uncertainty" data-i18n="moral-topic-low-uncertainty" onclick="checkAsnwer(0)">###</label>
+                            <label class="btn btn-outline-secondary w-100" for="low-uncertainty" data-i18n="moral-topic-low-uncertainty" onclick="checkAnswer(0,1)">###</label>
                         </div>
                         <div class="invalid-feedback" id="invalid-feedback-2">Please answer the question</div>
                     </div>
@@ -191,20 +190,32 @@
 </div>
 <script>
     let answer = 0;
-    function checkAsnwer(ans) {
+    function checkAnswer(ans,id) {
         answer = ans;
-        if (ans == 1) {
-            $("#correct").show();
-            $("#wrong").hide();
+        if (ans === 1) {
+            if (id === 0) {
+                $("#correct").show();
+                $("#wrong").hide();
+            }
+            else if (id === 1) {
+                $("#correct-2").show();
+                $("#wrong-2").hide();
+            }
         } else {
-            $("#correct").hide();
-            $("#wrong").show();
+            if (id === 0) {
+                $("#correct").hide();
+                $("#wrong").show();
+            }
+            else if (id === 1) {
+                $("#correct-2").hide();
+                $("#wrong-2").show();
+            }
         }
         $("#practice-question").removeClass("bg-warning-subtle");
         $("#invalid-feedback").hide();
     }
     function tryNext() {
-        if (answer == 1) {
+        if (answer === 1) {
             nextPage();
         }
         else {
