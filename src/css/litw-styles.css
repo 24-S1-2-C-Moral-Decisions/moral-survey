@@ -96,17 +96,6 @@ body {
 	margin-bottom: 30px;
 }
 
-#likert-scale {
-	display: block;
-	margin: 0 auto;
-	width: 710px;
-	border: 0px;
-}
-#likert-scale input { 
-	margin-left: 15px; 
-	margin-right: 15px; 
-}
-
 .scale-legend {
 	width: 70px;
 	display: inline-block;
@@ -691,10 +680,6 @@ a:active {
 
 /** Moral custom **/
 
-.middle{
-    margin: 0 20%;
-}
-
 .jud{
     width:100%;
     height:auto;
@@ -782,14 +767,16 @@ a:active {
 	width: 100%;
 	height: 35%;
 }
-.cho{
-	font-size: 1.5vh;
-	padding-top: 3vh;
-	margin-left: 5px;
-	text-align: center;
-	width: 10em;
-	height:10vh;
-	margin-top: 1em;
+.flex-center{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.header-col {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 .form{
 	width: 100%;
@@ -810,9 +797,9 @@ a:active {
 
 .lar-middle{
     display: block;
-    width: 70%;
+    /* width: 80%; */
     height: auto;
-    margin-left: 15%;
+    margin: 0 15%;
 }
 
 :root {
