@@ -73,6 +73,7 @@
                 <p class="bolded-blue" data-i18n="moral-topic-practice-question-uncertainty"></p>
                 <div id="practice-question" class="p-2">
                     <div class="container d-flex flex-column">
+
                         {{#if isCon}}
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-controversy" autocomplete="off">
@@ -83,6 +84,7 @@
                             <label class="btn btn-outline-secondary w-100" for="low-controversy" data-i18n="moral-topic-low-controversy" onclick="checkAsnwer(1)">###</label>
                         </div>
                         {{else}}
+
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-uncertainty" autocomplete="off">
                             <label class="btn btn-outline-secondary w-100" for="high-uncertainty" data-i18n="moral-topic-high-uncertainty" onclick="checkAsnwer(1)">###</label>
@@ -91,8 +93,10 @@
                             <input type="radio" class="btn-check" name="practice" id="low-uncertainty" autocomplete="off">
                             <label class="btn btn-outline-secondary w-100" for="low-uncertainty" data-i18n="moral-topic-low-uncertainty" onclick="checkAsnwer(0)">###</label>
                         </div>
+
                         {{/if}}
                      
+
                         <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
                     </div>
                     <div class="pt-2">

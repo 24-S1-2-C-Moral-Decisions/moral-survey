@@ -1,5 +1,6 @@
 <div class="ms-5 me-5">
     <h1 class="bolded-blue" data-i18n="moral-page-{{currentPage}}-{{totalPage}}">###</h1>
+
     <h2 class="bolded-blue">{{pageTitle}}</h2>
 
     <div class="container d-flex flex-column">
@@ -20,7 +21,6 @@
 
         <div id="individual">
             <h4 class="bolded-blue" data-i18n="moral-training-task1"></h4>
-        
             <div class="fs-4 judgment" style="line-height: 1.1;">
                 <p class="bolded-blue">{{question.title}}</p>
                 <p>{{question.selftext}}</p>
@@ -123,10 +123,8 @@
                         <span data-i18n="moral-question-community-disagree-4"></span>
                     </p>
                 </div>
-
                 {{/if}}
-
-              
+                                                                             
                 <div class="container d-flex flex-column judgment">
                     <div class="pb-2">
                         <input type="radio" class="btn-check" name="groupJudgment" id="group-YA" autocomplete="off">
