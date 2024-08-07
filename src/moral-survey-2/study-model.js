@@ -15,27 +15,23 @@ require("bootstrap");
 require("jquery-ui-bundle");
 var _ = require('lodash');
 var introTemplate = require("../templates/introduction.html");
-var moralAnnouncementTemplate = require("../templates/moralAnnounce.html");
-// var demographicsTemplate = require("../templates/demographics.html");
+var understandTemplate = require("../templates/understandTopic.html");
+var twoStageSurveyTemplate = require("../templates/twoStageSurvey.html");
 var loadingTemplate = require("../templates/loading.html");
 var resultsTemplate = require("../templates/results.html");
 var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
+var attentionTemplate = require("../templates/attention.html")
+var likertScaleTemplate = require("../templates/likertScale.html")
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
 
-// load survey templates
-var motivationSurvey = require("./content/motivationSurvey.html");
-var mock_survey = require("./content/mocksurvey.html");
-var attention_t = require("./content/attention.html");
-var real_survey1 = require("./content/realsurvey1.html");
-
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
-		study_id: "TO_BE_ADDED_IF_USING_LITW_INFRA",
+		study_id: LITW.data.getStudyId(),
 		study_recommendation: [],
 		preLoad: ["../img/ajax-loader.gif"],
 		slides: {
@@ -53,83 +49,67 @@ module.exports = (function(exports) {
 				display_element: $("#infor"),
 				display_next_button: false,
 			},
-			INFORMED_CONSENT: {
-				name: "informed_consent",
+			UNDERSTAND_TOPIC: {
+				name: "understand-topic",
 				type: "display-slide",
-				template: moralAnnouncementTemplate,
-				display_element: $("#moral-announcement"),
+				template: understandTemplate,
+				display_element: $("#understand-topic"),
 				display_next_button: false,
 			},
-			// DEMOGRAPHICS: {
-			// 	type: "display-slide",
-			// 	template: demographicsTemplate,
-			// 	display_element: $("#demographics"),
-			// 	name: "demographics",
-			// 	finish: function(){
-			// 		var dem_data = $('#demographicsForm').alpaca().getValue();
-			// 		LITW.data.submitDemographics(dem_data);
-			// 	}
-			// },
-			SURVEY1:{
-				name: "motivationsurvey",
+			TWO_STAGE_TRAINING: {
+				name: "two-stage-survey",
 				type: "display-slide",
-				template: motivationSurvey,
-				display_element: $("#motivationsurvey"),
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-survey"),
 				display_next_button: false,
 			},
-			MOCK_SURVEY: {
-				name: "mock-survey",
+
+			TWO_STAGE_SURVEY: {
+				name: "two-stage-survey",
 				type: "display-slide",
-				template: mock_survey,
-				display_element: $("#mock-survey"),
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-survey"),
 				display_next_button: false,
 			},
-			ATTENTION: {
-				name: "attention",
+
+			ATTENTION_List: [
+				{
+					name: "attention",
+					type: "display-slide",
+					template: attentionTemplate,
+					display_element: $("#attention"),
+					display_next_button: false,
+				},
+				 {
+					name: "attention",
+					type: "display-slide",
+					template: attentionTemplate,
+					display_element: $("#attention"),
+					display_next_button: false,
+				}
+			],
+
+			LIKERT_SCALE_0: {
+				name: "likert-scale",
 				type: "display-slide",
-				template: attention_t,
-				display_element: $("#attention"),
+				template: likertScaleTemplate,
+				display_element: $("#likert-scale"),
 				display_next_button: false,
 			},
-			REAL_SURVEY1: {
-				name: "real-survey1",
+			LIKERT_SCALE_1: {
+				name: "likert-scale",
 				type: "display-slide",
-				template: real_survey1,
-				display_element: $("#real-survey1"),
+				template: likertScaleTemplate,
+				display_element: $("#likert-scale"),
 				display_next_button: false,
-				// finish: function(){
-				// 	const q1_individual_jud = $('input[name="options"]:checked').val();
-				// 	const q1_individual_conf = $('input[name="decision"]:checked').val();
-				// 	const q1_group_YA_jud = $('input[name="YA-options"]:checked').val();
-				// 	const q1_group_YA_conf = $('input[name="YA-decision"]:checked').val();
-				// 	const q1_group_NA_jud = $('input[name="NA-options"]:checked').val();
-				// 	const q1_group_NA_conf = $('input[name="NA-decision"]:checked').val();
-				// 	LITW.data.setSurvey({
-				// 		question_no:1,
-				// 		type:"individual_group",
-				// 		ind_judge:q1_individual_jud,
-				// 		ind_confidence:q1_individual_conf,
-				// 		ind_YA_judge:q1_YA_individual_jud,
-				// 		ind_YA_confidence:q1_YA_individual_conf,
-				// 		ind_NA_judge:q1_NA_individual_jud,
-				// 		ind_NA_confidence:q1_NA_individual_conf,
-				// 	})
-				// }
 			},
+
 			COMMENTS: {
 				type: "display-slide",
 				template: commentsTemplate,
 				display_element: $("#comments"),
 				name: "comments",
 				display_next_button: false,
-				// finish: function(){
-				// 	var comments = $('#commentsForm').alpaca().getValue();
-				// 	if (Object.keys(comments).length > 0) {
-				// 		LITW.data.submitComments({
-				// 			comments: comments
-				// 		});
-				// 	}
-				// }
 			},
 			RESULTS: {
 				name: "results",
@@ -141,20 +121,113 @@ module.exports = (function(exports) {
 		}
 	};
 
+	function setUpSlideData() {
+		params.slides.UNDERSTAND_TOPIC.template_data = {
+			topic: LITW.data.getTopic()
+		};
+		params.slides.TWO_STAGE_TRAINING.template_data = {
+			topic: LITW.data.getTopic(),
+			isTraing: true,
+			currentPage: 1,
+			totalPage: 4,
+			pageTitle: $.i18n("moral-training-header"),
+			note: {
+				desc: $.i18n("moral-training-note-desc"),
+				items: [
+					{
+						title: $.i18n("moral-training-task1"),
+						desc: [$.i18n("moral-training-task1-desc")]
+					},
+					{
+						title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
+						desc: [
+							$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
+							$.i18n("moral-training-task2-desc")
+						]
+					}
+				],
+			},
+			question: LITW.data.getTrainingData()
+		};
+
+		params.slides.TWO_STAGE_SURVEY.template_data = {
+			topic: LITW.data.getTopic(),
+			currentPage: 2,
+			totalPage: 4,
+			pageTitle: $.i18n("moral-survey-start"),
+			note: {
+				// desc: $.i18n("moral-survey-start"),
+				items: [
+					{
+						title: $.i18n("moral-survey-note"),
+						desc: [$.i18n("moral-survey-note-desc")]
+					}
+				],
+			},
+			question: LITW.data.getQuestionData(),
+		};
+
+		params.slides.LIKERT_SCALE_0.template_data = {
+			currentPage: 3,
+			totalPage: 4,
+			...LITW.data.getLikertScaleQuestions(0),
+		};
+
+		params.slides.LIKERT_SCALE_1.template_data = {
+			currentPage: 4,
+			totalPage: 4,
+			...LITW.data.getLikertScaleQuestions(1),
+		};
+
+		params.slides.ATTENTION_List.forEach((slide, index) => {
+			slide.template_data = {
+				...LITW.data.getRandomAttentionCheck(),
+			};
+		});
+	}
+
 	function configureStudy() {
+		setUpSlideData();
 		timeline.push(params.slides.INTRODUCTION);
-		timeline.push(params.slides.INFORMED_CONSENT);
-		timeline.push(params.slides.INFORMATION);
-		timeline.push(params.slides.SURVEY1);
-		timeline.push(params.slides.ATTENTION);
 		timeline.push({
 			timeline: [
-				params.slides.REAL_SURVEY1,
-				params.slides.COMMENTS,
+				params.slides.INFORMATION,
+				params.slides.UNDERSTAND_TOPIC,
+				{
+					timeline: [
+						params.slides.TWO_STAGE_TRAINING,
+					],
+					conditional_function: function(){
+						console.log(LITW.data.skipTraining);
+						return !LITW.data.skipTraining;
+					}
+				},
+				params.slides.ATTENTION_List[0],
+				{
+					timeline: [
+						params.slides.TWO_STAGE_SURVEY,
+						params.slides.ATTENTION_List[1],
+						{
+							timeline: [
+								params.slides.LIKERT_SCALE_0,
+								params.slides.LIKERT_SCALE_1,
+								params.slides.COMMENTS,
+							],
+							conditional_function: function(){
+								return LITW.data.attentionCheckPassed;
+								return true;
+							}
+						},
+					],
+					conditional_function: function(){
+						return LITW.data.attentionCheckPassed;
+						return true;
+					}
+				},
 			],
 			conditional_function: function(){
-				// console.log("Attention:", attention);
-				return attention;
+				// return LITW.data.consentAccepted;
+				return true;
 			}
 		});
 		timeline.push(params.slides.RESULTS);
@@ -199,37 +272,31 @@ module.exports = (function(exports) {
 		});
 	}
 
-	var selftexts = [];
-	var titles = [];
-	var img = [];
-	var NA_percentage;
-	var YA_percentage;
-	var very_certain_YA;
-	var very_certain_NA;
+	const APIBaseURL = API_URL;
 	function startStudy() {
-		// generate unique participant id and geolocate participant
-		LITW.data.initialize();
 		// save URL params
-		params.URL = LITW.utils.getParamsURL();
-		if( Object.keys(params.URL).length > 0 ) {
-			LITW.data.submitData(params.URL,'litw:paramsURL');
-		}
+		params.URL = LITW.utils.getRequestParams();
+		// if( Object.keys(params.URL).length > 0 ) {
+		// 	LITW.data.submitData(params.URL,'litw:paramsURL');
+		// }
 		// populate study recommendation
-		LITW.engage.getStudiesRecommendation(2, (studies_list) => {
-			params.study_recommendation = studies_list;
-		});
+		// LITW.engage.getStudiesRecommendation(2, (studies_list) => {
+		// 	params.study_recommendation = studies_list;
+		// });
 		// initiate pages timeline
 		jsPsych.init({
 		  timeline: timeline
 		});
 	}
 
-	const APIBaseURL = API_URL;
 	function startExperiment(){
 		//TODO These methods should be something like act1().then.act2().then...
 		//... it is close enough to that... maybe the translation need to be encapsulated next.
 		// get initial data from database (maybe needed for the results page!?)
 		//readSummaryData();
+
+		// generate unique participant id and geolocate participant
+		LITW.data.initialize(APIBaseURL);
 
 		// determine and set the study language
 		$.i18n().locale = LITW.locale.getLocale();
@@ -246,102 +313,51 @@ module.exports = (function(exports) {
 			toLoad['en'] = languages['en'];
 		}
 
-		const prolificId = new URLSearchParams(window.location.search).get('prolificId');
-		console.log("prolificId: " + prolificId);
-		if (prolificId == null) {
-			console.error("prolificId Not Found");
-			alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
-		}
-		else 
-			result.prolificId = prolificId;
+		LITW.utils.fetchQuestions().then(data => {
+			if (Object.keys(data).length > 0) {
+				LITW.data.setQuestion(data);
 
-		// console.log(APIBaseURL)
-		fetch(APIBaseURL + 'survey/question?studyId=1', {
-			method: 'GET',
-			headers: {
-				'Accept': '*/*'
-			},
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error(response);
-			}
-			return response.json();
-		})
-		.then(data => {
-			console.log(data);
-			img = data._id;
-			selftexts = data.selftext;
-			titles = data.title;
-			NA_percentage = data.NA_percentage
-			YA_percentage = data.YA_percentage
-			very_certain_YA = data.very_certain_YA
-			very_certain_NA = data.very_certain_NA
-			sessionStorage.setItem('img', JSON.stringify(img));
-			console.log("Self Texts:", selftexts);
-			console.log("Titles:", titles);
-
-			return fetch('./i18n/en.json', {
-				method: 'GET',
-				headers: {
-					'Accept': 'application/json'
-				}
-			});
-		})
-		.then(response => {
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.json();
-		})
-		.then(json => {
-			YA = Math.round(YA_percentage * 100)
-			NA = Math.round(NA_percentage * 100)
-			certain_NA = Math.floor(very_certain_NA * 100)
-			certain_YA = Math.floor(very_certain_YA * 100)
-			YA_NA_percentage = YA.toString() + ":" + NA.toString()
-			YA_percentage = YA.toString()
-			NA_percentage = NA.toString()
-			very_certain_NA = certain_NA.toString()
-			very_certain_YA = certain_YA.toString()
-			json["moral-situation-1-title"] = titles;
-			json["moral-situation-1-text"] = selftexts;
-			json["moral-sur2-body-YA-percent"] = YA_NA_percentage;
-			json["moral-sur2-body-YA-num"] = YA_percentage + "%";
-			json["moral-sur2-body-YA-num2"] = NA_percentage + "%";
-			json["moral-real-group-NA-certain"] = very_certain_NA;
-			json["moral-real-group-YA-certain"] = very_certain_YA
-			// json["moral-situation-2-title"] = titles[1];
-			// json["moral-situation-2-text"] = selftexts[1];
-			// json["moral-situation-3-title"] = titles[2];
-			// json["moral-situation-3-text"] = selftexts[2];
-
-			$.i18n().load({
-				'en': json
-			}).done(function () {
-				$('head').i18n();
-				$('body').i18n();
-
-				LITW.utils.showSlide("img-loading");
-
-				jsPsych.pluginAPI.preloadImages(params.preLoad,
-					function () {
-						configureStudy();
-						startStudy();
-					},
-
-					function (numLoaded) {
-						$("#img-loading").html(loadingTemplate({
-							msg: $.i18n("litw-template-loading"),
-							numLoaded: numLoaded,
-							total: params.preLoad.length
-						}));
+				fetch('./i18n/en.json', {
+					method: 'GET',
+					headers: {
+						'Accept': 'application/json'
 					}
-				);
-			});
-		})
-		.catch(error => {
-			console.error('error', error);
+				})
+				.then(response => {
+					if (!response.ok) {
+						throw new Error('Network response was not ok');
+					}
+					return response.json();
+				})
+				.then(json => {
+					$.i18n().load({
+						'en': json
+					}).done(function () {
+						$('head').i18n();
+						$('body').i18n();
+		
+						LITW.utils.showSlide("img-loading");
+		
+						jsPsych.pluginAPI.preloadImages(params.preLoad,
+							function () {
+								configureStudy();
+								startStudy();
+							},
+		
+							function (numLoaded) {
+								$("#img-loading").html(loadingTemplate({
+									msg: $.i18n("moral-template-loading"),
+									numLoaded: numLoaded,
+									total: params.preLoad.length
+								}));
+							}
+						);
+					});
+				})
+				.catch(error => {
+					console.error('error', error);
+				});
+			}
 		});
 	}
 
