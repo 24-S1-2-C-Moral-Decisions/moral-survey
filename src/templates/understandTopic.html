@@ -73,6 +73,18 @@
                 <p class="bolded-blue" data-i18n="moral-topic-practice-question-uncertainty"></p>
                 <div id="practice-question" class="p-2">
                     <div class="container d-flex flex-column">
+
+                        {{#if isCon}}
+                        <div class="pb-2">
+                            <input type="radio" class="btn-check" name="practice" id="high-controversy" autocomplete="off">
+                            <label class="btn btn-outline-secondary w-100" for="high-controversy" data-i18n="moral-topic-high-controversy" onclick="checkAsnwer(0)">###</label>
+                        </div>
+                        <div>
+                            <input type="radio" class="btn-check" name="practice" id="low-controversy" autocomplete="off">
+                            <label class="btn btn-outline-secondary w-100" for="low-controversy" data-i18n="moral-topic-low-controversy" onclick="checkAsnwer(1)">###</label>
+                        </div>
+                        {{else}}
+
                         <div class="pb-2">
                             <input type="radio" class="btn-check" name="practice" id="high-uncertainty" autocomplete="off">
                             <label class="btn btn-outline-secondary w-100" for="high-uncertainty" data-i18n="moral-topic-high-uncertainty" onclick="checkAsnwer(1)">###</label>
@@ -81,6 +93,10 @@
                             <input type="radio" class="btn-check" name="practice" id="low-uncertainty" autocomplete="off">
                             <label class="btn btn-outline-secondary w-100" for="low-uncertainty" data-i18n="moral-topic-low-uncertainty" onclick="checkAsnwer(0)">###</label>
                         </div>
+
+                        {{/if}}
+                     
+
                         <div class="invalid-feedback" id="invalid-feedback">Please answer the question</div>
                     </div>
                     <div class="pt-2">
@@ -90,7 +106,7 @@
                             <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-{{topic}}-ans-s2'></span>
                         </div>
                         <div class="collapse" id="wrong">
-                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-p1'"></p>
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-p1'></p>
                             <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s1'></span>
                             <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s2'></span><br>
                             <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-{{topic}}-ans2-s3'></span>
