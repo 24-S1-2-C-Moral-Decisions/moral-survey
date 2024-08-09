@@ -214,13 +214,12 @@ module.exports = (function(exports) {
 								params.slides.COMMENTS,
 							],
 							conditional_function: function(){
-								return LITW.data.attentionCheckPassed;
-								return true;
+								return LITW.data.attentionCheckPassed();
 							}
 						},
 					],
 					conditional_function: function(){
-						return LITW.data.attentionCheckPassed;
+						return LITW.data.attentionCheckPassed();
 						return true;
 					}
 				},

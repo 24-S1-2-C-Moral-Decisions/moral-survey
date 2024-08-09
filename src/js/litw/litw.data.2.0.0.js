@@ -240,6 +240,14 @@
             return res;
         },
 
+        attentionCheckPassed = function() {
+            return Data.attentionCheckPassedCounter >= 1;
+        },
+
+        passOneAttentionCheck = function() {
+            Data.attentionCheckPassedCounter += 1;
+        },
+
         initialize = function(baseUrl) {
             let litw_locale = LITW.locale.getLocale() || "";
             // TODO: This is not working because I did not figure how to get the client IP behind the NGINX yet!
@@ -344,5 +352,7 @@
     exports.data.getQuestionData = getQuestionData;
     exports.data.setQuestion = setQuestion;
     exports.data.getLikertScaleQuestions = getLikertScaleQuestions;
+    exports.data.attentionCheckPassed = attentionCheckPassed;
+    exports.data.passOneAttentionCheck = passOneAttentionCheck;
 
 })( window.LITW = window.LITW || {} );
