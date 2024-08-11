@@ -6,7 +6,7 @@
     },
 
     initialize = function () {
-        LITW.data.attentionCheckPassed = 0
+        LITW.data.attentionCheckPassedCounter = 0
         Data.choose = ""
 
         console.log("attentionCheckPassedCounter: "+LITW.data.attentionCheckPassedCounter);
