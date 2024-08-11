@@ -137,7 +137,7 @@ module.exports = (function(exports) {
 			topic: LITW.data.getTopic(),
 			isTraing: true,
 			currentPage: 2,
-			totalPage: 3,
+			totalPage: 2,
 			pageTitle: $.i18n("moral-training-header"),
 			question: LITW.data.getTrainingData()
 		};
@@ -145,7 +145,7 @@ module.exports = (function(exports) {
 		params.slides.TWO_STAGE_SURVEY_0.template_data = {
 			topic: LITW.data.getTopic(),
 			currentPage: 1,
-			totalPage: 4,
+			totalPage: 3,
 			pageTitle: $.i18n("moral-survey-start"),
 			note: {
 				// desc: $.i18n("moral-survey-start"),
@@ -159,32 +159,15 @@ module.exports = (function(exports) {
 			question: LITW.data.getQuestionData(),
 		};
 
-		params.slides.TWO_STAGE_SURVEY_1.template_data = {
-			topic: LITW.data.getTopic(),
-			currentPage: 2,
-			totalPage: 4,
-			pageTitle: $.i18n("moral-training-task2-controversy"),
-			note: {
-				// desc: $.i18n("moral-survey-start"),
-				items: [
-					{
-						title: $.i18n("moral-survey-note"),
-						desc: [$.i18n("moral-survey-note-desc")]
-					}
-				],
-			},
-			question: LITW.data.getQuestionData(),
-		};
-
 		params.slides.LIKERT_SCALE_0.template_data = {
-			currentPage: 3,
-			totalPage: 4,
+			currentPage: 2,
+			totalPage: 3,
 			...LITW.data.getLikertScaleQuestions(0),
 		};
 
 		params.slides.LIKERT_SCALE_1.template_data = {
-			currentPage: 4,
-			totalPage: 4,
+			currentPage: 3,
+			totalPage: 3,
 			...LITW.data.getLikertScaleQuestions(1),
 		};
 
@@ -216,7 +199,6 @@ module.exports = (function(exports) {
 					timeline: [
 						params.slides.TWO_STAGE_SURVEY_0,
 						params.slides.ATTENTION_List[1],
-						params.slides.TWO_STAGE_SURVEY_1,
 						{
 							timeline: [
 								params.slides.LIKERT_SCALE_0,
