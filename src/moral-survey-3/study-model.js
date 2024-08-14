@@ -131,10 +131,11 @@ module.exports = (function(exports) {
 
 	function setUpSlideData() {
 		params.slides.UNDERSTAND_TOPIC.template_data = {
-			topic: LITW.data.getTopic()
+			topic: "controversy",
+			isCon_Un: true
 		};
 		params.slides.TWO_STAGE_TRAINING.template_data = {
-			topic: LITW.data.getTopic(),
+			topic: "controversy",
 			isTraing: true,
 			currentPage: 2,
 			totalPage: 2,
@@ -143,7 +144,7 @@ module.exports = (function(exports) {
 		};
 
 		params.slides.TWO_STAGE_SURVEY_0.template_data = {
-			topic: LITW.data.getTopic(),
+			topic: "controversy",
 			currentPage: 1,
 			totalPage: 3,
 			pageTitle: $.i18n("moral-survey-start"),
