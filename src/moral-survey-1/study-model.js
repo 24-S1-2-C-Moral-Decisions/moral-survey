@@ -23,7 +23,9 @@ var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
 var attentionTemplate = require("../templates/attention.html")
-var likertScaleTemplate = require("../templates/likertScale.html")
+
+var likertScaleTemplate = require("../templates/LikertScale.html")
+
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");

@@ -66,6 +66,7 @@
             <h4 class="bolded-blue" data-i18n="moral-training-task2-{{topic}}"></h4>
 
             <div class="fs-4" style="line-height: 1.1;">
+
                 {{#if isRele}}
                 <div id="YA">
                     <p class="bolded-blue">
@@ -102,6 +103,7 @@
                 </div>
 
                 {{else}}
+
                 {{#if isCon}}
                 <div id="YA">
                     <img class="img-fluid" src="../img/{{topic}}/{{question._id}}.png" alt="{{topic}}/{{question._id}}">
@@ -159,7 +161,9 @@
                     </p>
                 </div>
                 {{/if}}
+
                 {{/if}}                                                     
+
                 <div class="container d-flex flex-column judgment">
                     <div class="pb-2">
                         <input type="radio" class="btn-check" name="groupJudgment" id="group-YA" autocomplete="off">
