@@ -71,7 +71,27 @@
             // controversy-uncertainty
             {},
             // relevant-reasonings
-            {},
+            {
+                title: "Am I the asshole for not buying meat for my 9 year old daughter?",
+                selftext: "I’ve raised my daughter vegetarian from birth and a few years ago made" +
+                " the switch the veganism. Me and her father are separated and a few months ago she "+
+                " tried meat at his and liked it. He has her 2 nights a week so now she’s eating meat"+
+                ", dairy and eggs at his. When she told me I said that was fine, it’s her body and she"+
+                " gets to decide what goes into it, she then asked me if she could get some meat when "+
+                "we went shopping but I said no. The smell and everything about meat kinda makes me feel"+
+                " sick and I’d be the one having to prepare it for her. I let her have cheese and eggs "+
+                "now at ours but she’s asked me again if she can get meat.",
+                original_post_NA_top_reasonings: [
+                    "NA. I will admit to being pretty surprised by all of the YTAs here. You don’t mind her eating whatever at her dads and you’re making sure she’s getting her nutrients, so I don’t see you as the asshole just because you don’t personally want to buy and prepare meat",
+                    "NA. Your daughter is nine, and from your replies she is clearly getting the nutrition she needs. She can eat what's at the dinner table while in your house.",
+                    "NA Most of these responses are folks who just have a problem with vegans or think humans \"need\" meat, which is obviously silly. I don't see the big deal. Your house, your rules. There were plenty of foods growing up I wanted but my parents refused to make. You're not telling her she has to be vegan, just that certain food is only available outside the house. Sounds fine to me.",
+                ],
+                original_post_YA_top_reasonings: [
+                    "YA - you've established that she has a say over her body, but you are denying her in practice. It's your job to help her exercise her agency until she's old enough to do it on her own. Start with pre-made foods like chicken nuggets that you can just prepare in the oven without handling the raw meat yourself. She's also getting old enough where you could start teaching her to cook. If her dad can teach her how to prepare meat, you wouldn't need to play a huge part in it.",
+                    "YA, you're her parent so it's your right to choose what she eats while around you, but it's definitely an asshole move on your part to put your own needs above hers, especially if it's because you can't deal with \"the smell\" or whatever other bullshit excuse you've decided to use in order to rationalise your decision.",
+                    "YA I support adult vegetarianism. Unfortunately many dietitations recommend meat as part of a regular diet for kids. While it is fully possible for an adult to get all of their nutrients on a vegetarian diet, children need more fat and protein for their developing bodies and brains. You could always buy her cold cuts of meat for sandwiches, then you won't have to smell it. There are work arounds but if all of your shared meal times are still vegetarian/vegan that's fine. She should eat what her parent is eating at meals.",
+                ],
+            },
             // irrelevant-reasonings
             {}
         ],
@@ -156,7 +176,7 @@
             Data.questions.not_very_certain_NA = 100 - Data.questions.very_certain_NA
             Data.questions.very_certain_YA = Math.floor(Data.questions.very_certain_YA * 100).toString()
             Data.questions.not_very_certain_YA = 100 - Data.questions.very_certain_YA
-            Data.questions.YA_NA_percentage = Data.questions.YA_percentage.toString() + ":" + Data.questions.YA_percentage.toString()
+            Data.questions.YA_NA_percentage = Data.questions.YA_percentage.toString() + ":" + Data.questions.YA_percentage.toString()     
             console.log(LITW.data.questions);
 
             // sessionStorage.setItem('img', JSON.stringify(LITW.data.questions.img));
@@ -334,7 +354,7 @@
         consentAccepted: false,
         surveyStartTime: null,
         skipTraining: false,
-        questions: {},
+            questions: {},
     };
     exports.data = Data;
     exports.data.submitStudyData = submitStudyData;

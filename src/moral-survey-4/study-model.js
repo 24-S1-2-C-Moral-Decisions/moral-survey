@@ -23,9 +23,7 @@ var resultsFooter = require("../templates/results-footer.html");
 var commentsTemplate = require("../templates/comments.html");
 var informationTemplate = require("../templates/information.html")
 var attentionTemplate = require("../templates/attention.html")
-
-var likertScaleTemplate = require("../templates/LikertScale.html")
-
+var likertScaleTemplate = require("../templates/likertScale.html")
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
@@ -124,18 +122,23 @@ module.exports = (function(exports) {
 
 	function setUpSlideData() {
 		isCon = false
+		isRele = false
 		if(LITW.data.getTopic()== "controversy"){
 			isCon = true
+		}else if(LITW.data.getTopic()== "relevant-reasonings"){
+			isRele = true
 		}
 		params.slides.UNDERSTAND_TOPIC.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
+			isRele,
 		};
 		params.slides.TWO_STAGE_TRAINING.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
+			isRele,
 			isTraing: true,
-			currentPage: 1,
+			currentPage: 3,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-training-header"),
 			note: {
@@ -160,7 +163,8 @@ module.exports = (function(exports) {
 		params.slides.TWO_STAGE_SURVEY.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-			currentPage: 2,
+			isRele,
+			currentPage: 4,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-survey-start"),
 			note: {
@@ -176,13 +180,13 @@ module.exports = (function(exports) {
 		};
 
 		params.slides.LIKERT_SCALE_0.template_data = {
-			currentPage: 3,
+			currentPage: 1,
 			totalPage: 4,
 			...LITW.data.getLikertScaleQuestions(0),
 		};
 
 		params.slides.LIKERT_SCALE_1.template_data = {
-			currentPage: 4,
+			currentPage: 2,
 			totalPage: 4,
 			...LITW.data.getLikertScaleQuestions(1),
 		};
@@ -200,10 +204,12 @@ module.exports = (function(exports) {
 		timeline.push({
 			timeline: [
 				params.slides.INFORMATION,
-				params.slides.UNDERSTAND_TOPIC,
+
 				{
 					timeline: [
-						params.slides.TWO_STAGE_TRAINING,
+						params.slides.LIKERT_SCALE_0,
+						params.slides.LIKERT_SCALE_1,
+						
 					],
 					conditional_function: function(){
 						console.log(LITW.data.skipTraining);
@@ -211,22 +217,31 @@ module.exports = (function(exports) {
 					}
 				},
 				params.slides.ATTENTION_List[0],
-				params.slides.TWO_STAGE_SURVEY,
-				params.slides.ATTENTION_List[1],
 				{
 					timeline: [
-						params.slides.LIKERT_SCALE_0,
-						params.slides.LIKERT_SCALE_1,
-						params.slides.COMMENTS,
+						params.slides.UNDERSTAND_TOPIC,
+						params.slides.TWO_STAGE_TRAINING,
+						params.slides.TWO_STAGE_SURVEY,
+						params.slides.ATTENTION_List[1],
+						{
+							timeline: [
+								params.slides.COMMENTS,
+							],
+							conditional_function: function(){
+								return LITW.data.attentionCheckPassed;
+								return true;
+							}
+						},
 					],
 					conditional_function: function(){
-						return LITW.data.attentionCheckPassed();
+						return LITW.data.attentionCheckPassed;
+						return true;
 					}
 				},
 			],
 			conditional_function: function(){
-				return LITW.data.consentAccepted;
-				// return true;
+				// return LITW.data.consentAccepted;
+				return true;
 			}
 		});
 		timeline.push(params.slides.RESULTS);

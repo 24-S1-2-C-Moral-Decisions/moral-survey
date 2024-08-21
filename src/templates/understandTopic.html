@@ -49,6 +49,9 @@
                 <p class="bolded-blue fs-5" data-i18n="moral-practice-skip"></p>
                 <button type="button" class="btn btn-secondary me-auto" onclick="skipTraing()" data-i18n="moral-skip"></button>
             </div>
+
+            {{#if isRele}}
+            {{else}}
             <div class="p-3">
                 <h3 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
                 <p class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}-ans"></p>
@@ -115,17 +118,30 @@
                     </div>
                 </div>
             </div>
+            {{/if}}
         </div>
     </div>
             
+    {{#if isRele}}
     <button
-        type="button"
-        class="btn btn-secondary custom-btn-left me-auto"
-        data-i18n="moral-next"
-        onclick="tryNext()"
-        >
-        Next
+    type="button"
+    class="btn btn-secondary custom-btn-left me-auto"
+    data-i18n="moral-next"
+    onclick="nextPage()"
+    >
+    Next
+    </button>   
+    {{else}}
+    <button
+    type="button"
+    class="btn btn-secondary custom-btn-left me-auto"
+    data-i18n="moral-next"
+    onclick="tryNext()"
+    >
+    Next
     </button>
+    {{/if}}
+   
 </div>
 <script>
     let answer = 0;
