@@ -6,10 +6,10 @@
     },
 
     initialize = function () {
-        LITW.data.attentionCheckPassed = false
+        LITW.data.attentionCheckPassedCounter = 0
         Data.choose = ""
 
-        console.log("attentionCheckPassed: "+LITW.data.attentionCheckPassed);
+        console.log("attentionCheckPassedCounter: "+LITW.data.attentionCheckPassedCounter);
         console.log(Data);
         console.log("attention initialized");
     },
@@ -22,8 +22,9 @@
             $(".attention .invalid-feedback").show();
             return;
         }
-        LITW.data.attentionCheckPassed = expextedList.split(",").includes(Data.choose);
-        console.log(LITW.data.attentionCheckPassed);
+        if (expextedList.split(",").includes(Data.choose))
+            LITW.data.passOneAttentionCheck()
+        console.log(LITW.data.attentionCheckPassedCounter);
         nextPage();
     };
 
