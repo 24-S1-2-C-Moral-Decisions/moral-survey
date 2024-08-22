@@ -136,22 +136,22 @@ module.exports = (function(exports) {
 			currentPage: 1,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-training-header"),
-			note: {
-				desc: $.i18n("moral-training-note-desc"),
-				items: [
-					{
-						title: $.i18n("moral-training-task1"),
-						desc: [$.i18n("moral-training-task1-desc")]
-					},
-					{
-						title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
-						desc: [
-							$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
-							$.i18n("moral-training-task2-desc")
-						]
-					}
-				],
-			},
+			// note: {
+			// 	desc: $.i18n("moral-training-note-desc"),
+			// 	items: [
+			// 		{
+			// 			title: $.i18n("moral-training-task1"),
+			// 			desc: [$.i18n("moral-training-task1-desc")]
+			// 		},
+			// 		{
+			// 			title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
+			// 			desc: [
+			// 				$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
+			// 				$.i18n("moral-training-task2-desc")
+			// 			]
+			// 		}
+			// 	],
+			// },
 			question: LITW.data.getTrainingData()
 		};
 

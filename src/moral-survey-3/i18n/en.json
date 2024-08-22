@@ -77,6 +77,14 @@
   "moral-topic-low-controversy-explain": " means a clear consensus among the whole population.",
   "moral-topic-understand-controversy": "Understand Controversy",
 
+  "moral-topic-what-is-controversy-uncertainty": "1.1 What is Controversy on Reddit? ",
+  "moral-topic-controversy-uncertainty": "Controversy",
+  "moral-topic-what-is-controversy-uncertainty-ans": "reflects how split people's judgments are in a situation:",
+  "moral-topic-high-controversy-uncertainty": "High controversy",
+  "moral-topic-high-controversy-uncertainty-explain": " means people's opinions are split almost evenly among 2 judgments (YA, NA).",
+  "moral-topic-low-controversy-uncertainty": "Low controversy",
+  "moral-topic-low-controversy-uncertainty-explain": " means a clear consensus among the whole population.",
+
   "moral-topic-practice-img-explain-controversy": "For every 100 Reddit users who made judgments:",
   "moral-topic-practice-img-explain-controversy-item1": "2 Reddit users believe YA - the individual reporting the situation is The Asshole; Of the 2 users, 100% are very certain and 0% are not very certain.",
   "moral-topic-practice-img-explain-controversy-item2": "98 Reddit users believe NA - the individual reporting the situation is Not the Asshole; Of the 98 users, 65% are very certain and 35% are not very certain.",
@@ -132,6 +140,8 @@
   "moral-training-task2-controversy-info" : "This is the same story as the one on the previous page for reference.",
   "moral-training-task2-desc-controversy" : "Next, you will be given information about the AITA community's controversy and uncertainty and asked to report your judgment and confidence again. ",
 
+  "moral-training-task2-controversy-uncertainty" : "Task 2: Consider Controversy and Uncertainty",
+  "moral-training-task2-controversy-uncertainty-info" : "This is the same story as the one on the previous page for reference.",
 
   "moral-question-what-judgment" : "What's your judgment over the situation?",
   "moral-question-what-judgment-YA" : "YA - Yes, the Individual reporting the situation is an Asshole",
