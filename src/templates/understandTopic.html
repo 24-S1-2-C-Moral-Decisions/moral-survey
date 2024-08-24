@@ -55,10 +55,7 @@
             </div>
             <div class="p-3">
                 <h3 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
-                <p>
-                    <span class="bolded-blue" data-i18n="moral-topic-{{topic}}">###</span>
-                    <span class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}-ans">###</span>
-                </p>
+                <p class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}-ans"></p>
                 <ul>
                     <li class="pb-1">
                         <u data-i18n="moral-topic-high-{{topic}}">###</u>
@@ -72,9 +69,9 @@
             </div>
             <div class="p-3">
                 <h4 class="bolded-blue">
-                    <span data-i18n="moral-topic-practice-question">###</span>
+                    <span data-i18n="moral-topic-practice-question"></span>
                     {{#if isCon_Un}}
-                        <span data-i18n="moral-topic-understand-controversy">###</span>
+                        <span data-i18n="moral-topic-understand-controversy"></span>
                     {{else}}
                         <span data-i18n="moral-topic-{{topic}}">###</span>
                     {{/if}}
@@ -98,6 +95,7 @@
                 {{/if}}
                 <div id="practice-question" class="p-2">
                     <div class="container d-flex flex-column">
+
                         {{#if isCon}}
                             <div class="pb-2">
                                 <input type="radio" class="btn-check" name="practice" id="high-controversy" autocomplete="off">
@@ -216,21 +214,21 @@
                         </div>
                         <div class="invalid-feedback" id="invalid-feedback-2">Please answer the question</div>
                     </div>
-                <div class="pt-2">
-                    <div class="collapse" id="correct-2">
-                        <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-p1' >###</p>
-                        <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-s1'>###</span>
-                        <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans-s2'>###</span>
-                    </div>
-                    <div class="collapse" id="wrong-2">
-                        <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-p1'>###</p>
-                        <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s1'>###</span>
-                        <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s2'>###</span><br>
-                        <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s3'>###</span>
-                        <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s4'>###</span>
+                    <div class="pt-2">
+                        <div class="collapse" id="correct-2">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-p1' >###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans-s2'>###</span>
+                        </div>
+                        <div class="collapse" id="wrong-2">
+                            <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-p1'>###</p>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s1'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s2'>###</span><br>
+                            <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-uncertainty-ans2-s3'>###</span>
+                            <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-uncertainty-ans2-s4'>###</span>
+                        </div>
                     </div>
                 </div>
-            </div>
             {{else}}
                 <div class="p-2 pt-2">
                     <div class="collapse" id="correct-2">
