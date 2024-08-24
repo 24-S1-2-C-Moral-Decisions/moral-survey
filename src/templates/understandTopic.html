@@ -164,8 +164,11 @@
                     {{/if}}
                 </div>
             </div>
+            {{/if}}
         </div>
 
+        {{#if isRele}}
+        {{else}}
         <div class="pb-3 fs-5">
             {{#if isCon_Un}}
                 <div>
@@ -248,19 +251,11 @@
                     </div>
                 </div>
             {{/if}}
+        
         </div>
+        {{/if}}
     </div>
             
-    {{#if isRele}}
-    <button
-    type="button"
-    class="btn btn-secondary custom-btn-left me-auto"
-    data-i18n="moral-next"
-    onclick="nextPage()"
-    >
-    Next
-    </button>   
-    {{else}}
     <button
     type="button"
     class="btn btn-secondary custom-btn-left me-auto"
@@ -269,7 +264,6 @@
     >
     Next
     </button>
-    {{/if}}
    
 </div>
 <script>
