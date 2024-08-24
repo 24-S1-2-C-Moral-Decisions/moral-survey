@@ -27,6 +27,7 @@ var likertScaleTemplate = require("../templates/LikertScale.html")
 var leaveTemplate = require("../templates/leave.html")
 require("../js/litw/jspsych-display-info");
 require("../js/litw/jspsych-display-slide");
+
 module.exports = (function(exports) {
 	var timeline = [],
 	params = {
@@ -63,7 +64,15 @@ module.exports = (function(exports) {
 				display_next_button: false,
 			},
 
-			TWO_STAGE_SURVEY: {
+			TWO_STAGE_SURVEY_0: {
+				name: "two-stage-survey",
+				type: "display-slide",
+				template: twoStageSurveyTemplate,
+				display_element: $("#two-stage-survey"),
+				display_next_button: false,
+			},
+
+			TWO_STAGE_SURVEY_1: {
 				name: "two-stage-survey",
 				type: "display-slide",
 				template: twoStageSurveyTemplate,
@@ -121,51 +130,23 @@ module.exports = (function(exports) {
 	};
 
 	function setUpSlideData() {
-		isCon = false
-		isRele = false
-		if(LITW.data.getTopic()== "controversy"){
-			isCon = true
-		}else if(LITW.data.getTopic()== "relevant-reasonings"){
-			isRele = true
-		}
 		params.slides.UNDERSTAND_TOPIC.template_data = {
 			topic: LITW.data.getTopic(),
-			isCon,
-			isRele,
+			isCon_Un: true
 		};
 		params.slides.TWO_STAGE_TRAINING.template_data = {
 			topic: LITW.data.getTopic(),
-			isCon,
-			isRele,
 			isTraing: true,
-			currentPage: 3,
-			totalPage: 4,
+			currentPage: 2,
+			totalPage: 2,
 			pageTitle: $.i18n("moral-training-header"),
-			note: {
-				desc: $.i18n("moral-training-note-desc"),
-				items: [
-					{
-						title: $.i18n("moral-training-task1"),
-						desc: [$.i18n("moral-training-task1-desc")]
-					},
-					{
-						title: $.i18n("moral-training-task2-"+LITW.data.getTopic()),
-						desc: [
-							$.i18n("moral-training-task2-desc-"+LITW.data.getTopic()),
-							$.i18n("moral-training-task2-desc")
-						]
-					}
-				],
-			},
 			question: LITW.data.getTrainingData()
 		};
 
-		params.slides.TWO_STAGE_SURVEY.template_data = {
+		params.slides.TWO_STAGE_SURVEY_0.template_data = {
 			topic: LITW.data.getTopic(),
-			isCon,
-			isRele,
-			currentPage: 4,
-			totalPage: 4,
+			currentPage: 1,
+			totalPage: 3,
 			pageTitle: $.i18n("moral-survey-start"),
 			note: {
 				// desc: $.i18n("moral-survey-start"),
@@ -180,14 +161,14 @@ module.exports = (function(exports) {
 		};
 
 		params.slides.LIKERT_SCALE_0.template_data = {
-			currentPage: 1,
-			totalPage: 4,
+			currentPage: 2,
+			totalPage: 3,
 			...LITW.data.getLikertScaleQuestions(0),
 		};
 
 		params.slides.LIKERT_SCALE_1.template_data = {
-			currentPage: 2,
-			totalPage: 4,
+			currentPage: 3,
+			totalPage: 3,
 			...LITW.data.getLikertScaleQuestions(1),
 		};
 
@@ -204,12 +185,10 @@ module.exports = (function(exports) {
 		timeline.push({
 			timeline: [
 				params.slides.INFORMATION,
-
+				params.slides.UNDERSTAND_TOPIC,
 				{
 					timeline: [
-						params.slides.LIKERT_SCALE_0,
-						params.slides.LIKERT_SCALE_1,
-						
+						params.slides.TWO_STAGE_TRAINING,
 					],
 					conditional_function: function(){
 						console.log(LITW.data.skipTraining);
@@ -219,12 +198,12 @@ module.exports = (function(exports) {
 				params.slides.ATTENTION_List[0],
 				{
 					timeline: [
-						params.slides.UNDERSTAND_TOPIC,
-						params.slides.TWO_STAGE_TRAINING,
-						params.slides.TWO_STAGE_SURVEY,
+						params.slides.TWO_STAGE_SURVEY_0,
 						params.slides.ATTENTION_List[1],
 						{
 							timeline: [
+								params.slides.LIKERT_SCALE_0,
+								params.slides.LIKERT_SCALE_1,
 								params.slides.COMMENTS,
 							],
 							conditional_function: function(){
