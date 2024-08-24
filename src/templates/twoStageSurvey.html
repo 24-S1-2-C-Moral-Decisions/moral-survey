@@ -4,14 +4,14 @@
 
     <div class="container d-flex flex-column">
         {{#if note}}
-            <div class="fs-6 p-4">
-                <span class="fs-5 bolded-blue">{{note.desc}}</span>
+            <div>
+                <h4 class="bolded-blue">{{note.desc}}</h4>
                 {{#each note.items}}
                     <p>
-                        <span class="bolded-blue">{{this.title}}</span>
+                        <h4 class="bolded-blue">{{this.title}}</h4>
                         {{#each this.desc}}
                             </br>
-                            <span class="p-2">{{this}}</span>
+                            <p class="fs-5">{{this}}</p>
                         {{/each}}
                     </p>
                 {{/each}}
@@ -19,14 +19,7 @@
         {{/if}}
 
         <div id="individual">
-            <h4 class="bolded-blue" data-i18n="moral-training-note-desc">###</h4>
             <h4 class="bolded-blue" data-i18n="moral-training-task1">###</h4>
-            <p class="fs-5" data-i18n="moral-training-task1-desc">###</p>
-            <h4 class="bolded-blue" data-i18n="moral-training-task2-controversy">###</h4>
-            <p class="fs-5" data-i18n="moral-training-task2-desc-controversy">###</p>
-            <p class="fs-5" data-i18n="moral-training-task2-desc">###</p>
-            <br><br>
-
             <div class="fs-4 judgment" style="line-height: 1.1;">
                 <p class="bolded-blue">{{question.title}}</p>
                 <p>{{question.selftext}}</p>
