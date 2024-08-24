@@ -41,7 +41,6 @@
   "moral-topic-what-is-reddit": "What is Reddit and its communities?",
   "moral-topic-reddit": "Reddit",
   "moral-topic-what-is-reddit-ans": "is a social news aggregation, content rating, and discussion website. User-generated posts are organized by subject into user-created boards called \"communities\". Posts are then voted up or down by other members.",
-
   "moral-topic-what-is-aita": "What is the r/AmItheAsshole community?",
   "moral-topic-aita": "r/AmItheAsshole",
   "moral-topic-what-is-aita-ans": ", abbreviated as AITA, is a Reddit community where users post about their real-world interpersonal conflicts and receive judgment from other Reddit users. The question at the heart of each post is ‘Am I the Asshole?’, that is, whether the poster was in the wrong in the scenario they describe.",
@@ -77,7 +76,6 @@
   "moral-topic-practice-question-controversy-ans-s1":"Explanation: ",
   "moral-topic-practice-question-controversy-ans-s2":"The situation has low controversy because 98% of the group choose NA judgment. This means a vast majority of reddit users express a judgment of NA.",
   "moral-training-task2-controversy":"Task 2: Consider Controversy",
-  "moral-training-task2-controversy-info":"This is the same story as the one on the previous page for reference.",
   "moral-training-task2-desc-controversy":"Next, you will be given information about the AITA community's controversy and asked to report your judgment and confidence again. ",
   "moral-topic-high-controversy":"high controversy",
   "moral-topic-low-controversy":"low controversy",
@@ -91,6 +89,14 @@
   "moral-topic-high-uncertainty-explain": " means over half of people in a judgment group are not very certain about their judgment;",
   "moral-topic-low-uncertainty": "Low uncertainty",
   "moral-topic-low-uncertainty-explain": " means over half of people in a judgment group are very certain about their judgment.",
+
+  "moral-topic-understand-relevant-reasonings":"Understand Reasonings in the AITA community",
+  "moral-training-task2-relevant-reasonings":"Task 2: Consider Reasonings",
+  "moral-training-task2-desc-relevant-reasonings":"Next, you will be given information about the AITA community's reasonings and asked to report your judgment and confidence again. ",
+  "moral-question-relevant-YA1":"Here are 3 highly voted comments with a different judgment than yours, written by members of the AITA community.:  ",
+
+
+
 
 
   "moral-topic-practice-img-explain-uncertainty": "In the AITA community, for every 100 Reddit users who made YA judgments, 14 users are very certain and 86 users are NOT very certain.",
