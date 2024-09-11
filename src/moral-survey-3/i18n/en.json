@@ -138,16 +138,14 @@
   "moral-training-task2-desc" : "It is fine if your judgment or your confidence changes, and also fine if it does not. We are interested in what you think.",
 
   "moral-training-task2-controversy" : "Task 2: Consider Controversy and Uncertainty",
-  "moral-training-task2-controversy-info" : "This is the same story as the one on the previous page for reference.",
   "moral-training-task2-desc-controversy" : "Next, you will be given information about the AITA community's controversy and uncertainty and asked to report your judgment and confidence again. ",
 
   "moral-training-task2-controversy-uncertainty" : "Task 2: Consider Controversy and Uncertainty",
-  "moral-training-task2-controversy-uncertainty-info" : "This is the same story as the one on the previous page for reference.",
 
   "moral-question-what-judgment" : "What's your judgment over the situation?",
   "moral-question-what-judgment-YA" : "YA - Yes, the Individual reporting the situation is an Asshole",
   "moral-question-what-judgment-NA" : "NA - No, the Individual reporting the situation is Not an Asshole",
-
+  "moral-question-what-new-judgment": "What's your judgment on the situation now?",
   "moral-question-community-disagree-1" : "In the AITA community, among people who disagree with you, for every ",
   "moral-question-community-disagree-2" : " Reddit users who made ",
   "moral-question-community-disagree-3" : " users are very certain and ",
