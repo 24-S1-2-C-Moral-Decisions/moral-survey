@@ -188,21 +188,21 @@ module.exports = (function(exports) {
 
 	function configureStudy() {
 		setUpSlideData();
-		// timeline.push(params.slides.INTRODUCTION);
+		timeline.push(params.slides.INTRODUCTION);
 		timeline.push({
 			timeline: [
-				// params.slides.INFORMATION,
-				// params.slides.UNDERSTAND_TOPIC,
-				// {
-				// 	timeline: [
-				// 		params.slides.TWO_STAGE_TRAINING,
-				// 	],
-				// 	conditional_function: function(){
-				// 		console.log(LITW.data.skipTraining);
-				// 		return !LITW.data.skipTraining;
-				// 	}
-				// },
-				// params.slides.ATTENTION_List[0],
+				params.slides.INFORMATION,
+				params.slides.UNDERSTAND_TOPIC,
+				{
+					timeline: [
+						params.slides.TWO_STAGE_TRAINING,
+					],
+					conditional_function: function(){
+						console.log(LITW.data.skipTraining);
+						return !LITW.data.skipTraining;
+					}
+				},
+				params.slides.ATTENTION_List[0],
 				params.slides.TWO_STAGE_SURVEY,
 				params.slides.ATTENTION_List[1],
 				{
