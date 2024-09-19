@@ -81,6 +81,8 @@
   "moral-topic-high-controversy":"high controversy",
   "moral-topic-low-controversy":"low controversy",
   "moral-topic-understand-controversy":"Understand Controversy in the AITA community",
+  "moral-topic-high-controversy-explain":"means people's opinions are split almost evenly among 2 judgments (YA, NA).",
+  "moral-topic-low-controversy-explain":"means a clear consensus among the whole population.",
 
   "moral-topic-understand-uncertainty": "Understand Uncertainty in the AITA community",
   "moral-topic-uncertainty": "Uncertainty",
