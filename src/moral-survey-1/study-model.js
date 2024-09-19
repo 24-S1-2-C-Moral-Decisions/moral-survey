@@ -211,31 +211,22 @@ module.exports = (function(exports) {
 					}
 				},
 				params.slides.ATTENTION_List[0],
+				params.slides.TWO_STAGE_SURVEY,
+				params.slides.ATTENTION_List[1],
 				{
 					timeline: [
-						params.slides.TWO_STAGE_SURVEY,
-						params.slides.ATTENTION_List[1],
-						{
-							timeline: [
-								params.slides.LIKERT_SCALE_0,
-								params.slides.LIKERT_SCALE_1,
-								params.slides.COMMENTS,
-							],
-							conditional_function: function(){
-								return LITW.data.attentionCheckPassed;
-								return true;
-							}
-						},
+						params.slides.LIKERT_SCALE_0,
+						params.slides.LIKERT_SCALE_1,
+						params.slides.COMMENTS,
 					],
 					conditional_function: function(){
-						return LITW.data.attentionCheckPassed;
-						return true;
+						return LITW.data.attentionCheckPassed();
 					}
 				},
 			],
 			conditional_function: function(){
-				// return LITW.data.consentAccepted;
-				return true;
+				return LITW.data.consentAccepted;
+				// return true;
 			}
 		});
 		timeline.push(params.slides.RESULTS);

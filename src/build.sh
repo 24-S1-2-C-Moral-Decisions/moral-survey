@@ -11,6 +11,10 @@ for dir in moral-survey-*; do
     npm install
     echo "[$dir] Build pages" &> $log
     npm run publish 
+    if [ $? -ne 0 ]; then
+        echo "[$dir] Build failed" &> $log
+        exit 1
+    fi
     # cd $dir && ./your-script.sh
     cd -
     fi
