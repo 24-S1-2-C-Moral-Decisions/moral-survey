@@ -1,28 +1,28 @@
-<div class="ms-5 me-5">
-    <h1 class="bolded-blue" data-i18n="moral-page-{{currentPage}}-{{totalPage}}">###</h1>
-    <h2 class="bolded-blue">{{pageTitle}}</h2>
+<div class="instructions-stim-container text-justify">
+    <h2 class="bolded-blue" data-i18n="moral-page-{{currentPage}}-{{totalPage}}">###</h2>
+    <h3 class="bolded-blue">{{pageTitle}}</h3>
 
-    <div class="container d-flex flex-column">
+    <div class="container d-flex flex-column p-0 pt-5">
         {{#if note}}
             <div>
-                <h4 class="bolded-blue">{{note.desc}}</h4>
+                <span class="bolded-blue">{{note.desc}}</span>
+                </br>
                 {{#each note.items}}
-                    <p>
-                        <h4 class="bolded-blue">{{this.title}}</h4>
-                        {{#each this.desc}}
-                            </br>
-                            <p class="fs-5">{{this}}</p>
-                        {{/each}}
-                    </p>
+                    <span class="bolded-blue">{{this.title}}</span>
+                    {{#each this.desc}}
+                        <p>{{this}}</p>
+                    {{/each}}
                 {{/each}}
             </div>
         {{/if}}
 
-        <div id="individual">
+        <div id="individual" class="pt-5">
             <h4 class="bolded-blue" data-i18n="moral-training-task1">###</h4>
-            <div class="fs-4 judgment" style="line-height: 1.1;">
-                <p class="bolded-blue">{{question.title}}</p>
+            </br>
+            <div class="judgment">
+                <i class="bolded-blue">{{question.title}}</i>
                 <p>{{question.selftext}}</p>
+                </br>
                 <p class="bolded-blue" data-i18n="moral-question-what-judgment"></p>
                 <div class="container d-flex flex-column">
                     <div class="pb-2">
@@ -37,8 +37,8 @@
                 </div>
             </div>
 
-            <div class="fs-4 pt-4 confident">
-                <p class="bolded-blueer" data-i18n='moral-question-how-confident'></p>
+            <div class="pt-4 confident">
+                <p class="bolded-blue" data-i18n='moral-question-how-confident'></p>
                 <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
                     {{#times 5}}
                         <div class="col">
@@ -63,11 +63,8 @@
 
         <div id="group" class="mt-5">
             <h4 class="bolded-blue" data-i18n="moral-training-task2-{{topic}}"></h4>
-            <h5 class="bolded-blue" data-i18n="moral-training-task2-{{topic}}-info"></h5>
 
-            <div class="fs-4" style="line-height: 1.1;">
-
-
+            <div>
                 {{#if isReasoning}}
                 <div id="YA">
                     <p class="bolded-blue">
@@ -133,8 +130,6 @@
                     </p>
                 </div>
                 {{else}}
-                <p class="bolded-blue">{{question.title}}</p>
-                <p>{{question.selftext}}</p>
                 <div id="YA">
                     <img class="img-fluid" src="../img/{{topic}}/{{question._id}}_YA.png" alt="{{topic}}/{{question._id}}">
 
@@ -163,7 +158,9 @@
                     </p>
                 </div>
                 {{/if}}
-                                                  
+
+                <p class="bolded-blue" data-i18n="moral-question-what-new-judgment"></p>
+
                 <div class="container d-flex flex-column judgment">
                     <div class="pb-2">
                         <input type="radio" class="btn-check" name="groupJudgment" id="group-YA" autocomplete="off">
@@ -175,22 +172,22 @@
                     </div>
                     <div class="invalid-feedback" data-i18n="moral-please-answer"></div>
                     <div class="pt-2" class="collapse">
-                        <p id="judgmentResult" class="survey1-paragraph-body mid-font bolded-blueer">
-                            <span id="judgmentSame" data-i18n="moral-question-judgment-same"></span>
-                            <span id="judgmentChange_NA">
+                        <p id="judgmentResult" class="survey1-paragraph-body mid-font text-secondary">
+                            <i id="judgmentSame" data-i18n="moral-question-judgment-same"></i>
+                            <i id="judgmentChange_NA">
                                 <span data-i18n="moral-question-judgment-change"></span>
                                 <span data-i18n="moral-question-what-judgment-YA"></span>
-                            </span>
-                            <span id="judgmentChange_YA">
+                            </i>
+                            <i id="judgmentChange_YA">
                                 <span data-i18n="moral-question-judgment-change"></span>
                                 <span data-i18n="moral-question-what-judgment-NA"></span>
-                            </span>
+                            </i>
                         </p>
                     </div>
                 </div>
 
-                <div class="fs-4 pt-4 confident container">
-                    <p class="bolded-blueer" data-i18n='moral-question-how-confident'></p>
+                <div class="pt-4 confident container">
+                    <p class="bolded-blue" data-i18n='moral-question-how-confident'></p>
                     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
                         {{#times 5}}
                             <div class="col">
@@ -201,18 +198,18 @@
                     </div>
                     <span class="invalid-feedback" data-i18n="moral-please-answer"></span>
                     <div class="pt-2">
-                        <p id="confidentResult" class="survey1-paragraph-body mid-font bolded-blueer">
-                            <span id="confidentSame" data-i18n="moral-question-confidence-same"></span>
-                            <span id="confidentChange">
+                        <p id="confidentResult" class="survey1-paragraph-body mid-font text-secondary">
+                            <i id="confidentSame" data-i18n="moral-question-confidence-same"></i>
+                            <i id="confidentChange">
                                 <span data-i18n="moral-question-confidence-change"></span>
                                 <span id="prev-confident" > ### </span>
-                            </span>
+                            </i>
                         </p>
                     </div>
                 </div>
 
                 {{#unless isTraing}}
-                    <div class="fs-4 pt-4">
+                    <div class="pt-4">
                         <label for="comment" class="form-label bolded-blue" data-i18n="moral-question-comment"></label>
                         <textarea class="form-control" id="comment" rows="3" placeholder="any comments"></textarea>
                     </div>

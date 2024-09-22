@@ -270,7 +270,7 @@ module.exports = (function(exports) {
 				{
 					share_url: window.location.href,
 					share_title: $.i18n('litw-irb-header'),
-					share_text: $.i18n('litw-template-title'),
+					share_text: $.i18n('moral-title'),
 					more_litw_studies: params.study_recommendation
 				}
 			));
