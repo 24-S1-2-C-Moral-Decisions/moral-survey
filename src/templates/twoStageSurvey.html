@@ -65,7 +65,7 @@
             <h4 class="bolded-blue" data-i18n="moral-training-task2-{{topic}}"></h4>
 
             <div>
-                {{#if isRele}}
+                {{#if isReasoning}}
                 <div id="YA">
                     <p class="bolded-blue">
                         <span data-i18n="moral-question-relevant-YA1"></span>
@@ -99,7 +99,9 @@
                         </ul>   
                     </p>
                 </div>
+
                 {{else if isCon}}
+
                 <div id="YA">
                     <img class="img-fluid" src="../img/{{topic}}/{{question._id}}.png" alt="{{topic}}/{{question._id}}">
 
