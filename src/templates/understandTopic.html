@@ -1,26 +1,27 @@
-<div class="ms-5 me-5">
-    <h1 class="bolded-blue" data-i18n="moral-page-1-2">###</h1>
-    <h1 class="bolded-blue" data-i18n="moral-topic-understand-{{topic}}">###</h1>
+<div class="instructions-stim-container text-justify">
+    <h2 class="bolded-blue" data-i18n="moral-page-1-2">###</h2>
+    <h3 class="bolded-blue" data-i18n="moral-topic-understand-{{topic}}">###</h3>
     
-    <div class="container d-flex flex-column">
-        <div class="pb-3 fs-5">
-            <div class="p-3">
+    <div class="container d-flex flex-column p-0">
+        <div class="pb-4">
+            <div class="pb-3 pt-3">
                 <span class="bolded-blue" data-i18n="moral-topic-what-is-reddit">###</span>
                 &nbsp;
                 <span class="bolded-blue ms-auto" data-i18n="moral-topic-reddit">###</span>
                 <span class="ms-auto" data-i18n="moral-topic-what-is-reddit-ans">###</span>
             </div>
-            <div>
+            <div class="pb-3 pt-3">
                 <span class="bolded-blue" data-i18n="moral-topic-what-is-aita">###</span>
                 &nbsp;
                 <span class="bolded-blue ms-auto" data-i18n="moral-topic-aita">###</span>
                 <span class="ms-auto" data-i18n="moral-topic-what-is-aita-ans">###</span>
             </div>
     
-            <div class="p-3">
+            <div class="pb-3 pt-3">
                 <p class="bolded-blue" data-i18n="moral-topic-categorize-judgments">###</p>
                 <p>
                     <span class="bolded-blue ms-auto" data-i18n="moral-topic-judgments-1">###</span>
+                </br>
                     {{#times 3}}
                         <span class="ms-auto" data-i18n="moral-topic-judgments-1-detail-{{this}}">###</span>
                         </br>
@@ -36,7 +37,7 @@
             </div>
         </div>
 
-        <div class="pb-3 fs-5">
+        <div class="pb-3">
             <div>
                 {{#if isCon_Un}}
                     <span data-i18n="moral-topic-reddit-controversy-uncertainty-summary">###</span>
@@ -56,8 +57,8 @@
 
             {{#if isRele}}
             {{else}}
-            <div class="p-3">
-                <h3 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
+            <div class="pt-3">
+                <h4 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
                 <p class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}-ans"></p>
                 <ul>
                     <li class="pb-1">
@@ -70,7 +71,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="p-3">
+            <div class="pt-3">
                 <h4 class="bolded-blue">
                     <span data-i18n="moral-topic-practice-question"></span>
                     {{#if isCon_Un}}
@@ -264,7 +265,7 @@
     >
     Next
     </button>
-   
+    <div style="clear: both;"></div>
 </div>
 <script>
     let answer = 0;
