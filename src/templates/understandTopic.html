@@ -54,7 +54,7 @@
                 <button type="button" class="btn btn-secondary me-auto" onclick="skipTraing()" data-i18n="moral-skip"></button>
             </div>
 
-            {{#if isReasoning}}
+            {{#if isRele}}
             {{else}}
             <div class="p-3">
                 <h3 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
@@ -256,16 +256,6 @@
         {{/if}}
     </div>
             
-    {{#if isReasoning}}
-    <button
-    type="button"
-    class="btn btn-secondary custom-btn-left me-auto"
-    data-i18n="moral-next"
-    onclick="nextPage()"
-    >
-    Next
-    </button>   
-    {{else}}
     <button
     type="button"
     class="btn btn-secondary custom-btn-left me-auto"
@@ -274,7 +264,6 @@
     >
     Next
     </button>
-    {{/if}}
    
 </div>
 <script>
