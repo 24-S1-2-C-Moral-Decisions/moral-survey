@@ -122,23 +122,21 @@ module.exports = (function(exports) {
 
 	function setUpSlideData() {
 		isCon = false
-
-		isReasoning = false
+		isRele = false
 		if(LITW.data.getTopic()== "controversy"){
 			isCon = true
-		}else if(LITW.data.getTopic()== "relevant-reasonings" || LITW.data.getTopic()== "irrelevant-reasonings"){
-			isReasoning = true
+		}else if(LITW.data.getTopic()== "relevant-reasonings"){
+			isRele = true
 		}
 		params.slides.UNDERSTAND_TOPIC.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-			isReasoning,
-
+			isRele,
 		};
 		params.slides.TWO_STAGE_TRAINING.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-			isReasoning,
+			isRele,
 			isTraing: true,
 			currentPage: 3,
 			totalPage: 4,
@@ -165,7 +163,7 @@ module.exports = (function(exports) {
 		params.slides.TWO_STAGE_SURVEY.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-      isReasoning,
+			isRele,
 			currentPage: 4,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-survey-start"),
