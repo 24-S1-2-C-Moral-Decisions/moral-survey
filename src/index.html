@@ -12,6 +12,10 @@
 </head>
 <script type="text/javascript">
   console.log(window.location.search);
+  const splitUrl = window.location.search.split('prolificId=');
+  if (splitUrl.length < 2) {
+    alert('Please provide a prolificId in the URL "prolificId="');
+  }
   const prolificId = window.location.search.split('prolificId=')[1].split('&')[0];
   const surveyCount = 5;
   const studyId = Math.floor(Math.random() * surveyCount) + 1;
