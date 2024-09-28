@@ -10,8 +10,19 @@
     <link href="css/bootstrap-icons-1.10.5.css" rel="stylesheet">
     <link href="css/litw-styles.css" rel="stylesheet" type="text/css">
 </head>
+<script type="text/javascript">
+  console.log(window.location.search);
+  const prolificId = window.location.search.split('prolificId=')[1].split('&')[0];
+  const surveyCount = 5;
+  const studyId = Math.floor(Math.random() * surveyCount) + 1;
+  const surveyUrl = `./moral-survey-${studyId}/index.html?prolificId=${prolificId}&studyId=${studyId}`;
+  window.onload = function() {
+    console.log(surveyUrl);
+    window.location.href = surveyUrl
+  }
+</script>
 
-<body class="container">
+<body class="container" style="display: none;">
 <h2>Welcome to the LabintheWild Study Templates Package!</h2>
 <h3>Here is a list of template studies you may want to take a look:</h3>
 
