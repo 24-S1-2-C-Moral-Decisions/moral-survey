@@ -351,17 +351,25 @@
                 });
         },
         submitStudyData = function() {
+            let DataChoice = window.MORAL.DataChoice;
             let timeElapsed = jsPsych.totalTime()/1000/60;
             let comments = $('#floatingTextarea5').val();
-
+            let studyId = parseInt(getStudyId(), 10);    
+            let decisionMaking = DataChoice.decisionMaking.map(item => parseInt(item, 10));
+            let personalityChoice = DataChoice.personalityChoice.map(item => parseInt(item, 10));
+            const answer = []
+            answer.push(Data.result)
             let result = {
                 prolificId: getProlificId(),
-                studyId: getStudyId(),
-                answer: Data.result,
+                studyId: studyId,
+                answerDetail: answer,
+                decisionMaking: decisionMaking || [],
+                personalityChoice: personalityChoice || [],
                 time: timeElapsed,
-                comments: comments,
+                comment: comments,
             };
-            console.log(result);
+
+            console.log(JSON.stringify(result, null, 2)); 
             _submit(result, false);
             nextPage();
         },

@@ -165,7 +165,7 @@ module.exports = (function(exports) {
 		params.slides.TWO_STAGE_SURVEY.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-      isReasoning,
+      		isReasoning,
 			currentPage: 4,
 			totalPage: 4,
 			pageTitle: $.i18n("moral-survey-start"),
