@@ -4,6 +4,7 @@ var webpack = require('webpack');
 var config = () => {
   console.log("API_URL: ", process.env.API_URL);
   let baseUrl = process.env.API_URL ? process.env.API_URL : "https://moralmomentapi.azurewebsites.net/";
+  let baseMoralUrl = process.env.MORAL_URL ? process.env.MORAL_URL : "https://moralfrontend.azurewebsites.net/";
   console.log("API_URL: ", baseUrl);
   return {
     entry: path.join(__dirname, "study-model.js"),
@@ -14,6 +15,7 @@ var config = () => {
     plugins: [
       new webpack.DefinePlugin({
         API_URL: JSON.stringify(baseUrl),
+        MORAL_URL: JSON.stringify(baseMoralUrl),
       }),
     ],
     module: {
