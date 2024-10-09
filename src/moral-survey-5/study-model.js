@@ -287,6 +287,8 @@ module.exports = (function(exports) {
 	}
 
 	const APIBaseURL = API_URL;
+	const MoralBaseUrl = MORAL_URL;
+	console.log(MoralBaseUrl)
 	function startStudy() {
 		// save URL params
 		params.URL = LITW.utils.getRequestParams();
@@ -427,6 +429,7 @@ module.exports = (function(exports) {
 	exports.study = {};
 	exports.study.params = params
 	exports.utils.APIBaseURL = APIBaseURL
+	exports.utils.MoralBaseUrl = MoralBaseUrl
 })( window.LITW = window.LITW || {} );
 
 
