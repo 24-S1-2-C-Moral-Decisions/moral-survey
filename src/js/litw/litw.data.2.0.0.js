@@ -327,7 +327,7 @@
                 });
             }
         },
-
+        
         uuidv4 = function() {
             return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(
             /[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
@@ -368,10 +368,13 @@
                 time: timeElapsed,
                 comment: comments,
             };
-
+            const BaseURL = LITW.utils.MoralBaseURL ? LITW.utils.MoralBaseURL :  "https://moralfrontend.azurewebsites.net/";
             console.log(JSON.stringify(result, null, 2)); 
+            console.log(BaseURL)
+            // submit answer
             _submit(result, false);
-            nextPage();
+            window.location.href = BaseURL + "en/surveyfeedback"
+            // nextPage();
         },
         submitConsent = function(accepted) {
             Data.consentAccepted = accepted;
