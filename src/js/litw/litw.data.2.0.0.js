@@ -368,10 +368,12 @@
                 time: timeElapsed,
                 comment: comments,
             };
+
             const BaseURL = LITW.utils.MoralBaseURL ? LITW.utils.MoralBaseURL :  "https://moralfrontend.azurewebsites.net/";
             console.log(JSON.stringify(result, null, 2)); 
             console.log(BaseURL)
             // submit answer
+
             _submit(result, false);
             window.location.href = BaseURL + "en/surveyfeedback"
             // nextPage();
