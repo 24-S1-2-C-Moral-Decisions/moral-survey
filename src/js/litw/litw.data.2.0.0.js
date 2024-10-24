@@ -327,13 +327,13 @@
                 });
             }
         },
-        
+
         uuidv4 = function() {
             return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(
             /[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
         },
-        _submit = function(obj_data, finalAttempt) {
-            fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
+        _submit = async function(obj_data, finalAttempt) {
+            return fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
                 method: 'POST',
                 headers: {
                     'Accept': '*/*',
@@ -341,16 +341,19 @@
                 },
                 body: JSON.stringify(obj_data)
             }).then(response => response.json())
-                .then(data => console.log('Success:', data))
+                .then(data => {
+                    console.log('Success:', data)
+                    return data;
+                })
                 .catch((error) => {
                     if (finalAttempt) {
                         console.error('Error:', error);
                     } else {
-                        _submit(obj_data, true);
+                        return _submit(obj_data, true);
                     }
                 });
         },
-        submitStudyData = function() {
+        submitStudyData = async function() {
             let DataChoice = window.MORAL.DataChoice;
             let timeElapsed = jsPsych.totalTime()/1000/60;
             let comments = $('#floatingTextarea5').val();
@@ -374,8 +377,8 @@
             console.log(BaseURL)
             // submit answer
 
-            _submit(result, false);
-            window.location.href = BaseURL + "en/surveyfeedback"
+            res = await _submit(result, false);
+            window.location.href = BaseURL + "en/surveyfeedback?answerId=" + res;
             // nextPage();
         },
         submitConsent = function(accepted) {
