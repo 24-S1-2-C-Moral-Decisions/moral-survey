@@ -43,6 +43,8 @@ cd src
 
 ​	Run the following command run.
 
+4. Change the API_URL to your local backend server. Including: 1. SurveyCI.yml, 2.src/js/litw/litw.utils 3. webpack.config in each moral-survey-x folder.
+
 ```ba
 npm run devserver
 ```
