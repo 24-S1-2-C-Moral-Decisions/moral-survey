@@ -41,6 +41,8 @@
             <div>
                 {{#if isCon_Un}}
                     <span data-i18n="moral-topic-reddit-controversy-uncertainty-summary">###</span>
+                {{else if isControl}}    
+                    <span data-i18n="moral-topic-control-summary">###</span>
                 {{else}}
                     <span data-i18n="moral-topic-reddit-summary-1">###</span>
                     <i data-i18n="moral-topic-reddit-summary-2">###</i>
@@ -55,7 +57,32 @@
                 <button type="button" class="btn btn-secondary me-auto" onclick="skipTraing()" data-i18n="moral-skip"></button>
             </div>
 
-            {{#if isReasoning}}
+            {{#if isControl}}
+            <div class="pt-3">
+                <h4 class="bolded-blue">
+                    <span data-i18n="moral-topic-practice-question"></span>
+                    <span data-i18n="moral-topic-{{topic}}">###</span>
+                </h4>
+                <h5 class="bolded-blue" style="margin-top: 40px;"><em>AITA for not consulting my partners before spending the lottery winnings?</em></h5>
+                <p>Last month, I bought a lottery ticket on a whim and won $1,000. I decided to use some of the money to buy myself a new gaming console, something I've wanted for a long time. When my partner found out, she was upset because she thought we should have discussed what to do with the money first, arguing that it could have gone toward our shared goals or bills. AITA for not consulting her before spending the winnings?
+                </p>
+                <div class="pt-3">
+                    <p class="bolded-blue" data-i18n='moral-topic-control-category'></p>
+                    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-2">
+                        {{#times 5}}
+                            <div class="col">
+                                <input type="checkbox" class="btn-check" name="individualConfident" id="moral-topic-control-ans-{{this}}" autocomplete="off">
+                                <label class="btn btn-outline-secondary btn-light w-100 h-100 text-center flex-center" for="moral-topic-control-ans-{{this}}" data-i18n="moral-topic-control-ans-{{this}}" onclick="showAns()">###</label>
+                            </div>
+                        {{/times}}
+                    </div>
+                    <div class="collapse" id="answer-for-control" style="margin-top: 20px;">
+                        <span class="bolded-blue">Answers: </span>
+                        <span class="mid-font">The topics related to the above AITA post</span>
+                        <br>
+                        <span>include <span class="bolded-blue">money</span> and <span class="bolded-blue">communication</span>.</span>
+                    </div>
+            </div>
             {{else}}
             <div class="pt-3">
                 <h4 class="bolded-blue" data-i18n="moral-topic-what-is-{{topic}}">###</h2>
@@ -145,6 +172,7 @@
                                 <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans1-s4'>###</span>
                             </div>
                         </div>
+                    
                     {{else if isCon}}
                         <div class="pt-2">
                             <div class="collapse" id="wrong">
@@ -153,8 +181,6 @@
                                 <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans2-s2'>###</span><br>
                                 <span class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans2-s3'>###</span>
                                 <span class="survey1-paragraph-body mid-font" data-i18n='moral-topic-practice-question-controversy-ans2-s4'>###</span>
-
-
                             </div>
                             <div class="collapse" id="correct">
                                 <p class="survey1-paragraph-body mid-font bolded-blueer" data-i18n='moral-topic-practice-question-controversy-ans-p1'>###</p>
@@ -266,6 +292,16 @@
     >
     Next
     </button>   
+    {{else if isControl}}
+    <button
+    type="button"
+    class="btn btn-secondary"
+    data-i18n="moral-next"
+    style="margin-left: auto !important; float: right;"
+    onclick="nextPage()"
+    >
+    Next
+    </button>   
     {{else}}
     <button
     type="button"
@@ -281,6 +317,9 @@
 </div>
 <script>
     let answer = 0;
+    function showAns(){
+        $("#answer-for-control").show();
+    }
     function checkAnswer(ans,id) {
         answer = ans;
         if (ans === 1) {

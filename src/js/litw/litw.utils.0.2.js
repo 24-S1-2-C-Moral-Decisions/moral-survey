@@ -279,7 +279,7 @@
 
     /**** PUBLIC METHODS ****/
     var Utils = {
-        APIBaseURL: "https://moralmomentapi.azurewebsites.net/",
+        APIBaseURL: "http://localhost:3000/",
     }
     exports.utils = Utils;
     exports.utils.showNextButton = showNextButton;

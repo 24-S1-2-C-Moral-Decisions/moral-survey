@@ -123,20 +123,23 @@ module.exports = (function(exports) {
 	function setUpSlideData() {
 		isCon = false
 		isReasoning = false
+		isControl = false;
 		if(LITW.data.getTopic()== "controversy"){
 			isCon = true
 		}else if(LITW.data.getTopic()== "relevant-reasonings" || LITW.data.getTopic()== "irrelevant-reasonings"){
 			isReasoning  = true
+		}else if(LITW.data.getTopic() === "control"){
+			isControl = true
 		}
 		params.slides.UNDERSTAND_TOPIC.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
 			isReasoning ,
+			isControl
 		};
 		params.slides.TWO_STAGE_TRAINING.template_data = {
 			topic: LITW.data.getTopic(),
 			isCon,
-			isReasoning ,
 			isTraing: true,
 			currentPage: 3,
 			totalPage: 4,
