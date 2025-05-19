@@ -29,7 +29,7 @@
   "moral-points-more-details-2": "Participant information sheet.",
   "moral-participant-consetn-title": "Participant Consent Form",
   "moral-participant-consetn": "I have read and understood the Participant Information Sheet you have given me about the research project, and I have had any questions and concerns about the project addressed to my satisfaction. I agree to participate in the project.",
-  "moral-training-task2-desc-irrelevant-reasonings":"Next, you will be given information about the AITA community's reasonings and asked to report your judgment and confidence again.",
+  "moral-training-task2-desc-control":"Next, you will be given information about the AITA community's reasonings and asked to report your judgment and confidence again.",
   "moral-page-1-2" : "Page 1 of 2.",
   "moral-page-2-2" : "Page 2 of 2.",
 
@@ -58,6 +58,15 @@
   "moral-topic-reddit-summary-3": " (a very certain expression) or ",
   "moral-topic-reddit-summary-4": "“NA but I'm really torn on this one, from one side ...”",
   "moral-topic-reddit-summary-5": " (a very uncertain expression).  We tally this information for the group of users and present it here.",
+  "moral-topic-control-summary": "In this survey, each post has at least 50 judgments, with the vast majority receiving over 100.",  
+  "moral-topic-control":"Understand Control",
+  "moral-topic-control-ans-1": "friends",
+  "moral-topic-control-ans-2": "money",
+  "moral-topic-control-ans-3": "communication",
+  "moral-topic-control-ans-4": "pets",
+  "moral-topic-control-ans-5": "others",
+  "moral-topic-control-category" : "What topic(s) below can be used to describe the theme of this story? You may choose all that apply, or the “Others” option if no topic is appropriate.",
+  
   "moral-question-what-new-judgment":"What's your judgment over the situation?",
   "moral-topic-practice-question": "Practice Question - ",
 
@@ -95,8 +104,8 @@
   "moral-training-task2-desc-relevant-reasonings":"Next, you will be given information about the AITA community's reasonings and asked to report your judgment and confidence again. ",
   "moral-question-relevant-YA1":"Here are 3 highly voted comments with a different judgment than yours, written by members of the AITA community.:  ",
 
-  "moral-topic-understand-irrelevant-reasonings":"Understand Reasonings in the AITA community",
-  "moral-training-task2-irrelevant-reasonings": "Task 2: Consider Reasonings",
+  "moral-topic-understand-control":"Understand Control in the AITA community",
+  "moral-training-task2-control": "Task 2: Consider Control",
 
 
 

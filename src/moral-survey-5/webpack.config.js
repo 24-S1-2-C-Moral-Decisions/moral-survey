@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 var config = () => {
   console.log("API_URL: ", process.env.API_URL);
-  let baseUrl = process.env.API_URL ? process.env.API_URL : "https://moralmomentapi.azurewebsites.net/";
+  let baseUrl = process.env.API_URL ? process.env.API_URL : "http://localhost:3000/";
   let baseMoralUrl = process.env.MORAL_URL ? process.env.MORAL_URL : "https://moralfrontend.azurewebsites.net/";
   console.log("API_URL: ", baseUrl);
   return {

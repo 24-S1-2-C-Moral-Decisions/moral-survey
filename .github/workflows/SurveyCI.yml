@@ -16,7 +16,7 @@ permissions:
   id-token: write
 
 env:
- API_URL: https://moralmomentapi.azurewebsites.net/
+ API_URL: http://localhost:3000/
  MORAL_URL: https://moralfrontend.azurewebsites.net/
 # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.

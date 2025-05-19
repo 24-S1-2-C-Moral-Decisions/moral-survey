@@ -171,8 +171,8 @@
                 case '4':
                     return "relevant-reasonings";
                 case '5':
-                    return "irrelevant-reasonings";
-            
+                    return "control";
+                    
                 default:
                     return "Unknown-Topic";
             }
