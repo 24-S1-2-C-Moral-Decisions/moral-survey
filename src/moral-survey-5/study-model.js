@@ -207,9 +207,11 @@ module.exports = (function(exports) {
 		timeline.push({
 			timeline: [
 				params.slides.INFORMATION,
+				params.slides.UNDERSTAND_TOPIC,
 
 				{
 					timeline: [
+						params.slides.TWO_STAGE_TRAINING,
 						params.slides.LIKERT_SCALE_0,
 						params.slides.LIKERT_SCALE_1,
 						
@@ -222,8 +224,6 @@ module.exports = (function(exports) {
 				params.slides.ATTENTION_List[0],
 				{
 					timeline: [
-						params.slides.UNDERSTAND_TOPIC,
-						params.slides.TWO_STAGE_TRAINING,
 						params.slides.TWO_STAGE_SURVEY,
 						params.slides.ATTENTION_List[1],
 						{
