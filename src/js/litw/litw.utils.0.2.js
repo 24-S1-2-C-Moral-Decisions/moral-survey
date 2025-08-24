@@ -238,16 +238,27 @@
         },
 
         fetchQuestions = async function() {
-            const response = await fetch( Utils.APIBaseURL + 'survey/question?studyId=' + LITW.data.getStudyId(), {
+            const url = Utils.APIBaseURL + 'survey/question?studyId=' + LITW.data.getStudyId();
+            console.log('Fetching questions from:', url);
+            
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Accept': '*/*'
                 },
             });
+            
+            console.log('Response status:', response.status);
+            console.log('Response headers:', response.headers);
+            
             if (!response.ok) {
+                console.error('Response not ok:', response.status, response.statusText);
                 throw new Error(response);
             }
-            return await response.json();
+            
+            const data = await response.json();
+            console.log('Fetched question data:', data);
+            return data;
         },
 
         postProlificInfo = function(data) {
@@ -279,7 +290,7 @@
 
     /**** PUBLIC METHODS ****/
     var Utils = {
-        APIBaseURL: "http://localhost:3000/",
+        APIBaseURL: window.API_URL || "http://localhost:3001/", // Use webpack injected API_URL or fallback
     }
     exports.utils = Utils;
     exports.utils.showNextButton = showNextButton;
