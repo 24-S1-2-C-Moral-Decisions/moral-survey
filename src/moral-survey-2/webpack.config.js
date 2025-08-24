@@ -1,19 +1,30 @@
 var path = require("path");
 var webpack = require('webpack');
+var globalConfig = require("../../config.js");
 
 var config = () => {
-  console.log("API_URL: ", process.env.API_URL);
-  let baseUrl = process.env.API_URL ? process.env.API_URL : "http://localhost:3000/";
-  console.log("API_URL: ", baseUrl);
+  console.log("Environment: ", process.env.NODE_ENV || 'development');
+  console.log("API_URL: ", globalConfig.API_URL);
+  console.log("MORAL_URL: ", globalConfig.MORAL_URL);
+  
   return {
     entry: path.join(__dirname, "study-model.js"),
     output: {
       path: path.join(__dirname, "js"),
       filename: "bundle-model.min.js"
     },
+    devServer: {
+      port: globalConfig.SURVEY_PORT,
+      static: {
+        directory: path.join(__dirname, ".."),
+        publicPath: "/",
+      },
+    },
     plugins: [
       new webpack.DefinePlugin({
-        API_URL: JSON.stringify(baseUrl),
+        API_URL: JSON.stringify(globalConfig.API_URL),
+        MORAL_URL: JSON.stringify(globalConfig.MORAL_URL),
+        'process.env.API_URL': JSON.stringify(globalConfig.API_URL),
       }),
     ],
     module: {

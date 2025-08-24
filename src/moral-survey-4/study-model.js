@@ -429,6 +429,7 @@ module.exports = (function(exports) {
 	exports.study = {};
 	exports.study.params = params
 	exports.utils.APIBaseURL = APIBaseURL
+	exports.utils.MoralBaseURL = MORAL_URL;  // Set MoralBaseURL for all surveys
 })( window.LITW = window.LITW || {} );
 
 
