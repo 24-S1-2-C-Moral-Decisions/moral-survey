@@ -193,7 +193,7 @@
             Data.questions.YA_percentage = Math.round(Data.questions.YA_percentage * 100)
             Data.questions.NA_percentage = Math.round(Data.questions.NA_percentage * 100)
             Data.questions.very_certain_NA = Math.floor(Data.questions.very_certain_NA * 100).toString()
-            Data.questions.not_very_certain_NA = 100 - Data.questions.very_certain_NA
+            Data.questions.not_very_certain_NA = 100 - parseInt(Data.questions.very_certain_NA)
             Data.questions.very_certain_YA = Math.floor(Data.questions.very_certain_YA * 100).toString()
             Data.questions.not_very_certain_YA = 100 - Data.questions.very_certain_YA
             Data.questions.YA_NA_percentage = Data.questions.YA_percentage.toString() + ":" + Data.questions.YA_percentage.toString()     
@@ -304,8 +304,10 @@
 
                 console.log("prolificId: " + params.prolificId);
                 if (params.prolificId == null) {
-                    console.error("prolificId Not Found");
-                    alert("Invalid URL, Prolific ID Not Found.\n The results will not be recorded. Please contact the researcher.")
+                    // For local testing, provide default values
+                    params.prolificId = "test123";
+                    params.studyId = "2";
+                    console.log("Using default prolificId for local testing: " + params.prolificId);
                 }
                 
                 return $.getJSON(geoip_url, function(data) {
@@ -333,6 +335,8 @@
             /[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16))
         },
         _submit = async function(obj_data, finalAttempt) {
+            console.log('Submitting data to:', window.LITW.utils.APIBaseURL + 'survey/answer');
+            console.log('Data:', obj_data);
             return fetch(window.LITW.utils.APIBaseURL + 'survey/answer', {
                 method: 'POST',
                 headers: {
@@ -340,14 +344,18 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj_data)
-            }).then(response => response.json())
+            }).then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
                 .then(data => {
                     console.log('Success:', data)
                     return data;
                 })
                 .catch((error) => {
+                    console.error('Submit error:', error);
                     if (finalAttempt) {
-                        console.error('Error:', error);
+                        console.error('Final attempt failed:', error);
                     } else {
                         return _submit(obj_data, true);
                     }
@@ -372,7 +380,7 @@
                 comment: comments,
             };
 
-            const BaseURL = LITW.utils.MoralBaseURL ? LITW.utils.MoralBaseURL :  "https://moralfrontend.azurewebsites.net/";
+            const BaseURL = LITW.utils.MoralBaseURL ? LITW.utils.MoralBaseURL : MORAL_URL;
             console.log(JSON.stringify(result, null, 2)); 
             console.log(BaseURL)
             // submit answer
